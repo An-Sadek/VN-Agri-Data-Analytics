@@ -1,0 +1,60 @@
+source: https://thitruongnongsan.gov.vn/vn/default.aspx
+columns:
+  Tên_mặt_hàng:
+    id: 0
+    name: "Tên mặt hàng"
+    type: "str"
+    range_values: 348
+    decs: >
+      Tên của các sản phẩm
+    data: 
+
+  Thị_trường:
+    id: 1
+    name: "Thị trường"
+    type: "str"
+    range_values: 22
+    decs: >
+      adf
+    data: 
+
+  Loại_giá:
+    id: 2
+    name: "Loại giá"
+    type: "str"
+    range_values: 12
+    decs: >
+      
+    data:
+
+  Đơn_vị_tính:
+    id: 3
+    name: "Đơn vị tính"
+    type: "str"
+    range_values:
+    decs: >
+      Đơn vị tính của mặt hàng. 
+      Ví dụ như: đồng/kg, VND/cây, VND/quả,...
+      Dữ liệu thực tế có tới 10 giá trị, 
+      nhưng lại bị trùng về mặt ngữ nghĩa nên sẽ cần phải gộp lại.
+      VÍ dụ: Vnđ/Kg, VNĐ/kg, VNĐ/Kg,...
+    data:
+
+  Loại_tiền:
+    id: 4
+    name: "Loại tiền"
+    type: "str"
+    range_values: 1
+    decs: >
+      Loại giá gồm nội tệ (VND), hoặc ngoại tệ.
+      Do chỉ lấy từ một nguồn ở VN nên chỉ có một giá trị là VND
+    data: "VND"
+
+  Nguồn:
+    id: 5
+    name: "Nguồn"
+    type: "str"
+    range_values: 14
+
+
+
