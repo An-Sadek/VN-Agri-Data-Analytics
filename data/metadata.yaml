@@ -1,36 +1,40 @@
 source: https://thitruongnongsan.gov.vn/vn/default.aspx
+
 columns:
   Tên_mặt_hàng:
     id: 0
     name: "Tên mặt hàng"
-    type: "str"
+    type: str
     range_values: 348
     decs: >
-      Tên của các sản phẩm
+      Tên của các mặt hàng.
+      Gồm 348 mặt hàng khác nhau.
+      Ví dụ: Cà phê Robusta nhân xô, ST25, chanh,...
     data: 
 
   Thị_trường:
     id: 1
     name: "Thị trường"
-    type: "str"
+    type: str
     range_values: 22
     decs: >
-      adf
+      Khu vực đang thay đổi giá. Chỉ có 22 tỉnh.
     data: 
 
   Loại_giá:
     id: 2
     name: "Loại giá"
-    type: "str"
+    type: str
     range_values: 12
     decs: >
-      
+      Kênh mua bán của thị trường.
+      Ví dụ: Thương lái thu mua, công ty thu mua,...
     data:
 
   Đơn_vị_tính:
     id: 3
     name: "Đơn vị tính"
-    type: "str"
+    type: str
     range_values:
     decs: >
       Đơn vị tính của mặt hàng. 
@@ -43,7 +47,7 @@ columns:
   Loại_tiền:
     id: 4
     name: "Loại tiền"
-    type: "str"
+    type: str
     range_values: 1
     decs: >
       Loại giá gồm nội tệ (VND), hoặc ngoại tệ.
@@ -53,8 +57,40 @@ columns:
   Nguồn:
     id: 5
     name: "Nguồn"
-    type: "str"
-    range_values: 14
+    type: str
+    range_values: 6
+    decs: >
+      Nguồn xuất khẩu.
+      Ví dụ: CTV địa phương, CTV Agroinfo/ Tintaynguyen,...
+    data:
 
+  Ngày:
+    id: 6
+    name: "Ngày"
+    type: datetime
+    range_values: ["1/1/2020", "19/5/2025"]
+    decs: >
+      Thời điểm mà giá cả thị trường thay đổi.
+      Dữ liệu không được cập nhật theo thời gian thật và chỉ bắt đầu từ đầu năm 2020.
+    data:
+
+  Giá:
+    id: 7
+    name: "Giá"
+    type: int
+    range_values: [0, 1333333333]
+    decs: >
+      Giá trị của mặt hàng tại thời điểm thay đổi.
+    data:
+
+  Ngành_hàng:
+    id: 8
+    name: "Ngành hàng"
+    type: str
+    range_values: 3
+    decs: >
+      Ngành hàng mà mặt hàng thuộc về. 
+      Được thêm vào theo ngành được lấy từ csdl.
+    data:
 
 
