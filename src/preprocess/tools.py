@@ -16,7 +16,7 @@ class OutlierTool:
         self.path = path
 
         # Đọc file html và chuyển về dạng bảng
-        with open("../../data/Ca phe", "r", encoding="utf-16") as file:
+        with open("../../data/Rau, qua", "r", encoding="utf-16") as file:
             html = file.read()
         self.data = pd.read_html(html)[0]
 
@@ -52,4 +52,42 @@ class OutlierTool:
         """
         Những mặt hàng có thể có giá riêng và cần được xem xét riêng. Lọc ra các mặt hàng vẫn có giá trị ngoại lai dựa trên giá mặt hàng đó.
         """
+        outlier_filtered = []
+        outlier_mathang = self.get_outlier_chung()
+
+        for value in outlier_mathang:
+            mathang_df = self.data[self.data["Tên_mặt_hàng"] == value]
+            gia_mathang = mathang_df["Giá"].values
+
+            q1 = np.quantile(gia_mathang, 0.25)
+            q3 = np.quantile(gia_mathang, 0.75)
+            iqr = q3 - q1
+            min_mathang = q1 - 1.5 * iqr
+            max_mathang = q3 + 1.5 * iqr
+
+            ngoailai = np.sum((mathang_df["Giá"] < min_mathang) | (mathang_df["Giá"] > max_mathang))
+            if ngoailai:
+                outlier_filtered.append(value)
+
+        outlier_filtered = tuple(outlier_filtered)
+
+        return outlier_filtered
+    
+
+if __name__ == "__main__":
+    outlier = OutlierTool("../../data/Rau, qua")
+    print(outlier.data.shape)
+    print(outlier.q1)
+    print(outlier.q3)
+    print(outlier.iqr)
+    print(outlier.min_val)
+    print(outlier.max_val)
+
+    outlier_mathang = outlier.get_outlier_chung()
+    print(len(outlier_mathang))
+    print(outlier_mathang)
+
+    outlier_filtered = outlier.get_outlier_mathang()
+    print(len(outlier_filtered))
+    print(outlier_filtered)
 
