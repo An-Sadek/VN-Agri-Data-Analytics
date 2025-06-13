@@ -122,7 +122,7 @@ class VNAgriDataset:
             max_val: int, 
             fn: Callable[[Any], Any] = lambda x: None,
             value = None
-    ) -> pd.Series:
+    ) -> pd.DataFrame:
         """
 
         """
@@ -131,12 +131,12 @@ class VNAgriDataset:
         outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
         
         if fn(0) is not None:
-            pre_outlier_df = outlier_df["Giá"].apply(fn)
+            outlier_df["Giá"] = outlier_df["Giá"].apply(fn)
 
         if value is not None:
-            pre_outlier_df = outlier_df["Giá"].replace(value)
+            outlier_df["Giá"] = value
 
-        return pre_outlier_df
+        return outlier_df
 
     
 
@@ -207,4 +207,50 @@ if __name__ == "__main__":
     outlier_filtered = outlier.get_outlier_mathang()
     print(len(outlier_filtered))
     print(outlier_filtered)
+
+    # Lấy thông tin outlier
+    print("\nOutlier infos")
+    outlier_infos = outlier.get_outlier_infos()
+    print(len(outlier_infos))
+    names = [x[0] for x in outlier_infos]
+    min_vals = [x[4] for x in outlier_infos]
+    max_vals = [x[5] for x in outlier_infos]
+    print(names)
+    print(min_vals)
+    print(max_vals)
+
+    # Lấy df của sản phẩm có giá trị ngoại lai
+    outlier_df0 = outlier.get_outlier_mathang_df(names[0], min_vals[0], max_vals[0])
+    print(outlier_df0)
+
+    # Thế giá trị ngoại lai
+    ## Kiểm tra chỉ thế bằng hàm hoặc hằng
+    print("\n\nThử sử dụng cả 2")
+    try:
+        outlier.change_outlier_values_df(names[0], min_vals[0], max_vals[0], lambda x: x*1000, value = 999)
+    except AssertionError as e:
+        print("Thử thành công\n\n")
+
+    ## Bằng hàm
+    print("\nThế giá trị bằng hàm")
+    new_df0 = outlier.change_outlier_values_df(
+        names[0], 
+        min_vals[0], 
+        max_vals[0], 
+        fn = lambda x: x*1000
+    )
+    print(new_df0)
+
+    ## Bằng hằng
+    print("\nThế giá trị bằng số cụ thể")
+    new_df1 = outlier.change_outlier_values_df(
+        names[0], 
+        min_vals[0], 
+        max_vals[0], 
+        value=999
+    )
+    print(new_df1)
+
+    # Thế df đã được xử lý
+    print(outlier.data.isin(outlier_df0))
 
