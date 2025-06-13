@@ -1,4 +1,5 @@
 import os
+from datetime import datetime as dt
 from typing import Callable, Optional, Any
 
 import numpy as np
@@ -37,6 +38,10 @@ class VNAgriDataset:
         except:
             print("Dataset không thể đọc được cột \"Giá\"")
 
+        # Chuyển về dạng thời gian
+        str2date_fn = lambda x: dt.strptime(x, "%m/%d/%Y %I:%M:%S %p")
+        self.data["Ngày"] = self.data["Ngày"].apply(str2date_fn)
+
 
     def get_outlier_chung(self) -> tuple:
         """
@@ -52,6 +57,21 @@ class VNAgriDataset:
         return outlier_mathang
     
 
+    def get_outlier_infos_one(self, name) -> tuple:
+        mathang_df = self.data[self.data["Tên_mặt_hàng"] == name]
+        gia_mathang = mathang_df["Giá"].values
+        
+        q1 = np.quantile(gia_mathang, 0.25)
+        q3 = np.quantile(gia_mathang, 0.75)
+        iqr = q3 - q1
+        min_mathang = q1 - 1.5 * iqr
+        max_mathang = q3 + 1.5 * iqr
+
+        soluong_ngoailai = np.sum((mathang_df["Giá"] < min_mathang) | (mathang_df["Giá"] > max_mathang))
+
+        return (name, q1, q3, iqr, min_mathang, max_mathang, soluong_ngoailai)
+    
+
     def get_outlier_infos(self) -> tuple:
         """
         Những mặt hàng có thể có giá riêng và cần được xem xét riêng. 
@@ -63,18 +83,10 @@ class VNAgriDataset:
         outlier_mathang = self.get_outlier_chung()
 
         for value in outlier_mathang:
-            mathang_df = self.data[self.data["Tên_mặt_hàng"] == value]
-            gia_mathang = mathang_df["Giá"].values
+            infos = self.get_outlier_infos_one(value)
 
-            q1 = np.quantile(gia_mathang, 0.25)
-            q3 = np.quantile(gia_mathang, 0.75)
-            iqr = q3 - q1
-            min_mathang = q1 - 1.5 * iqr
-            max_mathang = q3 + 1.5 * iqr
-
-            ngoailai = np.sum((mathang_df["Giá"] < min_mathang) | (mathang_df["Giá"] > max_mathang))
-            if ngoailai:
-                outlier_filtered.append((value, q1, q3, iqr, min_mathang, max_mathang))
+            if infos[-1] > 0:
+                outlier_filtered.append(infos)
 
         outlier_filtered = tuple(outlier_filtered)
 
@@ -121,7 +133,8 @@ class VNAgriDataset:
             min_val: int, 
             max_val: int, 
             fn: Callable[[Any], Any] = lambda x: None,
-            value = None
+            value = None,
+            inplace = False
     ) -> pd.DataFrame:
         """
 
@@ -137,15 +150,16 @@ class VNAgriDataset:
         if value is not None:
             new_df["Giá"] = value
 
-        mask = outlier_df.isin(self.data).index
-        outlier_change_df = self.data.copy().drop(index=mask)
-        outlier_change_df = pd.concat([outlier_change_df, new_df])
+        updated_df = self.data.copy()
+        updated_df.loc[new_df.index, "Giá"] = new_df["Giá"]
 
-        return outlier_change_df
+        if inplace:
+            self.data = updated_df
 
-    
+        return updated_df
 
-    def plot(self, df:pd.DataFrame, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
+
+    def plot(self, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
         """
         Hàm vẽ các plot theo tên được chỉ định. 
         Dùng để đánh giá sơ bộ các giá trị bị ngoại lai.
@@ -156,15 +170,12 @@ class VNAgriDataset:
             col: Số nguyên các cột muốn hiển thị
         """
         assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
-        
-        if df is None:
-            df = self.data
 
-        fig, axes = plt.subplots(row, col, figsize=figsize)
+        _, axes = plt.subplots(row, col, figsize=figsize)
         i = j = 0
 
         for name in names:
-            array = df[df["Tên_mặt_hàng"] == name]["Giá"].values
+            array = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"].values
             axes[i, j].plot(array)
             axes[i, j].set_title(name)
 
@@ -237,5 +248,17 @@ if __name__ == "__main__":
     replaced_fn_df = outlier.change_outlier_values_df(names[0], min_vals[0], max_vals[0], fn=lambda x: x*1000)
     print(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
     plt.plot(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
+    plt.show()
+
+    ## Bằng hằng
+    print("\n\nThế giá trị ngoại lai bằng hằng")
+    replaced_value_df = outlier.change_outlier_values_df(
+        names[0], 
+        min_vals[0], 
+        max_vals[0], 
+        value=80000
+    )
+    print(replaced_value_df[replaced_value_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
+    plt.plot(replaced_value_df[replaced_value_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
     plt.show()
     
