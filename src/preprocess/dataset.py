@@ -129,18 +129,23 @@ class VNAgriDataset:
         assert (fn(0) is not None) ^ (value is not None), "Phải có hàm hoặc là giá trị thế vào. Và chỉ có 1 trong 2"
 
         outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
+        new_df = outlier_df.copy()
         
         if fn(0) is not None:
-            outlier_df["Giá"] = outlier_df["Giá"].apply(fn)
+            new_df["Giá"] = outlier_df["Giá"].apply(fn)
 
         if value is not None:
-            outlier_df["Giá"] = value
+            new_df["Giá"] = value
 
-        return outlier_df
+        mask = outlier_df.isin(self.data).index
+        outlier_change_df = self.data.copy().drop(index=mask)
+        outlier_change_df = pd.concat([outlier_change_df, new_df])
+
+        return outlier_change_df
 
     
 
-    def plot(self, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
+    def plot(self, df:pd.DataFrame, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
         """
         Hàm vẽ các plot theo tên được chỉ định. 
         Dùng để đánh giá sơ bộ các giá trị bị ngoại lai.
@@ -151,12 +156,15 @@ class VNAgriDataset:
             col: Số nguyên các cột muốn hiển thị
         """
         assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
+        
+        if df is None:
+            df = self.data
 
         fig, axes = plt.subplots(row, col, figsize=figsize)
         i = j = 0
 
         for name in names:
-            array = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"].values
+            array = df[df["Tên_mặt_hàng"] == name]["Giá"].values
             axes[i, j].plot(array)
             axes[i, j].set_title(name)
 
@@ -223,34 +231,11 @@ if __name__ == "__main__":
     outlier_df0 = outlier.get_outlier_mathang_df(names[0], min_vals[0], max_vals[0])
     print(outlier_df0)
 
-    # Thế giá trị ngoại lai
-    ## Kiểm tra chỉ thế bằng hàm hoặc hằng
-    print("\n\nThử sử dụng cả 2")
-    try:
-        outlier.change_outlier_values_df(names[0], min_vals[0], max_vals[0], lambda x: x*1000, value = 999)
-    except AssertionError as e:
-        print("Thử thành công\n\n")
-
-    ## Bằng hàm
-    print("\nThế giá trị bằng hàm")
-    new_df0 = outlier.change_outlier_values_df(
-        names[0], 
-        min_vals[0], 
-        max_vals[0], 
-        fn = lambda x: x*1000
-    )
-    print(new_df0)
-
-    ## Bằng hằng
-    print("\nThế giá trị bằng số cụ thể")
-    new_df1 = outlier.change_outlier_values_df(
-        names[0], 
-        min_vals[0], 
-        max_vals[0], 
-        value=999
-    )
-    print(new_df1)
-
     # Thế df đã được xử lý
-    print(outlier.data.isin(outlier_df0))
-
+    ## Bằng hàm
+    print("\n\nThế giá trị ngoại lai bằng hàm")
+    replaced_fn_df = outlier.change_outlier_values_df(names[0], min_vals[0], max_vals[0], fn=lambda x: x*1000)
+    print(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
+    plt.plot(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
+    plt.show()
+    
