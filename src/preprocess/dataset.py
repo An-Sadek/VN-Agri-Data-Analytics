@@ -7,6 +7,7 @@ import pandas as pd
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 class VNAgriDataset:
@@ -186,6 +187,33 @@ class VNAgriDataset:
 
         plt.show()
         plt.close()
+
+
+    def plot_one(self, name: str, figsize=(10, 5)) -> None:
+        price = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"]
+        date = self.data[self.data["Tên_mặt_hàng"] == name]["Ngày"]
+
+        date = pd.to_datetime(date)
+
+        # Plot
+        plt.figure(figsize=figsize)
+        plt.plot(date, price)
+
+        # Chỉnh lại chỉ có ngày
+        plt.gca().xaxis.set_major_locator(mdates.YearLocator())  # Set major ticks to every year
+        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))  # Show only the year
+
+        # Giới hạn 2020 -> hiện tại
+        plt.xlim(pd.to_datetime("2020-01-01"), pd.to_datetime("2025-06-15"))
+
+        # Improve layout
+        plt.xlabel("Năm")
+        plt.ylabel("Giá")
+        plt.title(f"{name}")
+        plt.grid(True)
+        plt.tight_layout()
+
+        plt.show()
 
 
     def show_boxplot(self, name: str) -> None:
