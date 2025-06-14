@@ -194,6 +194,7 @@ class VNAgriDataset:
         date = self.data[self.data["Tên_mặt_hàng"] == name]["Ngày"]
 
         date = pd.to_datetime(date)
+        unit = self.data[self.data["Tên_mặt_hàng"] == name]["Đơn_vị_tính"].unique()[0]
 
         # Plot
         plt.figure(figsize=figsize)
@@ -208,7 +209,7 @@ class VNAgriDataset:
 
         # Improve layout
         plt.xlabel("Năm")
-        plt.ylabel("Giá")
+        plt.ylabel(f"Giá ({unit})")
         plt.title(f"{name}")
         plt.grid(True)
         plt.tight_layout()
