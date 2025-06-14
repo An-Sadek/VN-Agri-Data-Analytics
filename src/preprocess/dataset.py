@@ -158,6 +158,13 @@ class VNAgriDataset:
             self.data = updated_df
 
         return updated_df
+    
+
+    def calc_outlier_perc(self, name: str, min_val, max_val: int) -> float:
+        outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
+        n_outlier = len(outlier_df)
+        n_mathang = len(self.data[self.data["Tên_mặt_hàng"] == name])
+        return n_outlier / n_mathang
 
 
     def plot(self, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
