@@ -1,0 +1,16 @@
+dataset.plot_one(names[1])
+
+dataset.show_boxplot(names[1])
+
+print(dataset.calc_outlier_perc(names[1], min_vals[1], max_vals[1]))
+dataset.get_outlier_mathang_df(names[1], min_vals[1], max_vals[1])
+
+_ = dataset.change_outlier_values_df(
+    names[1],
+    min_vals[1],
+    max_vals[1],
+    lambda x: x * 1000,
+    inplace=True
+)
+
+dataset.plot_one(names[1])
