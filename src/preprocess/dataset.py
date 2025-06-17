@@ -22,7 +22,7 @@ class VNAgriDataset:
         self.path = path
 
         # Đọc file html và chuyển về dạng bảng
-        with open("../../data/Rau, qua", "r", encoding="utf-16") as file:
+        with open(path, "r", encoding="utf-16") as file:
             html = file.read()
         self.data = pd.read_html(html)[0]
 
@@ -174,7 +174,7 @@ class VNAgriDataset:
         return n_outlier / n_mathang
 
 
-    def plot(self, names: tuple[str], row: int, col: int, figsize=(20, 20)) -> None:
+    def plot(self, names: tuple[str]|str, row: int, col: int, figsize=(20, 20)) -> None:
         """
         Hàm vẽ các plot theo tên được chỉ định. 
         Dùng để đánh giá sơ bộ các giá trị bị ngoại lai.
@@ -184,20 +184,26 @@ class VNAgriDataset:
             row: Số nguyên các hàng muốn hiển thị
             col: Số nguyên các cột muốn hiển thị
         """
-        assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
+        
 
-        _, axes = plt.subplots(row, col, figsize=figsize)
-        i = j = 0
+        if isinstance(names, tuple):
+            assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
+            _, axes = plt.subplots(row, col, figsize=figsize)
+            i = j = 0
 
-        for name in names:
-            array = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"].values
-            axes[i, j].plot(array)
-            axes[i, j].set_title(name)
+            for name in names:
+                array = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"].values
+                axes[i, j].plot(array)
+                axes[i, j].set_title(name)
 
-            j += 1
-            if j % col == 0:
-                j = 0
-                i += 1
+                j += 1
+                if j % col == 0:
+                    j = 0
+                    i += 1
+
+        if isinstance(names, str):
+            array = self.data[self.data["Tên_mặt_hàng"] == names]["Giá"]
+            plt.plot(array)
 
         plt.show()
         plt.close()
