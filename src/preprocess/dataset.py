@@ -119,7 +119,7 @@ class VNAgriDataset:
         Trả về: DataFrame chứa các dòng bị ngoại lai
         """
         outlier_df = self.data[
-            (self.data["Tên_mặt_hàng"] == name) & (
+                (self.data["Tên_mặt_hàng"] == name) & (
                 (self.data["Giá"] < 1000) |
                 (self.data["Giá"] < min_val) |
                 (self.data["Giá"] > max_val)
@@ -159,6 +159,13 @@ class VNAgriDataset:
 
         return updated_df
     
+    def remove_outlier(self, name: str, min_val: int, max_val: int)->None:
+        self.data = self.data[~(
+                (self.data["Tên_mặt_hàng"] == name) & (
+                (self.data["Giá"] < min_val) |
+                (self.data["Giá"] > max_val)
+            )
+        )]
 
     def calc_outlier_perc(self, name: str, min_val, max_val: int) -> float:
         outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
