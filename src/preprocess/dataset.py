@@ -43,6 +43,10 @@ class VNAgriDataset:
         str2date_fn = lambda x: dt.strptime(x, "%m/%d/%Y %I:%M:%S %p")
         self.data["Ngày"] = self.data["Ngày"].apply(str2date_fn)
 
+        # Thêm thông tin
+        colnames = self.data.columns
+
+
 
     def get_outlier_chung(self) -> tuple:
         """
@@ -310,4 +314,6 @@ if __name__ == "__main__":
     print(replaced_value_df[replaced_value_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
     plt.plot(replaced_value_df[replaced_value_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
     plt.show()
+
+    print(outlier.infos)
     
