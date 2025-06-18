@@ -778,11 +778,7 @@ Ngày:
     - null
     - null
     - 10
-    last_update: !!python/object/apply:pandas._libs.tslibs.timestamps._unpickle_timestamp
-    - 1747612800000000000
-    - null
-    - null
-    - 10
+    last_update: 2025/05/19
 Giá:
   id: 7
   name: Giá
@@ -791,70 +787,14 @@ Giá:
   range/n_values:
   - 7.0
   - 600000.0
-  data:
+  data: null
+  stats:
     min: 7.0
     max: 600000.0
     mean: 25184.80174297976
     median: 20000.0
-    mode: !!python/object:pandas.core.series.Series
-      _mgr: !!python/object/new:pandas.core.internals.managers.SingleBlockManager
-        state: !!python/tuple
-        - &id002
-          - !!python/object/apply:pandas.core.indexes.base._new_Index
-            - &id001 !!python/name:pandas.core.indexes.range.RangeIndex ''
-            - name: null
-              start: 0
-              stop: 1
-              step: 1
-        - - &id003 !!python/object/apply:numpy._core.multiarray._reconstruct
-            args:
-            - !!python/name:numpy.ndarray ''
-            - !!python/tuple
-              - 0
-            - !!binary |
-              Yg==
-            state: !!python/tuple
-            - 1
-            - !!python/tuple
-              - 1
-            - !!python/object/apply:numpy.dtype
-              args:
-              - f8
-              - false
-              - true
-              state: !!python/tuple
-              - 3
-              - <
-              - null
-              - null
-              - null
-              - -1
-              - -1
-              - 0
-            - false
-            - !!binary |
-              AAAAAACI00A=
-        - - !!python/object/apply:pandas.core.indexes.base._new_Index
-            - *id001
-            - name: null
-              start: 0
-              stop: 1
-              step: 1
-        - 0.14.1:
-            axes: *id002
-            blocks:
-            - values: *id003
-              mgr_locs: !!python/object/apply:builtins.slice
-              - 0
-              - 1
-              - 1
-      _typ: series
-      _metadata:
-      - _name
-      attrs: {}
-      _flags:
-        allows_duplicate_labels: true
-      _name: Giá
+    mode:
+    - 20000.0
     std: 19517.332014415333
     var: 380926248.96092165
     q1: 14000.0

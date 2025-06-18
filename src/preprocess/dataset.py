@@ -125,11 +125,14 @@ class VNAgriDataset:
                 """
                 Đối với cột là dữ liệu số sẽ là 1 từ điển gồm các thông tin bao gồm: min, max, mean, median, mode, std, var, q1, q3, iqr, alpha, beta, số lượng ngoại lai, phần trăm ngoại lai
                 """
+                # Thêm thuộc tính 'stats' thống kê
+                metadata[colname].update({"stats":None})
+                
                 min_val = self.data[colname].min().item()
                 max_val = self.data[colname].max().item()
                 mean_val = np.mean(self.data[colname]).item()
                 median_val = np.median(self.data[colname]).item()
-                mode_val = self.data[colname].mode()
+                mode_val = self.data[colname].mode().to_list()
                 std = np.std(self.data[colname]).item()
                 var = np.var(self.data[colname]).item()
 
@@ -151,7 +154,7 @@ class VNAgriDataset:
                 metadata[colname]["range/n_values"] = [min_val, max_val]
 
                 #### Các thống kê
-                metadata[colname]["data"] = {
+                metadata[colname]["stats"] = {
                     "min": min_val,
                     "max": max_val,
                     "mean": mean_val,
@@ -172,8 +175,8 @@ class VNAgriDataset:
             ### Metadata của dữ liệu thời gian
             if metadata[colname]["type"] == "datetime":
                 datetime_data = {
-                    "first_update": np.min(self.data[colname]),
-                    "last_update": np.max(self.data[colname])
+                    "first_update": np.min(self.data[colname]).strftime('%Y/%m/%d'),
+                    "last_update": np.max(self.data[colname]).strftime('%Y/%m/%d')
                 }
 
                 metadata[colname]["data"] = datetime_data
