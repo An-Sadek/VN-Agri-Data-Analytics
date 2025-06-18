@@ -125,16 +125,16 @@ class VNAgriDataset:
                 """
                 Đối với cột là dữ liệu số sẽ là 1 từ điển gồm các thông tin bao gồm: min, max, mean, median, mode, std, var, q1, q3, iqr, alpha, beta, số lượng ngoại lai, phần trăm ngoại lai
                 """
-                min_val = self.data[colname].min()
-                max_val = self.data[colname].max()
-                mean_val = self.data[colname].mean()
-                median_val = self.data[colname].median()
+                min_val = self.data[colname].min().item()
+                max_val = self.data[colname].max().item()
+                mean_val = np.mean(self.data[colname]).item()
+                median_val = np.median(self.data[colname]).item()
                 mode_val = self.data[colname].mode()
-                std = self.data[colname].std()
-                var = self.data[colname].var()
+                std = np.std(self.data[colname]).item()
+                var = np.var(self.data[colname]).item()
 
-                q1 = np.quantile(self.data[colname], 0.25)
-                q3 = np.quantile(self.data[colname], 0.75)
+                q1 = np.quantile(self.data[colname], 0.25).item()
+                q3 = np.quantile(self.data[colname], 0.75).item()
                 iqr = q3 - q1
                 alpha = q1 - 1.5 * iqr
                 beta = q3 + 1.5 * iqr
