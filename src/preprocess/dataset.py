@@ -2,6 +2,8 @@ import os
 from datetime import datetime as dt
 from typing import Callable, Optional, Any
 
+import yaml
+import json
 import numpy as np
 import pandas as pd
 
@@ -43,68 +45,154 @@ class VNAgriDataset:
         str2date_fn = lambda x: dt.strptime(x, "%m/%d/%Y %I:%M:%S %p")
         self.data["Ngày"] = self.data["Ngày"].apply(str2date_fn)
 
-        # Thêm thông tin
+
+    def __len__(self):
+        return len(self.data)
+
+
+    def get_colmetadata(self) -> dict:
+        # Thêm thông tin của toàn thể dataset
+        ## Thêm thông tin cơ bản: id, name, type
+        metadata = dict()
         colnames = self.data.columns
 
+        for idx, colname in enumerate(colnames):
+            metadata.update({colname: {
+                "id": idx,
+                "name": colname,
+                "desc": None,
+                "type": self.data[colname].dtype,
+                "range/n_values": None,
+                "data": None
+            }})
+
+        print(metadata)
+
+        ## Đổi lại type cho dễ đọc
+        for colname in colnames:
+            col_dtype = metadata[colname]["type"]
+
+            if col_dtype == np.dtype('O'):
+                metadata[colname]["type"] = "str"
+
+            elif col_dtype == np.dtype('float64'):
+                metadata[colname]["type"] = "float"
+
+            elif metadata[colname]["type"] == np.dtype('<M8[ns]'):
+                metadata[colname]["type"] = "datetime"
+
+            else:
+                metadata[colname]["type"] = None
+
+        ## Thêm miền giá trị/số lượng, và thông tin về cột
+        for colname in colnames:
+
+            ### Metadata của chuỗi
+            if metadata[colname]["type"] == "str":
+                """
+                Đối với cột là str dữ liệu sẽ là từ điển của từ điển (dic[dict[int]]). 
+                Với mỗi phần tử là thông tin của giá trị bao gồm:
+                    name: là tên của giá trị độc nhất
+                    n: là số lượng của giá trị độc nhất đó.
+                {
+                    0: {
+                        "name": name0,
+                        "n": n0
+                    },
+                    1: {
+                        "name": name1,
+                        "n": n1
+                    },
+                    ...
+                }
+
+                """
+                str_data = dict()
+                str_values = self.data[colname].unique()
+                metadata[colname]["range/n_values"] = len(str_values)
+
+                for idx, name in enumerate(str_values):
+                    str_data.update({idx:{
+                        "name": name,
+                        "n": len(self.data[self.data[colname] == name])
+                    }})
+
+                metadata[colname]["data"] = str_data
 
 
-    def get_outlier_chung(self) -> tuple:
-        """
-        Hàm lấy tên các mặt hàng dựa trên các min_val và max_val đã tính ở hàm khởi tạo
-        """
-        outlier_df = self.data[(self.data["Giá"] < self.min_val) | (self.data["Giá"] > self.max_val)]
+            ### Metadata của dữ liệu liên tục
+            if metadata[colname]["type"] == "float":
+                """
+                Đối với cột là dữ liệu số sẽ là 1 từ điển gồm các thông tin bao gồm: min, max, mean, median, mode, std, var, q1, q3, iqr, alpha, beta, số lượng ngoại lai, phần trăm ngoại lai
+                """
+                min_val = self.data[colname].min()
+                max_val = self.data[colname].max()
+                mean_val = self.data[colname].mean()
+                median_val = self.data[colname].median()
+                mode_val = self.data[colname].mode()
+                std = self.data[colname].std()
+                var = self.data[colname].var()
 
-        try:
-            outlier_mathang = tuple(outlier_df["Tên_mặt_hàng"].unique())
-        except:
-            print("Không thể đọc được cột \"Tên_mặt_hàng\"")
+                q1 = np.quantile(self.data[colname], 0.25)
+                q3 = np.quantile(self.data[colname], 0.75)
+                iqr = q3 - q1
+                alpha = q1 - 1.5 * iqr
+                beta = q3 + 1.5 * iqr
+                n_outlier = len(
+                    self.data[
+                        (self.data[colname] < 1000) |
+                        (self.data[colname] < alpha) |
+                        (self.data[colname] > beta)
+                    ]
+                )
+                outlier_perc = n_outlier/len(self.data)
 
-        return outlier_mathang
+                #### Miền giá trị
+                metadata[colname]["range/n_values"] = [min_val, max_val]
+
+                #### Các thống kê
+                metadata[colname]["data"] = {
+                    "min": min_val,
+                    "max": max_val,
+                    "mean": mean_val,
+                    "median": median_val,
+                    "mode": mode_val,
+                    "std": std,
+                    "var": var,
+                    
+                    "q1": q1,
+                    "q3": q3,
+                    "iqr": iqr,
+                    "min_threshold": alpha,
+                    "max_threshold": beta,
+                    "n_outlier": n_outlier,
+                    "outlier_perc": outlier_perc
+                }
+
+            ### Metadata của dữ liệu thời gian
+            if metadata[colname]["type"] == "datetime":
+                datetime_data = {
+                    "first_update": np.min(self.data[colname]),
+                    "last_update": np.max(self.data[colname])
+                }
+
+                metadata[colname]["data"] = datetime_data
+
+        return metadata
+
+  
+
+
+    def get_outlier_infos(self):
+        pass
     
-
-    def get_outlier_infos_one(self, name) -> tuple:
-        mathang_df = self.data[self.data["Tên_mặt_hàng"] == name]
-        gia_mathang = mathang_df["Giá"].values
-        
-        q1 = np.quantile(gia_mathang, 0.25)
-        q3 = np.quantile(gia_mathang, 0.75)
-        iqr = q3 - q1
-        min_mathang = q1 - 1.5 * iqr
-        max_mathang = q3 + 1.5 * iqr
-
-        soluong_ngoailai = np.sum((mathang_df["Giá"] < min_mathang) | (mathang_df["Giá"] > max_mathang))
-
-        return (name, q1, q3, iqr, min_mathang, max_mathang, soluong_ngoailai)
     
-
-    def get_outlier_infos(self) -> tuple:
-        """
-        Những mặt hàng có thể có giá riêng và cần được xem xét riêng. 
-        Lọc ra các mặt hàng vẫn có giá trị ngoại lai dựa trên giá mặt hàng đó.
-
-        Trả về: Tuple gồm 6 phần tử bao gồm tên mặt hàng và các giá trị q1, q3, iqr, min_val, max_val
-        """
-        outlier_filtered = []
-        outlier_mathang = self.get_outlier_chung()
-
-        for value in outlier_mathang:
-            infos = self.get_outlier_infos_one(value)
-
-            if infos[-1] > 0:
-                outlier_filtered.append(infos)
-
-        outlier_filtered = tuple(outlier_filtered)
-
-        return outlier_filtered
-    
-    
-    def get_outlier_mathang(self) -> tuple[str]:
+    def get_outlier_mathang(self):
         """
         Chỉ trả về tên của các mặt hàng sau khi được xác định có giá trị ngoại lai 
         dựa trên giá của sản phẩm cụ thể.
         """
-        ten_mathang = [x[0] for x in self.get_outlier_infos()]
-        return tuple(ten_mathang)
+        pass
     
     
     def get_outlier_mathang_df(self, 
@@ -262,58 +350,19 @@ class VNAgriDataset:
 
 
 if __name__ == "__main__":
-    outlier = VNAgriDataset("../../data/Rau, qua")
-    print(outlier.data.shape)
-    print(outlier.q1)
-    print(outlier.q3)
-    print(outlier.iqr)
-    print(outlier.min_val)
-    print(outlier.max_val)
+    dataset = VNAgriDataset("../../data/Rau, qua")
+    print(dataset.data.shape)
+    print(dataset.q1)
+    print(dataset.q3)
+    print(dataset.iqr)
+    print(dataset.min_val)
+    print(dataset.max_val)
 
-    # Kiểm tra outlier tổng thể
-    outlier_mathang = outlier.get_outlier_chung()
-    print(len(outlier_mathang))
-    print(outlier_mathang)
+    # Kiểm tra metadata tổng thể
+    metadata = dataset.get_colmetadata()
+    print(metadata)
 
-    # Kiểm tra outlier cục bộ
-    outlier_filtered = outlier.get_outlier_mathang()
-    print(len(outlier_filtered))
-    print(outlier_filtered)
+    with open('file.yaml', 'w', encoding='utf-8') as f:
+        yaml.dump(metadata, f, allow_unicode=True, sort_keys=False)
 
-    # Lấy thông tin outlier
-    print("\nOutlier infos")
-    outlier_infos = outlier.get_outlier_infos()
-    print(len(outlier_infos))
-    names = [x[0] for x in outlier_infos]
-    min_vals = [x[4] for x in outlier_infos]
-    max_vals = [x[5] for x in outlier_infos]
-    print(names)
-    print(min_vals)
-    print(max_vals)
-
-    # Lấy df của sản phẩm có giá trị ngoại lai
-    outlier_df0 = outlier.get_outlier_mathang_df(names[0], min_vals[0], max_vals[0])
-    print(outlier_df0)
-
-    # Thế df đã được xử lý
-    ## Bằng hàm
-    print("\n\nThế giá trị ngoại lai bằng hàm")
-    replaced_fn_df = outlier.change_outlier_values_df(names[0], min_vals[0], max_vals[0], fn=lambda x: x*1000)
-    print(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
-    plt.plot(replaced_fn_df[replaced_fn_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
-    plt.show()
-
-    ## Bằng hằng
-    print("\n\nThế giá trị ngoại lai bằng hằng")
-    replaced_value_df = outlier.change_outlier_values_df(
-        names[0], 
-        min_vals[0], 
-        max_vals[0], 
-        value=80000
-    )
-    print(replaced_value_df[replaced_value_df["Tên_mặt_hàng"]==names[0]]["Giá"].mean())
-    plt.plot(replaced_value_df[replaced_value_df["Tên_mặt_hàng"] == names[0]]["Giá"].values)
-    plt.show()
-
-    print(outlier.infos)
-    
+    # Kiểm tra metadata từng mặt hàng
