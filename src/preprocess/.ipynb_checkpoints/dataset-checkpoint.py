@@ -1,16 +1,16 @@
 import os
+from datetime import datetime as dt
 from typing import Callable, Optional, Any, Union, Tuple
 
-import matplotlib.dates as mdates
-from datetime import datetime as dt
-
 import yaml
+import json
 import numpy as np
 import pandas as pd
 import statistics as stats
 
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
 
 
 ARRAY = np.ndarray|list|tuple|pd.Series
@@ -31,7 +31,6 @@ class VNAgriDataset:
         with open(path, "r", encoding="utf-16") as file:
             html = file.read()
         self.data = pd.read_html(html)[0]
-        self.items = self.data["Tên_mặt_hàng"].unique().tolist()
 
         # Tìm q1, q3, iqr, min_val, max_val của toàn bộ giá của dataset
         try:
@@ -94,58 +93,9 @@ class VNAgriDataset:
             })
 
         return result
+
     
-
-    def update_outlier(self, 
-        idx: int=None,  # type: ignore
-        name: str=None, # type: ignore
-        fn: Callable[[Any], Any] = lambda x: None
-    ) -> None: # type: ignore
-        """
-        Cập nhật các giá trị ngoại lai
-        """
-        # Cập nhật các giá trị < 1000
-        self.data["Giá"] = self.data["Giá"].apply(lambda x: x * 1000 if x < 1000 else x)
-
-        # Cập nhật giá trị theo hàm
-        ## Kiểm tra chỉ tồn tại idx hoặc name và bắt buộc phải có hàm
-        assert (idx is None) ^ (name is None), "Bắt buộc phải có idx hoặc tên sản phẩm, không được có cả 2"
-        assert not fn(1) is None, "Chưa thêm hàm"
-        
-        if not name is None:
-            idx = self.items.index(name)
-
-        ## Lấy infos và df
-        _, outlier_df = self.get_outlier_infos(True)
-
-        ## Chỉ lấy mặt hàng cần thiết
-        updated_df = outlier_df.copy()
-        updated_df = updated_df[updated_df["Tên_mặt_hàng"] == self.items[idx]]
-        updated_df["Giá"] = updated_df["Giá"].apply(lambda x: fn(x))
-        self.data.update(updated_df)
-
-
-    def get_min_item(self) -> Tuple[list[str], int]:
-        """
-        Trả về tên của sản phẩm có giá trị thấp nhất và giá trị thấp nhất đó
-        """
-        min_val_all = np.min(self.data["Giá"]).item()
-        min_item_all = self.data[self.data["Giá"] == min_val_all]["Tên_mặt_hàng"].unique().tolist()
-        return (min_item_all, min_val_all)
-    
-    
-    def get_max_item(self) -> Tuple[list[str], int]:
-        """
-        Trả về tên của sản phẩm có giá trị cao nhất và giá trị cao nhất đó
-        """
-        max_val_all = np.max(self.data["Giá"]).item()
-        max_item_all = self.data[self.data["Giá"] == max_val_all]["Tên_mặt_hàng"].unique().tolist()
-        return (max_item_all, max_val_all)
-
-
-    def get_outlier_infos(self, 
-        return_df = False
-    ) -> Union[dict, Tuple[dict, pd.DataFrame]]:
+    def get_outlier_infos(self, return_df = False) -> Union[dict, Tuple[dict, pd.DataFrame]]:
         """
         Hàm kiểm tra các số dòng ngoại lai
         """
@@ -200,21 +150,18 @@ class VNAgriDataset:
         """
         Trả về các metadata của từng sản phẩm
         """
-        item_metadata = dict()
+        items = self.data["Tên_mặt_hàng"].unique()
 
-        items_stats = self.get_items_stats()
-        items_outliers = self.get_outlier_infos()
-        
-        for idx, _ in enumerate(self.items):
-            item_metadata.update({
-                idx: {
-                    "name": self.items[idx],
-                    "stats": items_stats[idx],
-                    "outliers": items_outliers[idx]
-                }
-            })
+        for item in items:
+            item_df = self.data[self.data["Tên_mặt_hàng"] == item]
 
-        return item_metadata
+            n = len(item_df)
+            min_val = np.min(item_df).item()
+            max_val = np.max(item_df).item()
+            mean = np.mean(item_df).item()
+            
+
+        return {}
 
 
     def get_colmetadata(self) -> dict:
@@ -349,30 +296,86 @@ class VNAgriDataset:
 
         return metadata
 
-
-    def get_item_df(self, 
-        idx: int=None,  # type: ignore
-        name: str =None # type: ignore
+  
+    
+    
+    def get_outlier_mathang(self):
+        """
+        Chỉ trả về tên của các mặt hàng sau khi được xác định có giá trị ngoại lai 
+        dựa trên giá của sản phẩm cụ thể.
+        """
+        pass
+    
+    
+    def get_outlier_mathang_df(self, 
+            name: str, 
+            min_val: int, 
+            max_val: int
     ) -> pd.DataFrame:
         """
-        Trả về các df chứa toàn bộ df của tên/idx cho trước
+        Lấy những dòng mà chứa giá trị ngoại lai của mặt hàng.
+
+        Đầu vào:
+            name: Tên mặt hàng đang xét
+            min_val: Cận dưới hợp lệ đã được tính từ tứ phân vị
+            max_val: Cấn trên hợp lệ đã được tính từ tứ phân vị
+
+        Trả về: DataFrame chứa các dòng bị ngoại lai
         """
-        assert (idx is None) ^ (name is None), "Phải có idx hoặc name"
+        outlier_df = self.data[
+                (self.data["Tên_mặt_hàng"] == name) & (
+                (self.data["Giá"] < 1000) |
+                (self.data["Giá"] < min_val) |
+                (self.data["Giá"] > max_val)
+            )
+        ]
 
-        if name is None:
-            name = self.items[idx]
+        return outlier_df
+    
+    
+    def change_outlier_values_df(self, 
+            name: str, 
+            min_val: int, 
+            max_val: int, 
+            fn: Callable[[Any], Any] = lambda x: None,
+            value = None,
+            inplace = False
+    ) -> pd.DataFrame:
+        """
 
-        return self.data[self.data["Tên_mặt_hàng"] == name]
+        """
+        assert (fn(0) is not None) ^ (value is not None), "Phải có hàm hoặc là giá trị thế vào. Và chỉ có 1 trong 2"
 
-  
+        outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
+        new_df = outlier_df.copy()
+        
+        if fn(0) is not None:
+            new_df["Giá"] = outlier_df["Giá"].apply(fn)
+
+        if value is not None:
+            new_df["Giá"] = value
+
+        updated_df = self.data.copy()
+        updated_df.loc[new_df.index, "Giá"] = new_df["Giá"]
+
+        if inplace:
+            self.data = updated_df
+
+        return updated_df
+    
     def remove_outlier(self, name: str, min_val: int, max_val: int)->None:
         self.data = self.data[~(
                 (self.data["Tên_mặt_hàng"] == name) & (
-                    (self.data["Giá"] < 1000) |
-                    (self.data["Giá"] < min_val) |
-                    (self.data["Giá"] > max_val)
+                (self.data["Giá"] < min_val) |
+                (self.data["Giá"] > max_val)
             )
         )]
+
+    def calc_outlier_perc(self, name: str, min_val, max_val: int) -> float:
+        outlier_df = self.get_outlier_mathang_df(name, min_val, max_val)
+        n_outlier = len(outlier_df)
+        n_mathang = len(self.data[self.data["Tên_mặt_hàng"] == name])
+        return n_outlier / n_mathang
 
 
     def plot(self, names: tuple[str]|str, row: int, col: int, figsize=(20, 20)) -> None:
@@ -385,6 +388,8 @@ class VNAgriDataset:
             row: Số nguyên các hàng muốn hiển thị
             col: Số nguyên các cột muốn hiển thị
         """
+        
+
         if isinstance(names, tuple):
             assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
             _, axes = plt.subplots(row, col, figsize=figsize)
@@ -482,39 +487,4 @@ if __name__ == "__main__":
     outlier_infos, outlier_df = dataset.get_outlier_infos(True)
     with open('outlier_infos.yaml', 'w', encoding='utf-8') as f:
         yaml.dump(outlier_infos, f, allow_unicode=True, sort_keys=False)
-    outlier_df.to_csv('./test.csv')
-
-    items = dataset.data["Tên_mặt_hàng"].unique()
-    outlier_items = []
-    for idx in outlier_infos.keys():
-        if outlier_infos[idx]["have_outliers"]:
-            outlier_items.append(items[idx])
-    print(len(outlier_items))
-    print(outlier_items)
-
-    # Cập nhật dữ liệu
-    dataset.update_outlier(name="Bắp cải", fn = lambda x: 1)
-    dataset.data.to_csv("test1.csv")
-
-    _, outlier_df = dataset.get_outlier_infos(True)
-    outlier_df.to_csv("test2.csv")
-
-    bapcai_df = dataset.get_item_df(name="Bắp cải")
-    bapcai_df.to_csv("bapcai.csv")
-
-    print(len(outlier_df["Tên_mặt_hàng"].unique()))
-    print(outlier_df["Giá"].min())
-    print(outlier_df["Giá"].max())
-
-    # Lấy hàng có giá thấp nhất
-    min_names, min_val = dataset.get_min_item()
-    print(min_names, min_val)
-
-    # Lấy hàng có giá cao nhất
-    max_names, max_val = dataset.get_max_item()
-    print(max_names, max_val)
-
-    # Lấy metadata item
-    item_metadata = dataset.get_itemmetadata()
-    with open('item_metadata.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(item_metadata, f, allow_unicode=True, sort_keys=False)
+    print(outlier_df.head())
