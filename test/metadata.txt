@@ -1,0 +1,35 @@
+all
+	source
+	columns:
+		{Ten cot}:
+			id
+			name
+			desc
+			type
+			range/values
+			data:
+				{idx}:
+					name
+					n:
+		Ngay
+			id
+			name
+			desc
+			first_update
+			last_update
+		Gia
+			id
+			name
+			desc
+			type
+			range/values
+			stats
+		...
+		
+	data:
+		{idx}:
+			name
+			stats: n, min, max, mean, median, mode, std, var
+			outlier: q1, q3, iqr, min_threshold, max_threshold, n_outlier, outlier_perc
+			first_update, last_update
+		...
