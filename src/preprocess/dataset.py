@@ -1,15 +1,19 @@
 import os
 from datetime import datetime as dt
-from typing import Callable, Optional, Any
+from typing import Callable, Optional, Any, Union, Tuple
 
 import yaml
 import json
 import numpy as np
 import pandas as pd
+import statistics as stats
 
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
+
+
+ARRAY = np.ndarray|list|tuple|pd.Series
 
 
 class VNAgriDataset:
@@ -48,6 +52,118 @@ class VNAgriDataset:
 
     def __len__(self):
         return len(self.data)
+    
+
+    def get_stats(self, array: ARRAY) -> dict:
+        n = len(array)
+        min_val = np.min(array).item()
+        max_val = np.max(array).item()
+        mean = np.mean(array).item()
+        median = np.median(array).item()
+        mode = stats.multimode(array)
+        std = np.std(array).item()
+        var = np.var(array).item()
+
+        try:
+            mode = [x.item() for x in mode]
+        except:
+            pass
+
+        return {
+            "n": n,
+            "min": min_val,
+            "max": max_val,
+            "mean": mean,
+            "median": median,
+            "mode": mode,
+            "std": std,
+            "var": var
+        }
+    
+    def get_items_stats(self) -> dict:
+        items = self.data["Tên_mặt_hàng"].unique()
+        result = dict()
+
+        for idx, item in enumerate(items):
+            item_price = self.data[self.data["Tên_mặt_hàng"] == item]["Giá"]
+            item_stats = self.get_stats(item_price)
+            result.update({
+                idx: item_stats
+            })
+
+        return result
+
+    
+    
+    def get_outlier_infos(self, return_df = False) -> Union[dict, Tuple[dict, pd.DataFrame]]:
+        """
+        Hàm kiểm tra các số dòng ngoại lai
+        """
+        items = self.data["Tên_mặt_hàng"].unique()
+        item_outlier_info = dict()
+        
+        if return_df:
+            outlier_dfs = pd.DataFrame()
+
+        for idx, item in enumerate(items):
+            item_price = self.data[self.data["Tên_mặt_hàng"] == item]["Giá"]
+            q1 = np.quantile(item_price, 0.25).item()
+            q3 = np.quantile(item_price, 0.75).item()
+            iqr = q3 - q1
+            alpha = q1 - 1.5 * iqr
+            beta = q3 + 1.5 * iqr
+
+            outlier_df = self.data[
+                (self.data["Tên_mặt_hàng" == item]) & (
+                    (self.data["Giá"] < 1000) |
+                    (self.data["Giá"] < alpha) |
+                    (self.data["Giá"] > beta)
+                )
+            ]
+            n_outlier = len(outlier_df)
+            outlier_perc = n_outlier/len(self.data)
+
+            item_outlier_info.update({
+                idx: {
+                    "q1": q1,
+                    "q3": q3,
+                    "iqr": iqr,
+                    "min_threshold": alpha,
+                    "max_threshold": beta,
+                    "have_outliers": n_outlier > 0,
+                    "n_outlier": n_outlier,
+                    "outlier_perc": outlier_perc
+                }
+            })
+
+            # Nếu trả về df
+            if return_df:
+                outlier_dfs = pd.concat([outlier_dfs, outlier_df], axis=0)
+
+        if return_df:
+            return (item_outlier_info, outlier_dfs)
+        
+        return (item_outlier_info)
+
+
+    
+
+    def get_itemmetadata(self) -> dict:
+        """
+        Trả về các metadata của từng sản phẩm
+        """
+        items = self.data["Tên_mặt_hàng"].unique()
+
+        for item in items:
+            item_df = self.data[self.data["Tên_mặt_hàng"] == item]
+
+            n = len(item_df)
+            min_val = np.min(item_df).item()
+            max_val = np.max(item_df).item()
+            mean = np.mean(item_df).item()
+            
+
+        return {}
 
 
     def get_colmetadata(self) -> dict:
@@ -126,7 +242,7 @@ class VNAgriDataset:
                 Đối với cột là dữ liệu số sẽ là 1 từ điển gồm các thông tin bao gồm: min, max, mean, median, mode, std, var, q1, q3, iqr, alpha, beta, số lượng ngoại lai, phần trăm ngoại lai
                 """
                 # Thêm thuộc tính 'stats' thống kê
-                metadata[colname].update({"stats":None})
+                metadata[colname].update({"data":None})
                 
                 min_val = self.data[colname].min().item()
                 max_val = self.data[colname].max().item()
@@ -154,7 +270,8 @@ class VNAgriDataset:
                 metadata[colname]["range/n_values"] = [min_val, max_val]
 
                 #### Các thống kê
-                metadata[colname]["stats"] = {
+                metadata[colname]["data"] = {
+                    "n": len(self.data),
                     "min": min_val,
                     "max": max_val,
                     "mean": mean_val,
@@ -174,20 +291,14 @@ class VNAgriDataset:
 
             ### Metadata của dữ liệu thời gian
             if metadata[colname]["type"] == "datetime":
-                datetime_data = {
-                    "first_update": np.min(self.data[colname]).strftime('%Y/%m/%d'),
-                    "last_update": np.max(self.data[colname]).strftime('%Y/%m/%d')
-                }
-
-                metadata[colname]["data"] = datetime_data
+                f_update = np.min(self.data[colname]).strftime('%Y/%m/%d')
+                l_update = np.max(self.data[colname]).strftime('%Y/%m/%d')
+                metadata[colname]["range/values"] = [f_update, l_update]
+                del metadata[colname]["data"]
 
         return metadata
 
   
-
-
-    def get_outlier_infos(self):
-        pass
     
     
     def get_outlier_mathang(self):
@@ -368,4 +479,6 @@ if __name__ == "__main__":
     with open('file.yaml', 'w', encoding='utf-8') as f:
         yaml.dump(metadata, f, allow_unicode=True, sort_keys=False)
 
-    # Kiểm tra metadata từng mặt hàng
+    # Thống kê từng mặt hàng
+    items_stats = dataset.get_items_stats()
+    print(items_stats)
