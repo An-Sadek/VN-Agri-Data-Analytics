@@ -51,7 +51,7 @@ class VNAgriDataset:
         self.data["Ngày"] = self.data["Ngày"].apply(str2date_fn)
 
         # Lưu thuộc tính
-        self.outlier_infos, _ = self.get_outlier_infos()
+        self.outlier_infos, self.outlier_df = self.get_outlier_infos()
         
 
     def __len__(self):
@@ -117,7 +117,7 @@ class VNAgriDataset:
                     )
                 )]
 
-        self.outlier_infos, _ = self.get_outlier_infos()
+        self.outlier_infos = self.outlier_infos
 
     
     def update_all(self, fn: Callable[[Any], Any]) -> None:
@@ -192,16 +192,10 @@ class VNAgriDataset:
         Hàm trả về số lượng ngoại lai và phần trăm ngoại lai.
         Tính theo giá từng sản phẩm
         """
-        outlier_infos, _ = self.get_outlier_infos()
+        n_outlier_row = len(self.outlier_df)
+        n_outlier_perc = n_outlier_row/len(self.data)
 
-        n_outliers = 0
-        for idx in outlier_infos:
-            if outlier_infos[idx]["have_outliers"]:
-                n_outliers += 1
-
-        outlier_perc = n_outliers/len(self.data)
-
-        return (n_outliers, outlier_perc)
+        return (n_outlier_row, n_outlier_perc)
 
 
     def get_itemmetadata(self) -> dict:
@@ -211,7 +205,7 @@ class VNAgriDataset:
         item_metadata = dict()
 
         items_stats = self.get_items_stats()
-        items_outliers, _ = self.get_outlier_infos()
+        items_outliers = self.outlier_infos
         
         for idx, _ in enumerate(self.items):
             name = self.items[idx]
