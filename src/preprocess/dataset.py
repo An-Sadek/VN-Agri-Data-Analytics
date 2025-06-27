@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 ARRAY = np.ndarray|list|tuple|pd.Series
 
 
-class VNAgriDataset:
+class RawDataset:
 
     def __init__(self, path: str):
         """
@@ -124,24 +124,6 @@ class VNAgriDataset:
         self.data["Giá"] = self.data["Giá"].apply(lambda x: fn(x))
 
 
-    def get_min_item(self) -> Tuple[list[str], int]:
-        """
-        Trả về tên của sản phẩm có giá trị thấp nhất và giá trị thấp nhất đó
-        """
-        min_val_all = np.min(self.data["Giá"]).item()
-        min_item_all = self.data[self.data["Giá"] == min_val_all]["Tên_mặt_hàng"].unique().tolist()
-        return (min_item_all, min_val_all)
-    
-    
-    def get_max_item(self) -> Tuple[list[str], int]:
-        """
-        Trả về tên của sản phẩm có giá trị cao nhất và giá trị cao nhất đó
-        """
-        max_val_all = np.max(self.data["Giá"]).item()
-        max_item_all = self.data[self.data["Giá"] == max_val_all]["Tên_mặt_hàng"].unique().tolist()
-        return (max_item_all, max_val_all)
-
-
     def get_outlier_infos(self) -> Union[dict, Tuple[dict, pd.DataFrame]]:
         """
         Hàm kiểm tra các số dòng ngoại lai
@@ -198,7 +180,7 @@ class VNAgriDataset:
         return (n_outlier_row, n_outlier_perc)
 
 
-    def get_itemmetadata(self) -> dict:
+    def get_item_metadata(self) -> dict:
         """
         Trả về các metadata của từng sản phẩm
         """
@@ -239,8 +221,6 @@ class VNAgriDataset:
                 "range/n_values": None,
                 "data": None
             }})
-
-        print(metadata)
 
         ## Đổi lại type cho dễ đọc
         for colname in colnames:
@@ -350,117 +330,9 @@ class VNAgriDataset:
         return self.data[self.data["Tên_mặt_hàng"] == name]
     
 
-    def get_items_df(self,
-        names: list[str],
-        price: int|float|list[int|float] = None # type: ignore
-    ) -> pd.DataFrame:
-        
-        result = None
-        
-        if price is None:
-            result = self.data[self.data["Tên_mặt_hàng"].isin(names)]
-
-        elif isinstance(price, (int, float)):
-            result = self.data[
-                (self.data["Tên_mặt_hàng"].isin(names)) &
-                (self.data["Giá"] == price)
-            ]
-
-        elif isinstance(price, list):
-            assert len(price) == 2, "price chỉ được phép có 2 phần tử"
-            assert price[1] > price[0], "Giá trị min phải lớn hơn giá trị max, price: list[min, max]"
-            result = self.data[
-                (self.data["Tên_mặt_hàng"].isin(names)) & 
-                (self.data["Giá"] >= price[0]) &
-                (self.data["Giá"] <= price[1])
-            ]
-
-        return result
-
-
-    def plot(self, names: tuple[str]|str, row: int, col: int, figsize=(20, 20)) -> None:
-        """
-        Hàm vẽ các plot theo tên được chỉ định. 
-        Dùng để đánh giá sơ bộ các giá trị bị ngoại lai.
-
-        Đầu vào:
-            names: Tuple gồm các phần tử là tên các mặt hàng được yêu cầu
-            row: Số nguyên các hàng muốn hiển thị
-            col: Số nguyên các cột muốn hiển thị
-        """
-        if isinstance(names, tuple):
-            assert len(names) == (row * col), "Số hàng và cột không khớp với kích thước tên các mặt hàng"
-            _, axes = plt.subplots(row, col, figsize=figsize)
-            i = j = 0
-
-            for name in names:
-                array = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"].values
-                axes[i, j].plot(array)
-                axes[i, j].set_title(name)
-
-                j += 1
-                if j % col == 0:
-                    j = 0
-                    i += 1
-
-        if isinstance(names, str):
-            array = self.data[self.data["Tên_mặt_hàng"] == names]["Giá"]
-            plt.plot(array)
-
-        plt.show()
-        plt.close()
-
-
-    def plot_one(self, name: str, figsize=(10, 5)) -> None:
-        price = self.data[self.data["Tên_mặt_hàng"] == name]["Giá"]
-        date = self.data[self.data["Tên_mặt_hàng"] == name]["Ngày"]
-
-        date = pd.to_datetime(date)
-        unit = self.data[self.data["Tên_mặt_hàng"] == name]["Đơn_vị_tính"].unique()[0]
-
-        # Plot
-        plt.figure(figsize=figsize)
-        plt.plot(date, price)
-
-        # Chỉnh lại chỉ có ngày
-        plt.gca().xaxis.set_major_locator(mdates.YearLocator())  # Set major ticks to every year
-        plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y'))  # Show only the year
-
-        # Giới hạn 2020 -> hiện tại
-        plt.xlim(pd.to_datetime("2020-01-01"), pd.to_datetime("2025-06-15"))
-
-        # Improve layout
-        plt.xlabel("Năm")
-        plt.ylabel(f"Giá ({unit})")
-        plt.title(f"{name}")
-        plt.grid(True)
-        plt.tight_layout()
-
-        plt.show()
-
-
-    def show_boxplot(self, name: str) -> None:
-        """
-        Hiển thị boxplot giá của mặt hàng
-
-        Đầu vào:
-            name: Tên mặt hàng đang xét
-        """
-        try:
-            sns.boxplot(self.data[self.data["Tên_mặt_hàng"] == name])
-            plt.title("{0} ({1})".format(
-                    name, 
-                    self.data[self.data["Tên_mặt_hàng"] == name]["Đơn_vị_tính"].unique()[0]
-                )
-            )
-            plt.show()
-            plt.close()
-        except:
-            print("Sai tên mặt hàng?")
-
 
 if __name__ == "__main__":
-    dataset = VNAgriDataset("../../data/Rau, qua")
+    dataset = RawDataset("../../data/Rau, qua")
     print(dataset.data.shape)
     print(dataset.q1)
     print(dataset.q3)
@@ -495,16 +367,8 @@ if __name__ == "__main__":
     print(len(outlier_items))
     print(outlier_items)
 
-    # Lấy hàng có giá thấp nhất
-    min_names, min_val = dataset.get_min_item()
-    print(min_names, min_val)
-
-    # Lấy hàng có giá cao nhất
-    max_names, max_val = dataset.get_max_item()
-    print(max_names, max_val)
-
     # Lấy metadata item
-    item_metadata = dataset.get_itemmetadata()
+    item_metadata = dataset.get_item_metadata()
     with open('item_metadata.yaml', 'w', encoding='utf-8') as f:
         yaml.dump(item_metadata, f, allow_unicode=True, sort_keys=False)
 

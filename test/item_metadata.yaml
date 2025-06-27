@@ -1,0 +1,4443 @@
+0:
+  name: Bắp cải
+  stats:
+    n: 563
+    min: 4000.0
+    max: 30000.0
+    mean: 14055.0621669627
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 4029.3754993088096
+    var: 16235866.914430117
+  outlier_infos:
+    q1: 12000.0
+    q3: 15000.0
+    iqr: 3000.0
+    min_threshold: 7500.0
+    max_threshold: 19500.0
+    have_outliers: true
+    n_outlier: 90
+    outlier_perc: 0.0030412597573750547
+1:
+  name: Bắp cải thảo
+  stats:
+    n: 112
+    min: 5000.0
+    max: 25000.0
+    mean: 17071.428571428572
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 5739.453504525693
+    var: 32941326.530612256
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+2:
+  name: Bưởi da xanh
+  stats:
+    n: 661
+    min: 60.0
+    max: 90000.0
+    mean: 46268.93343419062
+    median: 50000.0
+    mode:
+    - 65000.0
+    std: 17646.313440002148
+    var: 311392378.02280045
+  outlier_infos:
+    q1: 30000.0
+    q3: 60000.0
+    iqr: 30000.0
+    min_threshold: -15000.0
+    max_threshold: 105000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+3:
+  name: Bưởi Diễn
+  stats:
+    n: 57
+    min: 10000.0
+    max: 150000.0
+    mean: 18157.894736842107
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 18863.116776270974
+    var: 355817174.5152355
+  outlier_infos:
+    q1: 10000.0
+    q3: 15000.0
+    iqr: 5000.0
+    min_threshold: 2500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 10
+    outlier_perc: 0.00033791775081945053
+4:
+  name: Cà chua
+  stats:
+    n: 909
+    min: 25.0
+    max: 50000.0
+    mean: 21351.31683168317
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 8077.2020544450015
+    var: 65241193.02833056
+  outlier_infos:
+    q1: 15000.0
+    q3: 25000.0
+    iqr: 10000.0
+    min_threshold: 0.0
+    max_threshold: 40000.0
+    have_outliers: true
+    n_outlier: 29
+    outlier_perc: 0.0009799614773764065
+5:
+  name: Cà rốt
+  stats:
+    n: 757
+    min: 16.0
+    max: 30000.0
+    mean: 17972.515191545575
+    median: 17000.0
+    mode:
+    - 15000.0
+    std: 4462.591804734925
+    var: 19914725.615687314
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 33
+    outlier_perc: 0.0011151285777041867
+6:
+  name: Chanh
+  stats:
+    n: 218
+    min: 15000.0
+    max: 50000.0
+    mean: 37284.40366972477
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 7689.611415862249
+    var: 59130123.72695902
+  outlier_infos:
+    q1: 35000.0
+    q3: 40000.0
+    iqr: 5000.0
+    min_threshold: 27500.0
+    max_threshold: 47500.0
+    have_outliers: true
+    n_outlier: 56
+    outlier_perc: 0.001892339404588923
+7:
+  name: Củ cải
+  stats:
+    n: 204
+    min: 3000.0
+    max: 25000.0
+    mean: 14970.588235294117
+    median: 15000.0
+    mode:
+    - 20000.0
+    std: 7321.678638492118
+    var: 53606978.085351795
+  outlier_infos:
+    q1: 5750.0
+    q3: 20000.0
+    iqr: 14250.0
+    min_threshold: -15625.0
+    max_threshold: 41375.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+8:
+  name: Đào
+  stats:
+    n: 62
+    min: 20000.0
+    max: 60000.0
+    mean: 34080.645161290326
+    median: 35000.0
+    mode:
+    - 30000.0
+    std: 8128.600218933809
+    var: 66074141.519250765
+  outlier_infos:
+    q1: 30000.0
+    q3: 40000.0
+    iqr: 10000.0
+    min_threshold: 15000.0
+    max_threshold: 55000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+9:
+  name: Đậu cove
+  stats:
+    n: 360
+    min: 15000.0
+    max: 35000.0
+    mean: 22502.777777777777
+    median: 20000.0
+    mode:
+    - 25000.0
+    std: 4240.020054401676
+    var: 17977770.06172839
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+10:
+  name: Dưa chuột/dưa chuột
+  stats:
+    n: 292
+    min: 20.0
+    max: 30000.0
+    mean: 19091.380136986303
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 6705.496228254827
+    var: 44963679.66713971
+  outlier_infos:
+    q1: 15000.0
+    q3: 25000.0
+    iqr: 10000.0
+    min_threshold: 0.0
+    max_threshold: 40000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+11:
+  name: Khoai tây
+  stats:
+    n: 704
+    min: 16.0
+    max: 28000.0
+    mean: 18380.257102272728
+    median: 18000.0
+    mode:
+    - 20000.0
+    std: 4015.28014781441
+    var: 16122474.66543251
+  outlier_infos:
+    q1: 16000.0
+    q3: 20000.0
+    iqr: 4000.0
+    min_threshold: 10000.0
+    max_threshold: 26000.0
+    have_outliers: true
+    n_outlier: 17
+    outlier_perc: 0.0005744601763930659
+12:
+  name: Mận hậu
+  stats:
+    n: 191
+    min: 10000.0
+    max: 150000.0
+    mean: 63575.91623036649
+    median: 50000.0
+    mode:
+    - 100000.0
+    std: 36103.700932441265
+    var: 1303477221.0191605
+  outlier_infos:
+    q1: 35000.0
+    q3: 100000.0
+    iqr: 65000.0
+    min_threshold: -62500.0
+    max_threshold: 197500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+13:
+  name: Mận tam hoa
+  stats:
+    n: 38
+    min: 10000.0
+    max: 40000.0
+    mean: 20868.42105263158
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 6786.872206622907
+    var: 46061634.34903048
+  outlier_infos:
+    q1: 20000.0
+    q3: 20000.0
+    iqr: 0.0
+    min_threshold: 20000.0
+    max_threshold: 20000.0
+    have_outliers: true
+    n_outlier: 15
+    outlier_perc: 0.0005068766262291758
+14:
+  name: Mít thái
+  stats:
+    n: 367
+    min: 3500.0
+    max: 43000.0
+    mean: 24986.376021798365
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 7044.802494047189
+    var: 49629242.180133484
+  outlier_infos:
+    q1: 25000.0
+    q3: 29500.0
+    iqr: 4500.0
+    min_threshold: 18250.0
+    max_threshold: 36250.0
+    have_outliers: true
+    n_outlier: 53
+    outlier_perc: 0.0017909640793430878
+15:
+  name: Mơ
+  stats:
+    n: 7
+    min: 25000.0
+    max: 25000.0
+    mean: 25000.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+16:
+  name: Mồng tơi
+  stats:
+    n: 451
+    min: 7.0
+    max: 30000.0
+    mean: 14044.563192904656
+    median: 13000.0
+    mode:
+    - 12000.0
+    std: 5579.969161822813
+    var: 31136055.84689358
+  outlier_infos:
+    q1: 10000.0
+    q3: 18000.0
+    iqr: 8000.0
+    min_threshold: -2000.0
+    max_threshold: 30000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+17:
+  name: Mướp đắng
+  stats:
+    n: 370
+    min: 1400.0
+    max: 50000.0
+    mean: 24868.64864864865
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 8107.650095171931
+    var: 65733990.06574141
+  outlier_infos:
+    q1: 20000.0
+    q3: 30000.0
+    iqr: 10000.0
+    min_threshold: 5000.0
+    max_threshold: 45000.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+18:
+  name: Mướp hương
+  stats:
+    n: 454
+    min: 18.0
+    max: 50000.0
+    mean: 18557.781938325992
+    median: 18000.0
+    mode:
+    - 15000.0
+    std: 5979.750664326665
+    var: 35757418.00751519
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 41
+    outlier_perc: 0.0013854627783597472
+19:
+  name: Ổi
+  stats:
+    n: 414
+    min: 30.0
+    max: 60000.0
+    mean: 22594.90338164251
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 8365.839592779328
+    var: 69987272.09211418
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: true
+    n_outlier: 96
+    outlier_perc: 0.003244010407866725
+20:
+  name: Quả bầu
+  stats:
+    n: 506
+    min: 5000.0
+    max: 90000.0
+    mean: 13622.529644268774
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 5777.649309672915
+    var: 33381231.54556391
+  outlier_infos:
+    q1: 10000.0
+    q3: 15000.0
+    iqr: 5000.0
+    min_threshold: 2500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 9
+    outlier_perc: 0.0003041259757375055
+21:
+  name: Quả bí đỏ
+  stats:
+    n: 722
+    min: 7000.0
+    max: 28500.0
+    mean: 15205.540166204986
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 3506.8211804029816
+    var: 12297794.791322961
+  outlier_infos:
+    q1: 13500.0
+    q3: 17000.0
+    iqr: 3500.0
+    min_threshold: 8250.0
+    max_threshold: 22250.0
+    have_outliers: true
+    n_outlier: 32
+    outlier_perc: 0.0010813368026222417
+22:
+  name: Quả bí xanh
+  stats:
+    n: 359
+    min: 10000.0
+    max: 28000.0
+    mean: 16756.26740947075
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 3715.106329181881
+    var: 13802015.037127271
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+23:
+  name: Rau cải
+  stats:
+    n: 362
+    min: 9000.0
+    max: 25000.0
+    mean: 15309.39226519337
+    median: 15000.0
+    mode:
+    - 12000.0
+    std: 4289.376593907331
+    var: 18398751.56436006
+  outlier_infos:
+    q1: 12000.0
+    q3: 19500.0
+    iqr: 7500.0
+    min_threshold: 750.0
+    max_threshold: 30750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+24:
+  name: Rau cải bó xôi
+  stats:
+    n: 116
+    min: 10000.0
+    max: 25000.0
+    mean: 18362.068965517243
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 4952.179164570118
+    var: 24524078.478002388
+  outlier_infos:
+    q1: 15000.0
+    q3: 20500.0
+    iqr: 5500.0
+    min_threshold: 6750.0
+    max_threshold: 28750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+25:
+  name: Rau ngót
+  stats:
+    n: 539
+    min: 8.0
+    max: 50000.0
+    mean: 16604.083487940632
+    median: 12000.0
+    mode:
+    - 12000.0
+    std: 10874.928075188594
+    var: 118264060.64052512
+  outlier_infos:
+    q1: 8000.0
+    q3: 25000.0
+    iqr: 17000.0
+    min_threshold: -17500.0
+    max_threshold: 50500.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+26:
+  name: Su hào
+  stats:
+    n: 238
+    min: 4000.0
+    max: 22000.0
+    mean: 10441.176470588236
+    median: 10000.0
+    mode:
+    - 10000.0
+    std: 4979.232699902918
+    var: 24792758.279782504
+  outlier_infos:
+    q1: 6000.0
+    q3: 15000.0
+    iqr: 9000.0
+    min_threshold: -7500.0
+    max_threshold: 28500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+27:
+  name: Su su quả
+  stats:
+    n: 377
+    min: 10000.0
+    max: 30000.0
+    mean: 19212.201591511937
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 4337.555409465468
+    var: 18814386.930183146
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+28:
+  name: Thanh long
+  stats:
+    n: 336
+    min: 15000.0
+    max: 37000.0
+    mean: 29997.02380952381
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 3798.886515985687
+    var: 14431538.76133787
+  outlier_infos:
+    q1: 30000.0
+    q3: 30500.0
+    iqr: 500.0
+    min_threshold: 29250.0
+    max_threshold: 31250.0
+    have_outliers: true
+    n_outlier: 158
+    outlier_perc: 0.005339100462947319
+29:
+  name: Vải
+  stats:
+    n: 65
+    min: 10000.0
+    max: 65000.0
+    mean: 26561.53846153846
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 10649.488139489902
+    var: 113411597.6331361
+  outlier_infos:
+    q1: 20000.0
+    q3: 30000.0
+    iqr: 10000.0
+    min_threshold: 5000.0
+    max_threshold: 45000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+30:
+  name: Xoài tròn Sông Mã
+  stats:
+    n: 20
+    min: 25000.0
+    max: 35000.0
+    mean: 30250.0
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 1920.286436967152
+    var: 3687500.0
+  outlier_infos:
+    q1: 30000.0
+    q3: 30000.0
+    iqr: 0.0
+    min_threshold: 30000.0
+    max_threshold: 30000.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+31:
+  name: Xoài tròn Yên Châu
+  stats:
+    n: 47
+    min: 10000.0
+    max: 40000.0
+    mean: 26468.08510638298
+    median: 27000.0
+    mode:
+    - 40000.0
+    std: 10907.446341600064
+    var: 118972385.69488463
+  outlier_infos:
+    q1: 17500.0
+    q3: 40000.0
+    iqr: 22500.0
+    min_threshold: -16250.0
+    max_threshold: 73750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+32:
+  name: Cam sành
+  stats:
+    n: 630
+    min: 40.0
+    max: 55000.0
+    mean: 30560.825396825396
+    median: 28000.0
+    mode:
+    - 45000.0
+    std: 13498.794418291269
+    var: 182217450.7472915
+  outlier_infos:
+    q1: 18500.0
+    q3: 45000.0
+    iqr: 26500.0
+    min_threshold: -21250.0
+    max_threshold: 84750.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+33:
+  name: Chôm chôm
+  stats:
+    n: 133
+    min: 45.0
+    max: 60000.0
+    mean: 42405.338345864664
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 12919.059566140717
+    var: 166902100.073492
+  outlier_infos:
+    q1: 40000.0
+    q3: 50000.0
+    iqr: 10000.0
+    min_threshold: 25000.0
+    max_threshold: 65000.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+34:
+  name: Dưa hấu
+  stats:
+    n: 958
+    min: 18.0
+    max: 26000.0
+    mean: 13522.589415448852
+    median: 10000.0
+    mode:
+    - 25000.0
+    std: 6877.5625658741965
+    var: 47300866.84751406
+  outlier_infos:
+    q1: 8000.0
+    q3: 20000.0
+    iqr: 12000.0
+    min_threshold: -10000.0
+    max_threshold: 38000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+35:
+  name: Dưa lưới vàng
+  stats:
+    n: 37
+    min: 38.0
+    max: 40000.0
+    mean: 27039.945945945947
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 18706.22674469935
+    var: 349922919.02410525
+  outlier_infos:
+    q1: 40.0
+    q3: 40000.0
+    iqr: 39960.0
+    min_threshold: -59900.0
+    max_threshold: 99940.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+36:
+  name: Măng cụt
+  stats:
+    n: 217
+    min: 30.0
+    max: 70000.0
+    mean: 45895.8064516129
+    median: 48000.0
+    mode:
+    - 50000.0
+    std: 12927.088477903073
+    var: 167109616.5155344
+  outlier_infos:
+    q1: 40000.0
+    q3: 55000.0
+    iqr: 15000.0
+    min_threshold: 17500.0
+    max_threshold: 77500.0
+    have_outliers: true
+    n_outlier: 7
+    outlier_perc: 0.00023654242557361537
+37:
+  name: Mướp
+  stats:
+    n: 203
+    min: 1700.0
+    max: 70000.0
+    mean: 10466.502463054187
+    median: 9000.0
+    mode:
+    - 5000.0
+    std: 6566.714175131708
+    var: 43121735.0578757
+  outlier_infos:
+    q1: 5000.0
+    q3: 14000.0
+    iqr: 9000.0
+    min_threshold: -8500.0
+    max_threshold: 27500.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+38:
+  name: Rau cải mơ
+  stats:
+    n: 253
+    min: 25.0
+    max: 45000.0
+    mean: 25643.83399209486
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 8026.115656636541
+    var: 64418532.5337062
+  outlier_infos:
+    q1: 25000.0
+    q3: 30000.0
+    iqr: 5000.0
+    min_threshold: 17500.0
+    max_threshold: 37500.0
+    have_outliers: true
+    n_outlier: 38
+    outlier_perc: 0.001284087453113912
+39:
+  name: Rau cải ngọt
+  stats:
+    n: 200
+    min: 25.0
+    max: 45000.0
+    mean: 23819.275
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 8068.670389188977
+    var: 65103441.849375
+  outlier_infos:
+    q1: 20000.0
+    q3: 30000.0
+    iqr: 10000.0
+    min_threshold: 5000.0
+    max_threshold: 45000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+40:
+  name: Rau dền
+  stats:
+    n: 121
+    min: 7.0
+    max: 14000.0
+    mean: 5513.140495867769
+    median: 6000.0
+    mode:
+    - 7000.0
+    std: 2312.8098016499366
+    var: 5349089.178608019
+  outlier_infos:
+    q1: 5000.0
+    q3: 7000.0
+    iqr: 2000.0
+    min_threshold: 2000.0
+    max_threshold: 10000.0
+    have_outliers: true
+    n_outlier: 14
+    outlier_perc: 0.00047308485114723074
+41:
+  name: Rau mùng tơi
+  stats:
+    n: 140
+    min: 3000.0
+    max: 15000.0
+    mean: 7278.571428571428
+    median: 7000.0
+    mode:
+    - 7000.0
+    std: 1874.901357949483
+    var: 3515255.102040816
+  outlier_infos:
+    q1: 6000.0
+    q3: 8000.0
+    iqr: 2000.0
+    min_threshold: 3000.0
+    max_threshold: 11000.0
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+42:
+  name: Rau muống
+  stats:
+    n: 355
+    min: 7.0
+    max: 20000.0
+    mean: 8675.002816901408
+    median: 8000.0
+    mode:
+    - 8000.0
+    std: 3515.5538281047448
+    var: 12359118.718301926
+  outlier_infos:
+    q1: 7000.0
+    q3: 10000.0
+    iqr: 3000.0
+    min_threshold: 2500.0
+    max_threshold: 14500.0
+    have_outliers: true
+    n_outlier: 33
+    outlier_perc: 0.0011151285777041867
+43:
+  name: Thanh long ruột trắng
+  stats:
+    n: 465
+    min: 40.0
+    max: 45000.0
+    mean: 22493.913978494624
+    median: 20000.0
+    mode:
+    - 30000.0
+    std: 10856.668341460527
+    var: 117867247.47647128
+  outlier_infos:
+    q1: 13500.0
+    q3: 30000.0
+    iqr: 16500.0
+    min_threshold: -11250.0
+    max_threshold: 54750.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+44:
+  name: Xoài Cát Chu
+  stats:
+    n: 684
+    min: 45.0
+    max: 60000.0
+    mean: 29986.761695906433
+    median: 27000.0
+    mode:
+    - 45000.0
+    std: 14351.161133523157
+    var: 205955825.88034567
+  outlier_infos:
+    q1: 18750.0
+    q3: 45000.0
+    iqr: 26250.0
+    min_threshold: -20625.0
+    max_threshold: 84375.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+45:
+  name: Dứa
+  stats:
+    n: 13
+    min: 13000.0
+    max: 15000.0
+    mean: 13461.538461538461
+    median: 13000.0
+    mode:
+    - 13000.0
+    std: 842.6500884694863
+    var: 710059.171597633
+  outlier_infos:
+    q1: 13000.0
+    q3: 13000.0
+    iqr: 0.0
+    min_threshold: 13000.0
+    max_threshold: 13000.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+46:
+  name: Dưa lê
+  stats:
+    n: 133
+    min: 35.0
+    max: 50000.0
+    mean: 27534.624060150374
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 7417.374052088383
+    var: 55017437.828594044
+  outlier_infos:
+    q1: 25000.0
+    q3: 35000.0
+    iqr: 10000.0
+    min_threshold: 10000.0
+    max_threshold: 50000.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+47:
+  name: Quả bí đao
+  stats:
+    n: 35
+    min: 15000.0
+    max: 20000.0
+    mean: 16885.714285714286
+    median: 17000.0
+    mode:
+    - 17000.0
+    std: 1617.2539083525608
+    var: 2615510.2040816327
+  outlier_infos:
+    q1: 16000.0
+    q3: 17000.0
+    iqr: 1000.0
+    min_threshold: 14500.0
+    max_threshold: 18500.0
+    have_outliers: true
+    n_outlier: 6
+    outlier_perc: 0.00020275065049167032
+48:
+  name: Chanh leo tím
+  stats:
+    n: 59
+    min: 15000.0
+    max: 25000.0
+    mean: 22457.627118644068
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 4354.316128361061
+    var: 18960068.94570526
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+49:
+  name: Bưởi long Núm
+  stats:
+    n: 181
+    min: 4500.0
+    max: 16000.0
+    mean: 11331.491712707182
+    median: 11000.0
+    mode:
+    - 11000.0
+    std: 1627.815024102478
+    var: 2649781.7526937514
+  outlier_infos:
+    q1: 10000.0
+    q3: 12000.0
+    iqr: 2000.0
+    min_threshold: 7000.0
+    max_threshold: 15000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+50:
+  name: Bưởi năm roi
+  stats:
+    n: 179
+    min: 12000.0
+    max: 29500.0
+    mean: 18938.54748603352
+    median: 19000.0
+    mode:
+    - 19000.0
+    - 18000.0
+    std: 2364.570924198787
+    var: 5591195.655566306
+  outlier_infos:
+    q1: 18000.0
+    q3: 20000.0
+    iqr: 2000.0
+    min_threshold: 15000.0
+    max_threshold: 23000.0
+    have_outliers: true
+    n_outlier: 10
+    outlier_perc: 0.00033791775081945053
+51:
+  name: Cải bẹ xanh
+  stats:
+    n: 181
+    min: 8500.0
+    max: 22000.0
+    mean: 12251.381215469613
+    median: 12000.0
+    mode:
+    - 12000.0
+    std: 2233.190313480185
+    var: 4987138.976221727
+  outlier_infos:
+    q1: 11000.0
+    q3: 13000.0
+    iqr: 2000.0
+    min_threshold: 8000.0
+    max_threshold: 16000.0
+    have_outliers: true
+    n_outlier: 9
+    outlier_perc: 0.0003041259757375055
+52:
+  name: Cam dây
+  stats:
+    n: 181
+    min: 9000.0
+    max: 20000.0
+    mean: 13168.508287292818
+    median: 13000.0
+    mode:
+    - 15000.0
+    std: 2790.186529376818
+    var: 7785140.868715852
+  outlier_infos:
+    q1: 11000.0
+    q3: 15000.0
+    iqr: 4000.0
+    min_threshold: 5000.0
+    max_threshold: 21000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+53:
+  name: Chôm chôm Java
+  stats:
+    n: 184
+    min: 9500.0
+    max: 39500.0
+    mean: 20516.304347826088
+    median: 20000.0
+    mode:
+    - 20000.0
+    - 19000.0
+    std: 5508.36867616809
+    var: 30342125.472589795
+  outlier_infos:
+    q1: 18000.0
+    q3: 23000.0
+    iqr: 5000.0
+    min_threshold: 10500.0
+    max_threshold: 30500.0
+    have_outliers: true
+    n_outlier: 17
+    outlier_perc: 0.0005744601763930659
+54:
+  name: Chôm chôm nhãn
+  stats:
+    n: 170
+    min: 17000.0
+    max: 47000.0
+    mean: 25697.058823529413
+    median: 27000.0
+    mode:
+    - 28000.0
+    std: 4375.162873883712
+    var: 19142050.173010383
+  outlier_infos:
+    q1: 22250.0
+    q3: 28000.0
+    iqr: 5750.0
+    min_threshold: 13625.0
+    max_threshold: 36625.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+55:
+  name: Chuối già
+  stats:
+    n: 181
+    min: 3000.0
+    max: 7000.0
+    mean: 3984.5303867403313
+    median: 4000.0
+    mode:
+    - 4000.0
+    std: 812.2565426425301
+    var: 659760.6910655964
+  outlier_infos:
+    q1: 3000.0
+    q3: 4500.0
+    iqr: 1500.0
+    min_threshold: 750.0
+    max_threshold: 6750.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+56:
+  name: Chuối sim
+  stats:
+    n: 181
+    min: 7000.0
+    max: 13500.0
+    mean: 10848.06629834254
+    median: 11000.0
+    mode:
+    - 12000.0
+    std: 1227.1600038962079
+    var: 1505921.675162541
+  outlier_infos:
+    q1: 10000.0
+    q3: 12000.0
+    iqr: 2000.0
+    min_threshold: 7000.0
+    max_threshold: 15000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+57:
+  name: Đu đủ
+  stats:
+    n: 170
+    min: 5000.0
+    max: 40000.0
+    mean: 11223.529411764706
+    median: 10000.0
+    mode:
+    - 10000.0
+    std: 3840.9602677646526
+    var: 14752975.778546711
+  outlier_infos:
+    q1: 10000.0
+    q3: 11000.0
+    iqr: 1000.0
+    min_threshold: 8500.0
+    max_threshold: 12500.0
+    have_outliers: true
+    n_outlier: 30
+    outlier_perc: 0.0010137532524583516
+58:
+  name: Dừa khô
+  stats:
+    n: 334
+    min: 1900.0
+    max: 117000.0
+    mean: 46025.149700598806
+    median: 50000.0
+    mode:
+    - 60000.0
+    std: 40947.01753165996
+    var: 1676658244.7380686
+  outlier_infos:
+    q1: 6250.0
+    q3: 82000.0
+    iqr: 75750.0
+    min_threshold: -107375.0
+    max_threshold: 195625.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+59:
+  name: Dừa tươi
+  stats:
+    n: 61
+    min: 34000.0
+    max: 120000.0
+    mean: 76098.3606557377
+    median: 80000.0
+    mode:
+    - 88000.0
+    std: 25218.198553746002
+    var: 635957538.296157
+  outlier_infos:
+    q1: 54000.0
+    q3: 92000.0
+    iqr: 38000.0
+    min_threshold: -3000.0
+    max_threshold: 149000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+60:
+  name: Hồng xiêm
+  stats:
+    n: 232
+    min: 12000.0
+    max: 50000.0
+    mean: 30521.55172413793
+    median: 28000.0
+    mode:
+    - 40000.0
+    std: 9476.921204863247
+    var: 89812035.52318667
+  outlier_infos:
+    q1: 22375.0
+    q3: 40000.0
+    iqr: 17625.0
+    min_threshold: -4062.5
+    max_threshold: 66437.5
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+61:
+  name: Ổi không hạt
+  stats:
+    n: 181
+    min: 3000.0
+    max: 19000.0
+    mean: 7353.03867403315
+    median: 6500.0
+    mode:
+    - 6000.0
+    std: 2840.094571541571
+    var: 8066137.1752999
+  outlier_infos:
+    q1: 6000.0
+    q3: 9000.0
+    iqr: 3000.0
+    min_threshold: 1500.0
+    max_threshold: 13500.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+62:
+  name: Sầu Riêng Ri 6 (loại đẹp)
+  stats:
+    n: 69
+    min: 58000.0
+    max: 132000.0
+    mean: 90014.49275362318
+    median: 90000.0
+    mode:
+    - 75000.0
+    std: 21504.628927800903
+    var: 462449065.32241136
+  outlier_infos:
+    q1: 70000.0
+    q3: 107000.0
+    iqr: 37000.0
+    min_threshold: 14500.0
+    max_threshold: 162500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+63:
+  name: Sầu Riêng Ri 6 (loại xô)
+  stats:
+    n: 69
+    min: 48000.0
+    max: 118000.0
+    mean: 74130.43478260869
+    median: 70000.0
+    mode:
+    - 60000.0
+    std: 18007.97974769998
+    var: 324287334.59357274
+  outlier_infos:
+    q1: 59000.0
+    q3: 87000.0
+    iqr: 28000.0
+    min_threshold: 17000.0
+    max_threshold: 129000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+64:
+  name: Thanh long ruột đỏ
+  stats:
+    n: 506
+    min: 40.0
+    max: 50000.0
+    mean: 26628.231225296444
+    median: 26000.0
+    mode:
+    - 40000.0
+    std: 11888.816384468639
+    var: 141343955.02360994
+  outlier_infos:
+    q1: 17000.0
+    q3: 35000.0
+    iqr: 18000.0
+    min_threshold: -10000.0
+    max_threshold: 62000.0
+    have_outliers: true
+    n_outlier: 9
+    outlier_perc: 0.0003041259757375055
+65:
+  name: Trái Cóc mỡ
+  stats:
+    n: 181
+    min: 3000.0
+    max: 8000.0
+    mean: 5703.867403314917
+    median: 6000.0
+    mode:
+    - 4000.0
+    std: 1488.347544546416
+    var: 2215178.413357346
+  outlier_infos:
+    q1: 4000.0
+    q3: 7000.0
+    iqr: 3000.0
+    min_threshold: -500.0
+    max_threshold: 11500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+66:
+  name: Trái dứa/thơm
+  stats:
+    n: 522
+    min: 3700.0
+    max: 110000.0
+    mean: 22003.029348659005
+    median: 11000.0
+    mode:
+    - 9000.0
+    std: 23108.206467984983
+    var: 533989206.16702294
+  outlier_infos:
+    q1: 9000.0
+    q3: 20000.0
+    iqr: 11000.0
+    min_threshold: -7500.0
+    max_threshold: 36500.0
+    have_outliers: true
+    n_outlier: 108
+    outlier_perc: 0.0036495117088500657
+67:
+  name: Vú sữa lò rèn TG
+  stats:
+    n: 4
+    min: 42000.0
+    max: 47000.0
+    mean: 43250.0
+    median: 42000.0
+    mode:
+    - 42000.0
+    std: 2165.0635094610966
+    var: 4687500.0
+  outlier_infos:
+    q1: 42000.0
+    q3: 43250.0
+    iqr: 1250.0
+    min_threshold: 40125.0
+    max_threshold: 45125.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+68:
+  name: Xà lách
+  stats:
+    n: 60
+    min: 15000.0
+    max: 28000.0
+    mean: 20708.333333333332
+    median: 21000.0
+    mode:
+    - 18000.0
+    std: 3146.8127614390337
+    var: 9902430.555555556
+  outlier_infos:
+    q1: 18000.0
+    q3: 23000.0
+    iqr: 5000.0
+    min_threshold: 10500.0
+    max_threshold: 30500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+69:
+  name: Xoài keo
+  stats:
+    n: 183
+    min: 5300.0
+    max: 40000.0
+    mean: 19681.967213114753
+    median: 19000.0
+    mode:
+    - 19000.0
+    - 10000.0
+    std: 7640.069268347933
+    var: 58370658.42515452
+  outlier_infos:
+    q1: 14000.0
+    q3: 24000.0
+    iqr: 10000.0
+    min_threshold: -1000.0
+    max_threshold: 39000.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+70:
+  name: Nhãn
+  stats:
+    n: 401
+    min: 45.0
+    max: 65000.0
+    mean: 33559.2144638404
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 13125.372910275952
+    var: 172275414.0338058
+  outlier_infos:
+    q1: 25000.0
+    q3: 40000.0
+    iqr: 15000.0
+    min_threshold: 2500.0
+    max_threshold: 62500.0
+    have_outliers: true
+    n_outlier: 6
+    outlier_perc: 0.00020275065049167032
+71:
+  name: Quýt sim
+  stats:
+    n: 12
+    min: 40000.0
+    max: 50000.0
+    mean: 42916.666666666664
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 4310.033513661917
+    var: 18576388.88888889
+  outlier_infos:
+    q1: 40000.0
+    q3: 46250.0
+    iqr: 6250.0
+    min_threshold: 30625.0
+    max_threshold: 55625.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+72:
+  name: Súp lơ xanh
+  stats:
+    n: 70
+    min: 12000.0
+    max: 25000.0
+    mean: 17335.714285714286
+    median: 18000.0
+    mode:
+    - 18000.0
+    std: 2928.5801393598676
+    var: 8576581.632653061
+  outlier_infos:
+    q1: 15000.0
+    q3: 18000.0
+    iqr: 3000.0
+    min_threshold: 10500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+73:
+  name: Cam vinh
+  stats:
+    n: 42
+    min: 25000.0
+    max: 30000.0
+    mean: 29285.714285714286
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 1749.635530559413
+    var: 3061224.489795918
+  outlier_infos:
+    q1: 30000.0
+    q3: 30000.0
+    iqr: 0.0
+    min_threshold: 30000.0
+    max_threshold: 30000.0
+    have_outliers: true
+    n_outlier: 6
+    outlier_perc: 0.00020275065049167032
+74:
+  name: Dâu tây
+  stats:
+    n: 19
+    min: 100000.0
+    max: 350000.0
+    mean: 157894.73684210525
+    median: 120000.0
+    mode:
+    - 100000.0
+    - 120000.0
+    std: 66219.64626337517
+    var: 4385041551.246537
+  outlier_infos:
+    q1: 110000.0
+    q3: 200000.0
+    iqr: 90000.0
+    min_threshold: -25000.0
+    max_threshold: 335000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+75:
+  name: Măng tây
+  stats:
+    n: 10
+    min: 120000.0
+    max: 120000.0
+    mean: 120000.0
+    median: 120000.0
+    mode:
+    - 120000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 120000.0
+    q3: 120000.0
+    iqr: 0.0
+    min_threshold: 120000.0
+    max_threshold: 120000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+76:
+  name: Táo đại
+  stats:
+    n: 48
+    min: 35000.0
+    max: 55000.0
+    mean: 45937.5
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 5650.981662507851
+    var: 31933593.75
+  outlier_infos:
+    q1: 40000.0
+    q3: 50000.0
+    iqr: 10000.0
+    min_threshold: 25000.0
+    max_threshold: 65000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+77:
+  name: Táo ngọt
+  stats:
+    n: 33
+    min: 25000.0
+    max: 35000.0
+    mean: 29848.484848484848
+    median: 30000.0
+    mode:
+    - 25000.0
+    std: 4843.747685801753
+    var: 23461891.64370983
+  outlier_infos:
+    q1: 25000.0
+    q3: 35000.0
+    iqr: 10000.0
+    min_threshold: 10000.0
+    max_threshold: 50000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+78:
+  name: Vú sữa lò rèn Cần Thơ
+  stats:
+    n: 36
+    min: 21000.0
+    max: 46000.0
+    mean: 34861.11111111111
+    median: 35000.0
+    mode:
+    - 30000.0
+    std: 7333.912014204886
+    var: 53786265.43209877
+  outlier_infos:
+    q1: 29750.0
+    q3: 40500.0
+    iqr: 10750.0
+    min_threshold: 13625.0
+    max_threshold: 56625.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+79:
+  name: Rau cần
+  stats:
+    n: 105
+    min: 5000.0
+    max: 15000.0
+    mean: 9771.42857142857
+    median: 10000.0
+    mode:
+    - 10000.0
+    std: 2326.8910092025117
+    var: 5414421.768707483
+  outlier_infos:
+    q1: 8000.0
+    q3: 10000.0
+    iqr: 2000.0
+    min_threshold: 5000.0
+    max_threshold: 13000.0
+    have_outliers: true
+    n_outlier: 10
+    outlier_perc: 0.00033791775081945053
+80:
+  name: Cam Cao Phong
+  stats:
+    n: 96
+    min: 20000.0
+    max: 50000.0
+    mean: 38463.541666666664
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 8663.033530848026
+    var: 75048149.95659722
+  outlier_infos:
+    q1: 33750.0
+    q3: 45000.0
+    iqr: 11250.0
+    min_threshold: 16875.0
+    max_threshold: 61875.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+81:
+  name: Vú sữa lò rèn Tiền Giang
+  stats:
+    n: 22
+    min: 22000.0
+    max: 45000.0
+    mean: 34818.181818181816
+    median: 34500.0
+    mode:
+    - 32000.0
+    std: 4696.578673850723
+    var: 22057851.23966942
+  outlier_infos:
+    q1: 32000.0
+    q3: 38000.0
+    iqr: 6000.0
+    min_threshold: 23000.0
+    max_threshold: 47000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+82:
+  name: Na thái
+  stats:
+    n: 31
+    min: 50000.0
+    max: 100000.0
+    mean: 56258.06451612903
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 14473.485751618
+    var: 209481789.80228925
+  outlier_infos:
+    q1: 50000.0
+    q3: 55000.0
+    iqr: 5000.0
+    min_threshold: 42500.0
+    max_threshold: 62500.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+83:
+  name: Táo
+  stats:
+    n: 14
+    min: 45000.0
+    max: 45000.0
+    mean: 45000.0
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 45000.0
+    q3: 45000.0
+    iqr: 0.0
+    min_threshold: 45000.0
+    max_threshold: 45000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+84:
+  name: Vú sữa
+  stats:
+    n: 48
+    min: 40000.0
+    max: 60000.0
+    mean: 51718.75
+    median: 55000.0
+    mode:
+    - 55000.0
+    std: 6019.851058857963
+    var: 36238606.770833336
+  outlier_infos:
+    q1: 48750.0
+    q3: 55000.0
+    iqr: 6250.0
+    min_threshold: 39375.0
+    max_threshold: 64375.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+85:
+  name: Cam canh
+  stats:
+    n: 122
+    min: 15000.0
+    max: 70000.0
+    mean: 49959.016393442624
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 8110.302637299284
+    var: 65777008.86858371
+  outlier_infos:
+    q1: 50000.0
+    q3: 50000.0
+    iqr: 0.0
+    min_threshold: 50000.0
+    max_threshold: 50000.0
+    have_outliers: true
+    n_outlier: 54
+    outlier_perc: 0.0018247558544250328
+86:
+  name: Na sầu riêng
+  stats:
+    n: 64
+    min: 15000.0
+    max: 150000.0
+    mean: 112750.0
+    median: 110000.0
+    mode:
+    - 150000.0
+    std: 27430.02460808229
+    var: 752406250.0
+  outlier_infos:
+    q1: 90000.0
+    q3: 150000.0
+    iqr: 60000.0
+    min_threshold: 0.0
+    max_threshold: 240000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+87:
+  name: Bơ Boot
+  stats:
+    n: 20
+    min: 35000.0
+    max: 35000.0
+    mean: 35000.0
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 35000.0
+    q3: 35000.0
+    iqr: 0.0
+    min_threshold: 35000.0
+    max_threshold: 35000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+88:
+  name: Táo mèo
+  stats:
+    n: 171
+    min: 12000.0
+    max: 35000.0
+    mean: 22964.912280701756
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 5281.430269733732
+    var: 27893505.69405972
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+89:
+  name: Cam cara ruột đỏ
+  stats:
+    n: 17
+    min: 60000.0
+    max: 70000.0
+    mean: 61764.705882352944
+    median: 60000.0
+    mode:
+    - 60000.0
+    std: 3812.200410828153
+    var: 14532871.972318338
+  outlier_infos:
+    q1: 60000.0
+    q3: 60000.0
+    iqr: 0.0
+    min_threshold: 60000.0
+    max_threshold: 60000.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+90:
+  name: Cam ly không hạt
+  stats:
+    n: 17
+    min: 80000.0
+    max: 80000.0
+    mean: 80000.0
+    median: 80000.0
+    mode:
+    - 80000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 80000.0
+    q3: 80000.0
+    iqr: 0.0
+    min_threshold: 80000.0
+    max_threshold: 80000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+91:
+  name: Chanh leo vàng
+  stats:
+    n: 122
+    min: 15000.0
+    max: 80000.0
+    mean: 67319.67213114754
+    median: 80000.0
+    mode:
+    - 80000.0
+    std: 14341.425949087412
+    var: 205676498.25315776
+  outlier_infos:
+    q1: 50000.0
+    q3: 80000.0
+    iqr: 30000.0
+    min_threshold: 5000.0
+    max_threshold: 125000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+92:
+  name: Khoai sọ
+  stats:
+    n: 83
+    min: 15000.0
+    max: 50000.0
+    mean: 39240.96385542169
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 5796.946353278591
+    var: 33604587.022789955
+  outlier_infos:
+    q1: 40000.0
+    q3: 40000.0
+    iqr: 0.0
+    min_threshold: 40000.0
+    max_threshold: 40000.0
+    have_outliers: true
+    n_outlier: 26
+    outlier_perc: 0.0008785861521305714
+93:
+  name: Quýt ngọt Phù Yên
+  stats:
+    n: 59
+    min: 35000.0
+    max: 50000.0
+    mean: 43559.32203389831
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 5371.838641267959
+    var: 28856650.387819592
+  outlier_infos:
+    q1: 40000.0
+    q3: 47500.0
+    iqr: 7500.0
+    min_threshold: 28750.0
+    max_threshold: 58750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+94:
+  name: Lê
+  stats:
+    n: 121
+    min: 35.0
+    max: 45000.0
+    mean: 33894.17355371901
+    median: 35000.0
+    mode:
+    - 40000.0
+    std: 8531.125567544881
+    var: 72780103.44921796
+  outlier_infos:
+    q1: 30000.0
+    q3: 40000.0
+    iqr: 10000.0
+    min_threshold: 15000.0
+    max_threshold: 55000.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+95:
+  name: Quýt Sài Gòn
+  stats:
+    n: 77
+    min: 55.0
+    max: 65000.0
+    mean: 46502.53246753247
+    median: 55000.0
+    mode:
+    - 55000.0
+    std: 20477.626333999746
+    var: 419333180.2749199
+  outlier_infos:
+    q1: 50000.0
+    q3: 60000.0
+    iqr: 10000.0
+    min_threshold: 35000.0
+    max_threshold: 75000.0
+    have_outliers: true
+    n_outlier: 12
+    outlier_perc: 0.00040550130098334063
+96:
+  name: Bưởi diễn
+  stats:
+    n: 25
+    min: 20000.0
+    max: 35000.0
+    mean: 21200.0
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 4069.397989875161
+    var: 16560000.0
+  outlier_infos:
+    q1: 20000.0
+    q3: 20000.0
+    iqr: 0.0
+    min_threshold: 20000.0
+    max_threshold: 20000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+97:
+  name: Mận hậu trái vụ
+  stats:
+    n: 1
+    min: 230000.0
+    max: 230000.0
+    mean: 230000.0
+    median: 230000.0
+    mode:
+    - 230000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 230000.0
+    q3: 230000.0
+    iqr: 0.0
+    min_threshold: 230000.0
+    max_threshold: 230000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+98:
+  name: Hồng ngâm
+  stats:
+    n: 88
+    min: 15000.0
+    max: 60000.0
+    mean: 40431.818181818184
+    median: 40000.0
+    mode:
+    - 40000.0
+    - 50000.0
+    std: 8452.80407286333
+    var: 71449896.69421488
+  outlier_infos:
+    q1: 35000.0
+    q3: 50000.0
+    iqr: 15000.0
+    min_threshold: 12500.0
+    max_threshold: 72500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+99:
+  name: Lựu
+  stats:
+    n: 79
+    min: 40.0
+    max: 60000.0
+    mean: 33130.06329113924
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 11662.191141084255
+    var: 136006702.21118408
+  outlier_infos:
+    q1: 25000.0
+    q3: 40000.0
+    iqr: 15000.0
+    min_threshold: 2500.0
+    max_threshold: 62500.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+100:
+  name: Bơ nếp
+  stats:
+    n: 52
+    min: 15000.0
+    max: 50000.0
+    mean: 35211.53846153846
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 6720.624222557633
+    var: 45166789.9408284
+  outlier_infos:
+    q1: 30000.0
+    q3: 35000.0
+    iqr: 5000.0
+    min_threshold: 22500.0
+    max_threshold: 42500.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+101:
+  name: Hồng giòn
+  stats:
+    n: 24
+    min: 47000.0
+    max: 70000.0
+    mean: 61750.0
+    median: 70000.0
+    mode:
+    - 70000.0
+    std: 9175.374651751285
+    var: 84187500.0
+  outlier_infos:
+    q1: 53750.0
+    q3: 70000.0
+    iqr: 16250.0
+    min_threshold: 29375.0
+    max_threshold: 94375.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+102:
+  name: Na
+  stats:
+    n: 154
+    min: 35.0
+    max: 80000.0
+    mean: 41950.58441558442
+    median: 40000.0
+    mode:
+    - 35000.0
+    std: 17416.009828883227
+    var: 303317398.3597572
+  outlier_infos:
+    q1: 35000.0
+    q3: 45000.0
+    iqr: 10000.0
+    min_threshold: 20000.0
+    max_threshold: 60000.0
+    have_outliers: true
+    n_outlier: 26
+    outlier_perc: 0.0008785861521305714
+103:
+  name: Lê xanh
+  stats:
+    n: 18
+    min: 45000.0
+    max: 60000.0
+    mean: 59166.666666666664
+    median: 60000.0
+    mode:
+    - 60000.0
+    std: 3435.921354681384
+    var: 11805555.555555556
+  outlier_infos:
+    q1: 60000.0
+    q3: 60000.0
+    iqr: 0.0
+    min_threshold: 60000.0
+    max_threshold: 60000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+104:
+  name: Mít dai
+  stats:
+    n: 117
+    min: 10000.0
+    max: 25000.0
+    mean: 17384.615384615383
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 4436.823676826755
+    var: 19685404.339250486
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+105:
+  name: Mít mật
+  stats:
+    n: 105
+    min: 5000.0
+    max: 25000.0
+    mean: 12533.333333333334
+    median: 12000.0
+    mode:
+    - 15000.0
+    std: 3766.5613133180414
+    var: 14186984.126984129
+  outlier_infos:
+    q1: 10000.0
+    q3: 15000.0
+    iqr: 5000.0
+    min_threshold: 2500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+106:
+  name: Xoài Đài Loan
+  stats:
+    n: 229
+    min: 1000.0
+    max: 130000.0
+    mean: 18272.92576419214
+    median: 18000.0
+    mode:
+    - 20000.0
+    std: 10778.677021762329
+    var: 116179878.33946721
+  outlier_infos:
+    q1: 12000.0
+    q3: 25000.0
+    iqr: 13000.0
+    min_threshold: -7500.0
+    max_threshold: 44500.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+107:
+  name: Đào mỏ quạ
+  stats:
+    n: 28
+    min: 60.0
+    max: 80000.0
+    mean: 40187.5
+    median: 40000.0
+    mode:
+    - 35000.0
+    std: 19733.97295003865
+    var: 389429688.39285713
+  outlier_infos:
+    q1: 35000.0
+    q3: 52500.0
+    iqr: 17500.0
+    min_threshold: 8750.0
+    max_threshold: 78750.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+108:
+  name: Mận cơm xanh
+  stats:
+    n: 8
+    min: 40.0
+    max: 50000.0
+    mean: 40005.0
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 15193.75447346705
+    var: 230850175.0
+  outlier_infos:
+    q1: 45000.0
+    q3: 45000.0
+    iqr: 0.0
+    min_threshold: 45000.0
+    max_threshold: 45000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+109:
+  name: Xoài Thái
+  stats:
+    n: 25
+    min: 35000.0
+    max: 40000.0
+    mean: 37600.0
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 2497.9991993593594
+    var: 6240000.0
+  outlier_infos:
+    q1: 35000.0
+    q3: 40000.0
+    iqr: 5000.0
+    min_threshold: 27500.0
+    max_threshold: 47500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+110:
+  name: Lê Tai Nung
+  stats:
+    n: 3
+    min: 60000.0
+    max: 70000.0
+    mean: 63333.333333333336
+    median: 60000.0
+    mode:
+    - 60000.0
+    std: 4714.045207910317
+    var: 22222222.22222222
+  outlier_infos:
+    q1: 60000.0
+    q3: 65000.0
+    iqr: 5000.0
+    min_threshold: 52500.0
+    max_threshold: 72500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+111:
+  name: Nhãn tiêu quế
+  stats:
+    n: 141
+    min: 11000.0
+    max: 23000.0
+    mean: 17108.510638297874
+    median: 18000.0
+    mode:
+    - 18000.0
+    std: 2460.7699124346354
+    var: 6055388.561943564
+  outlier_infos:
+    q1: 16000.0
+    q3: 19000.0
+    iqr: 3000.0
+    min_threshold: 11500.0
+    max_threshold: 23500.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+112:
+  name: Dưa bở
+  stats:
+    n: 3
+    min: 15000.0
+    max: 20000.0
+    mean: 16666.666666666668
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 2357.0226039551585
+    var: 5555555.555555555
+  outlier_infos:
+    q1: 15000.0
+    q3: 17500.0
+    iqr: 2500.0
+    min_threshold: 11250.0
+    max_threshold: 21250.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+113:
+  name: Súp lơ
+  stats:
+    n: 125
+    min: 15000.0
+    max: 60000.0
+    mean: 39032.0
+    median: 45000.0
+    mode:
+    - 50000.0
+    std: 13309.206437650593
+    var: 177134976.0
+  outlier_infos:
+    q1: 35000.0
+    q3: 50000.0
+    iqr: 15000.0
+    min_threshold: 12500.0
+    max_threshold: 72500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+114:
+  name: Quả mơ
+  stats:
+    n: 8
+    min: 20000.0
+    max: 35000.0
+    mean: 25625.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 3903.123748998999
+    var: 15234375.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+115:
+  name: Dâu tây Hana
+  stats:
+    n: 26
+    min: 130000.0
+    max: 220000.0
+    mean: 170384.61538461538
+    median: 190000.0
+    mode:
+    - 190000.0
+    std: 33221.95395897223
+    var: 1103698224.852071
+  outlier_infos:
+    q1: 130000.0
+    q3: 190000.0
+    iqr: 60000.0
+    min_threshold: 40000.0
+    max_threshold: 280000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+116:
+  name: Na Đài Loan
+  stats:
+    n: 18
+    min: 85000.0
+    max: 100000.0
+    mean: 93611.11111111111
+    median: 90000.0
+    mode:
+    - 90000.0
+    std: 5218.970618904427
+    var: 27237654.320987657
+  outlier_infos:
+    q1: 90000.0
+    q3: 100000.0
+    iqr: 10000.0
+    min_threshold: 75000.0
+    max_threshold: 115000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+117:
+  name: Cam Canh
+  stats:
+    n: 10
+    min: 60000.0
+    max: 70000.0
+    mean: 64000.0
+    median: 62500.0
+    mode:
+    - 60000.0
+    std: 4358.898943540674
+    var: 19000000.0
+  outlier_infos:
+    q1: 60000.0
+    q3: 68750.0
+    iqr: 8750.0
+    min_threshold: 46875.0
+    max_threshold: 81875.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+118:
+  name: Quýt ngọt
+  stats:
+    n: 3
+    min: 50000.0
+    max: 50000.0
+    mean: 50000.0
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 50000.0
+    q3: 50000.0
+    iqr: 0.0
+    min_threshold: 50000.0
+    max_threshold: 50000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+119:
+  name: Táo chua, táo ngọt
+  stats:
+    n: 1
+    min: 25000.0
+    max: 25000.0
+    mean: 25000.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+120:
+  name: Na Thái
+  stats:
+    n: 36
+    min: 15000.0
+    max: 70000.0
+    mean: 58416.666666666664
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 12246.031103087147
+    var: 149965277.7777778
+  outlier_infos:
+    q1: 50000.0
+    q3: 70000.0
+    iqr: 20000.0
+    min_threshold: 20000.0
+    max_threshold: 100000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+121:
+  name: Quýt
+  stats:
+    n: 11
+    min: 25000.0
+    max: 55000.0
+    mean: 42727.27272727273
+    median: 45000.0
+    mode:
+    - 55000.0
+    std: 11152.585587622996
+    var: 124380165.28925619
+  outlier_infos:
+    q1: 35000.0
+    q3: 52500.0
+    iqr: 17500.0
+    min_threshold: 8750.0
+    max_threshold: 78750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+122:
+  name: Rau cải cúc
+  stats:
+    n: 3
+    min: 7000.0
+    max: 7000.0
+    mean: 7000.0
+    median: 7000.0
+    mode:
+    - 7000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 7000.0
+    q3: 7000.0
+    iqr: 0.0
+    min_threshold: 7000.0
+    max_threshold: 7000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+123:
+  name: Su su
+  stats:
+    n: 9
+    min: 15000.0
+    max: 17000.0
+    mean: 15555.555555555555
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 684.9348892187752
+    var: 469135.8024691359
+  outlier_infos:
+    q1: 15000.0
+    q3: 16000.0
+    iqr: 1000.0
+    min_threshold: 13500.0
+    max_threshold: 17500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+124:
+  name: Dưa chuột/dưa chuội
+  stats:
+    n: 787
+    min: 4000.0
+    max: 30000.0
+    mean: 15677.25540025413
+    median: 15000.0
+    mode:
+    - 20000.0
+    std: 5443.894598639704
+    var: 29635988.40109854
+  outlier_infos:
+    q1: 10000.0
+    q3: 20000.0
+    iqr: 10000.0
+    min_threshold: -5000.0
+    max_threshold: 35000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+125:
+  name: Cải xà lách
+  stats:
+    n: 121
+    min: 10000.0
+    max: 40000.0
+    mean: 18173.553719008265
+    median: 18000.0
+    mode:
+    - 15000.0
+    std: 5460.114862640708
+    var: 29812854.313229967
+  outlier_infos:
+    q1: 14000.0
+    q3: 21000.0
+    iqr: 7000.0
+    min_threshold: 3500.0
+    max_threshold: 31500.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+126:
+  name: Bơ
+  stats:
+    n: 57
+    min: 10000.0
+    max: 35000.0
+    mean: 25578.947368421053
+    median: 25000.0
+    mode:
+    - 30000.0
+    std: 7793.266028001022
+    var: 60734995.383194834
+  outlier_infos:
+    q1: 20000.0
+    q3: 30000.0
+    iqr: 10000.0
+    min_threshold: 5000.0
+    max_threshold: 45000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+127:
+  name: Quýt Sài gòn
+  stats:
+    n: 198
+    min: 30000.0
+    max: 60000.0
+    mean: 45969.69696969697
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 7600.444624759214
+    var: 57766758.49403123
+  outlier_infos:
+    q1: 40000.0
+    q3: 50000.0
+    iqr: 10000.0
+    min_threshold: 25000.0
+    max_threshold: 65000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+128:
+  name: Cam xoàn
+  stats:
+    n: 61
+    min: 22000.0
+    max: 40000.0
+    mean: 33983.60655737705
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 4778.681494806852
+    var: 22835796.828809455
+  outlier_infos:
+    q1: 30000.0
+    q3: 35000.0
+    iqr: 5000.0
+    min_threshold: 22500.0
+    max_threshold: 42500.0
+    have_outliers: true
+    n_outlier: 2
+    outlier_perc: 6.75835501638901e-05
+129:
+  name: Cốc Thái
+  stats:
+    n: 43
+    min: 2000.0
+    max: 10000.0
+    mean: 5813.953488372093
+    median: 5500.0
+    mode:
+    - 5000.0
+    std: 1701.6519190629504
+    var: 2895619.253650622
+  outlier_infos:
+    q1: 5000.0
+    q3: 6000.0
+    iqr: 1000.0
+    min_threshold: 3500.0
+    max_threshold: 7500.0
+    have_outliers: true
+    n_outlier: 6
+    outlier_perc: 0.00020275065049167032
+130:
+  name: Ổi Đài Loan
+  stats:
+    n: 61
+    min: 13000.0
+    max: 45000.0
+    mean: 28803.27868852459
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 7075.285250882052
+    var: 50059661.3813491
+  outlier_infos:
+    q1: 24000.0
+    q3: 35000.0
+    iqr: 11000.0
+    min_threshold: 7500.0
+    max_threshold: 51500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+131:
+  name: Quýt đường
+  stats:
+    n: 115
+    min: 35000.0
+    max: 50000.0
+    mean: 43669.565217391304
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 4225.639625636182
+    var: 17856030.2457467
+  outlier_infos:
+    q1: 40000.0
+    q3: 45000.0
+    iqr: 5000.0
+    min_threshold: 32500.0
+    max_threshold: 52500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+132:
+  name: Xoài cát Hòa Lộc
+  stats:
+    n: 300
+    min: 10000.0
+    max: 110000.0
+    mean: 44168.333333333336
+    median: 42500.0
+    mode:
+    - 30000.0
+    std: 20532.51479699671
+    var: 421584163.88888884
+  outlier_infos:
+    q1: 29500.0
+    q3: 58625.0
+    iqr: 29125.0
+    min_threshold: -14187.5
+    max_threshold: 102312.5
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+133:
+  name: Bưởi năm roi (loại 1)
+  stats:
+    n: 259
+    min: 2950.0
+    max: 39500.0
+    mean: 24407.14285714286
+    median: 25000.0
+    mode:
+    - 20000.0
+    std: 5559.755864516726
+    var: 30910885.273028135
+  outlier_infos:
+    q1: 20000.0
+    q3: 28500.0
+    iqr: 8500.0
+    min_threshold: 7250.0
+    max_threshold: 41250.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+134:
+  name: Bưởi năm roi (loại 2)
+  stats:
+    n: 199
+    min: 8500.0
+    max: 26500.0
+    mean: 18097.989949748742
+    median: 18000.0
+    mode:
+    - 18000.0
+    std: 3563.7335709509925
+    var: 12700196.964723112
+  outlier_infos:
+    q1: 15000.0
+    q3: 20000.0
+    iqr: 5000.0
+    min_threshold: 7500.0
+    max_threshold: 27500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+135:
+  name: Cam sành (loại 1)
+  stats:
+    n: 159
+    min: 5500.0
+    max: 29500.0
+    mean: 19959.119496855346
+    median: 20000.0
+    mode:
+    - 25000.0
+    std: 5308.107171152206
+    var: 28176001.740437478
+  outlier_infos:
+    q1: 18500.0
+    q3: 25000.0
+    iqr: 6500.0
+    min_threshold: 8750.0
+    max_threshold: 34750.0
+    have_outliers: true
+    n_outlier: 8
+    outlier_perc: 0.0002703342006555604
+136:
+  name: Cam sành (loại 2)
+  stats:
+    n: 159
+    min: 2500.0
+    max: 70000.0
+    mean: 19484.276729559748
+    median: 18000.0
+    mode:
+    - 20000.0
+    std: 11584.991019837267
+    var: 134212016.9297101
+  outlier_infos:
+    q1: 15500.0
+    q3: 20000.0
+    iqr: 4500.0
+    min_threshold: 8750.0
+    max_threshold: 26750.0
+    have_outliers: true
+    n_outlier: 30
+    outlier_perc: 0.0010137532524583516
+137:
+  name: Chôm chôm đường
+  stats:
+    n: 109
+    min: 14500.0
+    max: 49500.0
+    mean: 29876.146788990827
+    median: 29500.0
+    mode:
+    - 29500.0
+    std: 8204.98728490334
+    var: 67321816.34542547
+  outlier_infos:
+    q1: 24500.0
+    q3: 34500.0
+    iqr: 10000.0
+    min_threshold: 9500.0
+    max_threshold: 49500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+138:
+  name: Chôm chôm thái
+  stats:
+    n: 112
+    min: 14500.0
+    max: 71500.0
+    mean: 40116.07142857143
+    median: 39500.0
+    mode:
+    - 39500.0
+    - 29500.0
+    std: 13181.08461808753
+    var: 173740991.7091837
+  outlier_infos:
+    q1: 29500.0
+    q3: 49125.0
+    iqr: 19625.0
+    min_threshold: 62.5
+    max_threshold: 78562.5
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+139:
+  name: Dừa xiêm
+  stats:
+    n: 109
+    min: 6750.0
+    max: 13000.0
+    mean: 7282.568807339449
+    median: 7500.0
+    mode:
+    - 7500.0
+    std: 668.3327244618889
+    var: 446668.6305866511
+  outlier_infos:
+    q1: 6750.0
+    q3: 7500.0
+    iqr: 750.0
+    min_threshold: 5625.0
+    max_threshold: 8625.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+140:
+  name: Nhãn tiêu da bò
+  stats:
+    n: 307
+    min: 7500.0
+    max: 95000.0
+    mean: 18848.534201954397
+    median: 12000.0
+    mode:
+    - 10500.0
+    std: 16082.665809661255
+    var: 258652139.54524714
+  outlier_infos:
+    q1: 10500.0
+    q3: 20000.0
+    iqr: 9500.0
+    min_threshold: -3750.0
+    max_threshold: 34250.0
+    have_outliers: true
+    n_outlier: 36
+    outlier_perc: 0.001216503902950022
+141:
+  name: Sầu riêng cơm vàng hạt lép
+  stats:
+    n: 322
+    min: 13000.0
+    max: 120000.0
+    mean: 64970.49689440994
+    median: 65000.0
+    mode:
+    - 65000.0
+    std: 10832.787491973782
+    var: 117349284.84626363
+  outlier_infos:
+    q1: 60000.0
+    q3: 70000.0
+    iqr: 10000.0
+    min_threshold: 45000.0
+    max_threshold: 85000.0
+    have_outliers: true
+    n_outlier: 13
+    outlier_perc: 0.0004392930760652857
+142:
+  name: Sầu riêng KQX
+  stats:
+    n: 88
+    min: 11000.0
+    max: 57500.0
+    mean: 21693.18181818182
+    median: 13000.0
+    mode:
+    - 13000.0
+    std: 14194.955853901587
+    var: 201496771.6942149
+  outlier_infos:
+    q1: 12000.0
+    q3: 35625.0
+    iqr: 23625.0
+    min_threshold: -23437.5
+    max_threshold: 71062.5
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+143:
+  name: Củ cải trắng
+  stats:
+    n: 97
+    min: 4000.0
+    max: 50000.0
+    mean: 11680.41237113402
+    median: 12000.0
+    mode:
+    - 18000.0
+    std: 6524.413141444932
+    var: 42567966.84025933
+  outlier_infos:
+    q1: 5000.0
+    q3: 15000.0
+    iqr: 10000.0
+    min_threshold: -10000.0
+    max_threshold: 30000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+144:
+  name: Trái dứa/thơm (nhỏ)
+  stats:
+    n: 94
+    min: 7000.0
+    max: 80000.0
+    mean: 15010.63829787234
+    median: 11000.0
+    mode:
+    - 8000.0
+    std: 14854.252690621333
+    var: 220648822.99683115
+  outlier_infos:
+    q1: 8250.0
+    q3: 14000.0
+    iqr: 5750.0
+    min_threshold: -375.0
+    max_threshold: 22625.0
+    have_outliers: true
+    n_outlier: 7
+    outlier_perc: 0.00023654242557361537
+145:
+  name: Trái dứa/thơm (to)
+  stats:
+    n: 94
+    min: 6000.0
+    max: 65000.0
+    mean: 14446.808510638299
+    median: 12000.0
+    mode:
+    - 10000.0
+    - 14000.0
+    std: 10976.393452252472
+    var: 120481213.21865094
+  outlier_infos:
+    q1: 10000.0
+    q3: 14000.0
+    iqr: 4000.0
+    min_threshold: 4000.0
+    max_threshold: 20000.0
+    have_outliers: true
+    n_outlier: 6
+    outlier_perc: 0.00020275065049167032
+146:
+  name: Bưởi da xanh (loại 1)
+  stats:
+    n: 218
+    min: 20000.0
+    max: 50000.0
+    mean: 31353.211009174312
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 4072.6221476230758
+    var: 16586251.157309992
+  outlier_infos:
+    q1: 30000.0
+    q3: 35000.0
+    iqr: 5000.0
+    min_threshold: 22500.0
+    max_threshold: 42500.0
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+147:
+  name: Bưởi da xanh (loại 2)
+  stats:
+    n: 151
+    min: 16000.0
+    max: 35000.0
+    mean: 25271.523178807947
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 3081.527476303122
+    var: 9495811.587211087
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: true
+    n_outlier: 52
+    outlier_perc: 0.0017571723042611427
+148:
+  name: Nhãn xuồng vàng
+  stats:
+    n: 95
+    min: 17500.0
+    max: 55000.0
+    mean: 34542.10526315789
+    median: 32500.0
+    mode:
+    - 42000.0
+    std: 10514.817404099382
+    var: 110561385.04155125
+  outlier_infos:
+    q1: 27500.0
+    q3: 42000.0
+    iqr: 14500.0
+    min_threshold: 5750.0
+    max_threshold: 63750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+149:
+  name: Bồn bồn
+  stats:
+    n: 47
+    min: 25000.0
+    max: 45000.0
+    mean: 35404.255319148935
+    median: 35000.0
+    mode:
+    - 35000.0
+    - 40000.0
+    std: 4340.112629522396
+    var: 18836577.6369398
+  outlier_infos:
+    q1: 31000.0
+    q3: 40000.0
+    iqr: 9000.0
+    min_threshold: 17500.0
+    max_threshold: 53500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+150:
+  name: Chuối
+  stats:
+    n: 65
+    min: 7000.0
+    max: 12000.0
+    mean: 8423.076923076924
+    median: 8000.0
+    mode:
+    - 7000.0
+    std: 1310.4044273862974
+    var: 1717159.7633136096
+  outlier_infos:
+    q1: 7000.0
+    q3: 10000.0
+    iqr: 3000.0
+    min_threshold: 2500.0
+    max_threshold: 14500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+151:
+  name: Dừa
+  stats:
+    n: 63
+    min: 90000.0
+    max: 110000.0
+    mean: 97142.85714285714
+    median: 100000.0
+    mode:
+    - 100000.0
+    std: 6217.888027238377
+    var: 38662131.519274354
+  outlier_infos:
+    q1: 90000.0
+    q3: 100000.0
+    iqr: 10000.0
+    min_threshold: 75000.0
+    max_threshold: 115000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+152:
+  name: Khổ qua
+  stats:
+    n: 167
+    min: 1200.0
+    max: 35000.0
+    mean: 20392.814371257486
+    median: 20000.0
+    mode:
+    - 25000.0
+    std: 5408.216955909653
+    var: 29248810.642188676
+  outlier_infos:
+    q1: 17500.0
+    q3: 25000.0
+    iqr: 7500.0
+    min_threshold: 6250.0
+    max_threshold: 36250.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+153:
+  name: Sầu Riêng Ri 6
+  stats:
+    n: 139
+    min: 6500.0
+    max: 120000.0
+    mean: 62449.640287769784
+    median: 65000.0
+    mode:
+    - 35000.0
+    std: 16573.82600680062
+    var: 274691708.5037006
+  outlier_infos:
+    q1: 55000.0
+    q3: 75000.0
+    iqr: 20000.0
+    min_threshold: 25000.0
+    max_threshold: 105000.0
+    have_outliers: true
+    n_outlier: 3
+    outlier_perc: 0.00010137532524583516
+154:
+  name: Dưa hấu (loại 1)
+  stats:
+    n: 76
+    min: 6000.0
+    max: 12000.0
+    mean: 10434.21052631579
+    median: 11000.0
+    mode:
+    - 12000.0
+    std: 1867.9113463395242
+    var: 3489092.797783934
+  outlier_infos:
+    q1: 9000.0
+    q3: 12000.0
+    iqr: 3000.0
+    min_threshold: 4500.0
+    max_threshold: 16500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+155:
+  name: Dưa hấu (loại 2)
+  stats:
+    n: 74
+    min: 4000.0
+    max: 10000.0
+    mean: 7416.216216216216
+    median: 8000.0
+    mode:
+    - 8000.0
+    std: 1290.927492575933
+    var: 1666493.7910883855
+  outlier_infos:
+    q1: 6000.0
+    q3: 8000.0
+    iqr: 2000.0
+    min_threshold: 3000.0
+    max_threshold: 11000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+156:
+  name: Dừa xiêm lai
+  stats:
+    n: 58
+    min: 25000.0
+    max: 600000.0
+    mean: 54000.0
+    median: 40000.0
+    mode:
+    - 25000.0
+    std: 74147.1044845871
+    var: 5497793103.448276
+  outlier_infos:
+    q1: 35000.0
+    q3: 60000.0
+    iqr: 25000.0
+    min_threshold: -2500.0
+    max_threshold: 97500.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+157:
+  name: Dừa xiêm xanh
+  stats:
+    n: 59
+    min: 35000.0
+    max: 125000.0
+    mean: 74957.62711864407
+    median: 72000.0
+    mode:
+    - 60000.0
+    - 65000.0
+    std: 19410.43929671526
+    var: 376765153.69146794
+  outlier_infos:
+    q1: 62250.0
+    q3: 82500.0
+    iqr: 20250.0
+    min_threshold: 31875.0
+    max_threshold: 112875.0
+    have_outliers: true
+    n_outlier: 5
+    outlier_perc: 0.00016895887540972526
+158:
+  name: Hạt ca cao
+  stats:
+    n: 57
+    min: 5000.0
+    max: 80000.0
+    mean: 44473.68421052631
+    median: 64000.0
+    mode:
+    - 64000.0
+    std: 30220.102095081
+    var: 913254570.637119
+  outlier_infos:
+    q1: 5300.0
+    q3: 65000.0
+    iqr: 59700.0
+    min_threshold: -84250.0
+    max_threshold: 154550.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+159:
+  name: Trái Ca cao
+  stats:
+    n: 60
+    min: 5200.0
+    max: 35000.0
+    mean: 15713.333333333334
+    median: 5950.0
+    mode:
+    - 5200.0
+    std: 13995.77872868181
+    var: 195881822.2222222
+  outlier_infos:
+    q1: 5200.0
+    q3: 35000.0
+    iqr: 29800.0
+    min_threshold: -39500.0
+    max_threshold: 79700.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+160:
+  name: Chanh không hạt
+  stats:
+    n: 66
+    min: 7000.0
+    max: 16000.0
+    mean: 11742.424242424242
+    median: 12000.0
+    mode:
+    - 10000.0
+    std: 2687.291111321597
+    var: 7221533.516988062
+  outlier_infos:
+    q1: 10000.0
+    q3: 14000.0
+    iqr: 4000.0
+    min_threshold: 4000.0
+    max_threshold: 20000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+161:
+  name: Mít ruột đỏ
+  stats:
+    n: 66
+    min: 40000.0
+    max: 65000.0
+    mean: 53893.93939393939
+    median: 55000.0
+    mode:
+    - 55000.0
+    std: 5549.034280924237
+    var: 30791781.450872358
+  outlier_infos:
+    q1: 50000.0
+    q3: 55000.0
+    iqr: 5000.0
+    min_threshold: 42500.0
+    max_threshold: 62500.0
+    have_outliers: true
+    n_outlier: 9
+    outlier_perc: 0.0003041259757375055
+162:
+  name: Mít Thái
+  stats:
+    n: 42
+    min: 4000.0
+    max: 25000.0
+    mean: 15309.52380952381
+    median: 16000.0
+    mode:
+    - 17000.0
+    std: 6072.92231858175
+    var: 36880385.48752834
+  outlier_infos:
+    q1: 13250.0
+    q3: 17000.0
+    iqr: 3750.0
+    min_threshold: 7625.0
+    max_threshold: 22625.0
+    have_outliers: true
+    n_outlier: 15
+    outlier_perc: 0.0005068766262291758
+163:
+  name: Chanh nấm
+  stats:
+    n: 60
+    min: 3500.0
+    max: 23000.0
+    mean: 12475.0
+    median: 10500.0
+    mode:
+    - 9000.0
+    std: 5521.492099061629
+    var: 30486875.0
+  outlier_infos:
+    q1: 9000.0
+    q3: 17250.0
+    iqr: 8250.0
+    min_threshold: -3375.0
+    max_threshold: 29625.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+164:
+  name: Khoai sọ tím
+  stats:
+    n: 8
+    min: 30000.0
+    max: 30000.0
+    mean: 30000.0
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 30000.0
+    q3: 30000.0
+    iqr: 0.0
+    min_threshold: 30000.0
+    max_threshold: 30000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+165:
+  name: Nhãn ghép
+  stats:
+    n: 14
+    min: 20000.0
+    max: 20000.0
+    mean: 20000.0
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 20000.0
+    q3: 20000.0
+    iqr: 0.0
+    min_threshold: 20000.0
+    max_threshold: 20000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+166:
+  name: Nhãn miền Bắc
+  stats:
+    n: 14
+    min: 35000.0
+    max: 45000.0
+    mean: 39285.71428571428
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 2575.393768188564
+    var: 6632653.06122449
+  outlier_infos:
+    q1: 40000.0
+    q3: 40000.0
+    iqr: 0.0
+    min_threshold: 40000.0
+    max_threshold: 40000.0
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+167:
+  name: Dưa vàng
+  stats:
+    n: 50
+    min: 30000.0
+    max: 45000.0
+    mean: 37940.0
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 3366.957083183568
+    var: 11336400.0
+  outlier_infos:
+    q1: 35000.0
+    q3: 40000.0
+    iqr: 5000.0
+    min_threshold: 27500.0
+    max_threshold: 47500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+168:
+  name: Cải thảo
+  stats:
+    n: 163
+    min: 10000.0
+    max: 25000.0
+    mean: 16251.533742331289
+    median: 16500.0
+    mode:
+    - 15000.0
+    std: 3809.648001198173
+    var: 14513417.893033236
+  outlier_infos:
+    q1: 15000.0
+    q3: 18000.0
+    iqr: 3000.0
+    min_threshold: 10500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 36
+    outlier_perc: 0.001216503902950022
+169:
+  name: Xoài Tròn Sông Mã (Sơn La)
+  stats:
+    n: 23
+    min: 12000.0
+    max: 25000.0
+    mean: 18695.652173913044
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 4675.884316349858
+    var: 21863894.139886573
+  outlier_infos:
+    q1: 13000.0
+    q3: 21000.0
+    iqr: 8000.0
+    min_threshold: 1000.0
+    max_threshold: 33000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+170:
+  name: Nhãn miền Nam
+  stats:
+    n: 7
+    min: 45000.0
+    max: 50000.0
+    mean: 47142.857142857145
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 2474.3582965269675
+    var: 6122448.979591837
+  outlier_infos:
+    q1: 45000.0
+    q3: 50000.0
+    iqr: 5000.0
+    min_threshold: 37500.0
+    max_threshold: 57500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+171:
+  name: Nhãn xuồng trắng
+  stats:
+    n: 38
+    min: 52500.0
+    max: 62500.0
+    mean: 58013.15789473684
+    median: 57500.0
+    mode:
+    - 62500.0
+    std: 4449.256061566365
+    var: 19795879.50138504
+  outlier_infos:
+    q1: 53000.0
+    q3: 62500.0
+    iqr: 9500.0
+    min_threshold: 38750.0
+    max_threshold: 76750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+172:
+  name: Xoài tròn Yên Châu (Sơn La)
+  stats:
+    n: 16
+    min: 15000.0
+    max: 30000.0
+    mean: 29062.5
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 3630.9218870694535
+    var: 13183593.75
+  outlier_infos:
+    q1: 30000.0
+    q3: 30000.0
+    iqr: 0.0
+    min_threshold: 30000.0
+    max_threshold: 30000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+173:
+  name: Vải thiều
+  stats:
+    n: 11
+    min: 20000.0
+    max: 45000.0
+    mean: 27272.727272727272
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 8624.393618641034
+    var: 74380165.2892562
+  outlier_infos:
+    q1: 20000.0
+    q3: 35000.0
+    iqr: 15000.0
+    min_threshold: -2500.0
+    max_threshold: 57500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+174:
+  name: Trái Vú Sữa lò rèn TG
+  stats:
+    n: 30
+    min: 25000.0
+    max: 38000.0
+    mean: 30466.666666666668
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 3997.7771601506533
+    var: 15982222.222222222
+  outlier_infos:
+    q1: 28000.0
+    q3: 34500.0
+    iqr: 6500.0
+    min_threshold: 18250.0
+    max_threshold: 44250.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+175:
+  name: Cam Vinh
+  stats:
+    n: 53
+    min: 20000.0
+    max: 30000.0
+    mean: 23735.849056603773
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 3492.0445619291727
+    var: 12194375.222499108
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+176:
+  name: Trái Vú Sữa lò rèn Cần Thơ
+  stats:
+    n: 35
+    min: 18000.0
+    max: 42000.0
+    mean: 26742.85714285714
+    median: 25000.0
+    mode:
+    - 18000.0
+    std: 7871.623020673172
+    var: 61962448.97959183
+  outlier_infos:
+    q1: 20000.0
+    q3: 32500.0
+    iqr: 12500.0
+    min_threshold: 1250.0
+    max_threshold: 51250.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+177:
+  name: Chanh tươi
+  stats:
+    n: 158
+    min: 12000.0
+    max: 40000.0
+    mean: 25955.696202531646
+    median: 25000.0
+    mode:
+    - 35000.0
+    std: 8445.915001437357
+    var: 71333480.21150458
+  outlier_infos:
+    q1: 18000.0
+    q3: 35000.0
+    iqr: 17000.0
+    min_threshold: -7500.0
+    max_threshold: 60500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+178:
+  name: Bông cải Xanh
+  stats:
+    n: 28
+    min: 35000.0
+    max: 64000.0
+    mean: 46571.42857142857
+    median: 45000.0
+    mode:
+    - 50000.0
+    std: 5722.315786391351
+    var: 32744897.95918367
+  outlier_infos:
+    q1: 43750.0
+    q3: 50000.0
+    iqr: 6250.0
+    min_threshold: 34375.0
+    max_threshold: 59375.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+179:
+  name: Quả sấu
+  stats:
+    n: 17
+    min: 20000.0
+    max: 30000.0
+    mean: 23823.529411764706
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 3221.897397089212
+    var: 10380622.837370241
+  outlier_infos:
+    q1: 20000.0
+    q3: 25000.0
+    iqr: 5000.0
+    min_threshold: 12500.0
+    max_threshold: 32500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+180:
+  name: Quả Mắc cọp (lê rừng)
+  stats:
+    n: 32
+    min: 10000.0
+    max: 30000.0
+    mean: 18687.5
+    median: 20000.0
+    mode:
+    - 20000.0
+    - 10000.0
+    std: 6635.310373298298
+    var: 44027343.75
+  outlier_infos:
+    q1: 13750.0
+    q3: 25000.0
+    iqr: 11250.0
+    min_threshold: -3125.0
+    max_threshold: 41875.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+181:
+  name: Mận cơm
+  stats:
+    n: 5
+    min: 35000.0
+    max: 40000.0
+    mean: 36000.0
+    median: 35000.0
+    mode:
+    - 35000.0
+    std: 2000.0
+    var: 4000000.0
+  outlier_infos:
+    q1: 35000.0
+    q3: 35000.0
+    iqr: 0.0
+    min_threshold: 35000.0
+    max_threshold: 35000.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+182:
+  name: Ngọn su su
+  stats:
+    n: 124
+    min: 12000.0
+    max: 25000.0
+    mean: 17475.8064516129
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 3637.7583262166245
+    var: 13233285.639958378
+  outlier_infos:
+    q1: 15000.0
+    q3: 18000.0
+    iqr: 3000.0
+    min_threshold: 10500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 18
+    outlier_perc: 0.000608251951475011
+183:
+  name: Xoài Tròn Sông Mã
+  stats:
+    n: 34
+    min: 9000.0
+    max: 25000.0
+    mean: 16441.176470588234
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 5451.341855697701
+    var: 29717128.02768166
+  outlier_infos:
+    q1: 12000.0
+    q3: 22500.0
+    iqr: 10500.0
+    min_threshold: -3750.0
+    max_threshold: 38250.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+184:
+  name: Xoài Úc
+  stats:
+    n: 53
+    min: 17000.0
+    max: 40000.0
+    mean: 28811.32075471698
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 8598.061659080076
+    var: 73926664.29334284
+  outlier_infos:
+    q1: 25000.0
+    q3: 40000.0
+    iqr: 15000.0
+    min_threshold: 2500.0
+    max_threshold: 62500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+185:
+  name: Me chua, me ngọt
+  stats:
+    n: 20
+    min: 15000.0
+    max: 20000.0
+    mean: 16000.0
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 2000.0
+    var: 4000000.0
+  outlier_infos:
+    q1: 15000.0
+    q3: 15000.0
+    iqr: 0.0
+    min_threshold: 15000.0
+    max_threshold: 15000.0
+    have_outliers: true
+    n_outlier: 4
+    outlier_perc: 0.0001351671003277802
+186:
+  name: Phật thủ
+  stats:
+    n: 1
+    min: 40000.0
+    max: 40000.0
+    mean: 40000.0
+    median: 40000.0
+    mode:
+    - 40000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 40000.0
+    q3: 40000.0
+    iqr: 0.0
+    min_threshold: 40000.0
+    max_threshold: 40000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+187:
+  name: Nhãn Idor
+  stats:
+    n: 6
+    min: 1000.0
+    max: 40000.0
+    mean: 11333.333333333334
+    median: 3000.0
+    mode:
+    - 3000.0
+    std: 14031.710119899459
+    var: 196888888.88888887
+  outlier_infos:
+    q1: 3000.0
+    q3: 14250.0
+    iqr: 11250.0
+    min_threshold: -13875.0
+    max_threshold: 31125.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+188:
+  name: Cải ngọt
+  stats:
+    n: 103
+    min: 10000.0
+    max: 30000.0
+    mean: 19907.766990291264
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 4741.240043447492
+    var: 22479357.14958998
+  outlier_infos:
+    q1: 16500.0
+    q3: 25000.0
+    iqr: 8500.0
+    min_threshold: 3750.0
+    max_threshold: 37750.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+189:
+  name: Quả bí thơm
+  stats:
+    n: 105
+    min: 15000.0
+    max: 20000.0
+    mean: 16514.285714285714
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 2079.900573238496
+    var: 4325986.3945578225
+  outlier_infos:
+    q1: 15000.0
+    q3: 18000.0
+    iqr: 3000.0
+    min_threshold: 10500.0
+    max_threshold: 22500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+190:
+  name: Xoài
+  stats:
+    n: 1
+    min: 37500.0
+    max: 37500.0
+    mean: 37500.0
+    median: 37500.0
+    mode:
+    - 37500.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 37500.0
+    q3: 37500.0
+    iqr: 0.0
+    min_threshold: 37500.0
+    max_threshold: 37500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+191:
+  name: Cải mơ
+  stats:
+    n: 10
+    min: 25000.0
+    max: 35000.0
+    mean: 29000.0
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 3000.0
+    var: 9000000.0
+  outlier_infos:
+    q1: 26250.0
+    q3: 30000.0
+    iqr: 3750.0
+    min_threshold: 20625.0
+    max_threshold: 35625.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+192:
+  name: Sapo
+  stats:
+    n: 51
+    min: 3000.0
+    max: 23000.0
+    mean: 16333.333333333334
+    median: 17000.0
+    mode:
+    - 18000.0
+    std: 3902.8228429933697
+    var: 15232026.14379085
+  outlier_infos:
+    q1: 14000.0
+    q3: 19500.0
+    iqr: 5500.0
+    min_threshold: 5750.0
+    max_threshold: 27750.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+193:
+  name: Sầu riêng
+  stats:
+    n: 21
+    min: 13000.0
+    max: 95000.0
+    mean: 66380.95238095238
+    median: 62000.0
+    mode:
+    - 62000.0
+    std: 17884.48700084648
+    var: 319854875.28344667
+  outlier_infos:
+    q1: 55000.0
+    q3: 85000.0
+    iqr: 30000.0
+    min_threshold: 10000.0
+    max_threshold: 130000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+194:
+  name: Quả đào
+  stats:
+    n: 14
+    min: 5000.0
+    max: 25000.0
+    mean: 13500.0
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 4938.912546589294
+    var: 24392857.14285714
+  outlier_infos:
+    q1: 10000.0
+    q3: 15000.0
+    iqr: 5000.0
+    min_threshold: 2500.0
+    max_threshold: 22500.0
+    have_outliers: true
+    n_outlier: 1
+    outlier_perc: 3.379177508194505e-05
+195:
+  name: Dâu xanh
+  stats:
+    n: 1
+    min: 9000.0
+    max: 9000.0
+    mean: 9000.0
+    median: 9000.0
+    mode:
+    - 9000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 9000.0
+    q3: 9000.0
+    iqr: 0.0
+    min_threshold: 9000.0
+    max_threshold: 9000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+196:
+  name: Đu đủ ruột đỏ
+  stats:
+    n: 94
+    min: 15000.0
+    max: 18000.0
+    mean: 15808.510638297872
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 1214.0717121435832
+    var: 1473970.1222272515
+  outlier_infos:
+    q1: 15000.0
+    q3: 17000.0
+    iqr: 2000.0
+    min_threshold: 12000.0
+    max_threshold: 20000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+197:
+  name: Táo đá Hà Giang
+  stats:
+    n: 1
+    min: 25000.0
+    max: 25000.0
+    mean: 25000.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+198:
+  name: Chanh leo
+  stats:
+    n: 15
+    min: 25000.0
+    max: 35000.0
+    mean: 29066.666666666668
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 3108.4115271666046
+    var: 9662222.222222222
+  outlier_infos:
+    q1: 26500.0
+    q3: 30000.0
+    iqr: 3500.0
+    min_threshold: 21250.0
+    max_threshold: 35250.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+199:
+  name: Dưa lưới
+  stats:
+    n: 11
+    min: 33000.0
+    max: 55000.0
+    mean: 43909.09090909091
+    median: 45000.0
+    mode:
+    - 45000.0
+    std: 7267.043233349577
+    var: 52809917.355371885
+  outlier_infos:
+    q1: 37500.0
+    q3: 47500.0
+    iqr: 10000.0
+    min_threshold: 22500.0
+    max_threshold: 62500.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+200:
+  name: Bơ Sơn La
+  stats:
+    n: 3
+    min: 30000.0
+    max: 30000.0
+    mean: 30000.0
+    median: 30000.0
+    mode:
+    - 30000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 30000.0
+    q3: 30000.0
+    iqr: 0.0
+    min_threshold: 30000.0
+    max_threshold: 30000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+201:
+  name: Chanh leo Sơn La
+  stats:
+    n: 3
+    min: 25000.0
+    max: 25000.0
+    mean: 25000.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+202:
+  name: Mận hậu (loại 1)
+  stats:
+    n: 25
+    min: 15000.0
+    max: 100000.0
+    mean: 42200.0
+    median: 25000.0
+    mode:
+    - 20000.0
+    std: 29701.178427799798
+    var: 882160000.0
+  outlier_infos:
+    q1: 20000.0
+    q3: 70000.0
+    iqr: 50000.0
+    min_threshold: -55000.0
+    max_threshold: 145000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+203:
+  name: Xoài Đài Loan Sơn La
+  stats:
+    n: 2
+    min: 15000.0
+    max: 15000.0
+    mean: 15000.0
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 15000.0
+    q3: 15000.0
+    iqr: 0.0
+    min_threshold: 15000.0
+    max_threshold: 15000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+204:
+  name: Dưa hấu (trái dài)
+  stats:
+    n: 19
+    min: 6000.0
+    max: 9500.0
+    mean: 7789.473684210527
+    median: 8000.0
+    mode:
+    - 6000.0
+    - 8500.0
+    - 9000.0
+    std: 1162.0737982010323
+    var: 1350415.5124653738
+  outlier_infos:
+    q1: 7000.0
+    q3: 8750.0
+    iqr: 1750.0
+    min_threshold: 4375.0
+    max_threshold: 11375.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+205:
+  name: Nhãn chín sớm Sơn La
+  stats:
+    n: 1
+    min: 50000.0
+    max: 50000.0
+    mean: 50000.0
+    median: 50000.0
+    mode:
+    - 50000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 50000.0
+    q3: 50000.0
+    iqr: 0.0
+    min_threshold: 50000.0
+    max_threshold: 50000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+206:
+  name: Thanh long Sơn La
+  stats:
+    n: 5
+    min: 25000.0
+    max: 25000.0
+    mean: 25000.0
+    median: 25000.0
+    mode:
+    - 25000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 25000.0
+    q3: 25000.0
+    iqr: 0.0
+    min_threshold: 25000.0
+    max_threshold: 25000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+207:
+  name: Vải Sơn La
+  stats:
+    n: 1
+    min: 12000.0
+    max: 12000.0
+    mean: 12000.0
+    median: 12000.0
+    mode:
+    - 12000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 12000.0
+    q3: 12000.0
+    iqr: 0.0
+    min_threshold: 12000.0
+    max_threshold: 12000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+208:
+  name: Mận Tam Hoa (loại 1)
+  stats:
+    n: 10
+    min: 5000.0
+    max: 10000.0
+    mean: 6300.0
+    median: 6000.0
+    mode:
+    - 5000.0
+    std: 1552.4174696260025
+    var: 2410000.0
+  outlier_infos:
+    q1: 5000.0
+    q3: 7000.0
+    iqr: 2000.0
+    min_threshold: 2000.0
+    max_threshold: 10000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+209:
+  name: Nhãn da bò
+  stats:
+    n: 2
+    min: 15000.0
+    max: 15000.0
+    mean: 15000.0
+    median: 15000.0
+    mode:
+    - 15000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 15000.0
+    q3: 15000.0
+    iqr: 0.0
+    min_threshold: 15000.0
+    max_threshold: 15000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0
+210:
+  name: Bưởi diễn Sơn La
+  stats:
+    n: 7
+    min: 20000.0
+    max: 20000.0
+    mean: 20000.0
+    median: 20000.0
+    mode:
+    - 20000.0
+    std: 0.0
+    var: 0.0
+  outlier_infos:
+    q1: 20000.0
+    q3: 20000.0
+    iqr: 0.0
+    min_threshold: 20000.0
+    max_threshold: 20000.0
+    have_outliers: false
+    n_outlier: 0
+    outlier_perc: 0.0

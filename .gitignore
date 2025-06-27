@@ -1,1 +1,3 @@
 src/preprocess/*.yaml
+src/preprocess/*.csv
+visualize/
