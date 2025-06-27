@@ -1,16 +1,12 @@
 import os
-from typing import Callable, Optional, Any, Union, Tuple
+from typing import Callable, Any, Union, Tuple
 
-import matplotlib.dates as mdates
 from datetime import datetime as dt
 
 import yaml
 import numpy as np
 import pandas as pd
 import statistics as stats
-
-import seaborn as sns
-import matplotlib.pyplot as plt
 
 
 ARRAY = np.ndarray|list|tuple|pd.Series
@@ -32,19 +28,6 @@ class RawDataset:
             html = file.read()
         self.data = pd.read_html(html)[0]
         self.items = self.data["Tên_mặt_hàng"].unique().tolist()
-
-        # Tìm q1, q3, iqr, min_val, max_val của toàn bộ giá của dataset
-        try:
-            gia_toanbo = self.data["Giá"]
-
-            self.q1 = np.quantile(gia_toanbo, 0.25)
-            self.q3 = np.quantile(gia_toanbo, 0.75)
-            self.iqr = self.q3 - self.q1
-            self.min_val = self.q1 - 1.5 * self.iqr
-            self.max_val = self.q3 + 1.5 * self.iqr
-
-        except:
-            print("Dataset không thể đọc được cột \"Giá\"")
 
         # Chuyển về dạng thời gian
         str2date_fn = lambda x: dt.strptime(x, "%m/%d/%Y %I:%M:%S %p")
@@ -206,7 +189,7 @@ class RawDataset:
         return item_metadata
 
 
-    def get_colmetadata(self) -> dict:
+    def get_col_metadata(self) -> dict:
         # Thêm thông tin của toàn thể dataset
         ## Thêm thông tin cơ bản: id, name, type
         metadata = dict()
@@ -313,68 +296,41 @@ class RawDataset:
                 del metadata[colname]["data"]
 
         return metadata
-
-
-    def get_item_df(self, 
-        idx: int=None,  # type: ignore
-        name: str =None # type: ignore
-    ) -> pd.DataFrame:
-        """
-        Trả về các df chứa toàn bộ df của tên/idx cho trước
-        """
-        assert (idx is None) ^ (name is None), "Phải có idx hoặc name"
-
-        if name is None:
-            name = self.items[idx]
-
-        return self.data[self.data["Tên_mặt_hàng"] == name]
     
+
+    def get_metadata(self) -> dict:
+        """
+        Trả về metadata của tập dữ liệu
+        """
+        metadata = dict()
+
+        metadata.update({
+            "src": "https://thitruongnongsan.gov.vn/vn/nguonwmy.aspx",
+            "len": len(self),
+            "number_of_columns": self.data.shape[1],
+            "stats": self.get_stats(self.data["Giá"]),
+            "columns": self.get_col_metadata(),
+            "items": self.get_item_metadata()
+        })
+        
+        return metadata
 
 
 if __name__ == "__main__":
-    dataset = RawDataset("../../data/Rau, qua")
+    dataset = RawDataset("data/Rau, qua")
     print(dataset.data.shape)
-    print(dataset.q1)
-    print(dataset.q3)
-    print(dataset.iqr)
-    print(dataset.min_val)
-    print(dataset.max_val)
 
-    # Kiểm tra metadata tổng thể
-    metadata = dataset.get_colmetadata()
-    print(metadata)
-
-    with open('file.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(metadata, f, allow_unicode=True, sort_keys=False)
-
-    # Thống kê từng mặt hàng
-    items_stats = dataset.get_items_stats()
-
-    with open('items_stats.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(items_stats, f, allow_unicode=True, sort_keys=False)
-
-    # Lấy dữ liệu ngoại lai
-    outlier_infos, outlier_df = dataset.get_outlier_infos()
-    with open('outlier_infos.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(outlier_infos, f, allow_unicode=True, sort_keys=False)
-    outlier_df.to_csv('./outlier_info.csv')
-
-    items = dataset.data["Tên_mặt_hàng"].unique()
-    outlier_items = []
-    for idx in outlier_infos.keys():
-        if outlier_infos[idx]["have_outliers"]:
-            outlier_items.append(items[idx])
-    print(len(outlier_items))
-    print(outlier_items)
-
-    # Lấy metadata item
+    # Kiểm tra thống kế của từng sản phẩm
     item_metadata = dataset.get_item_metadata()
-    with open('item_metadata.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(item_metadata, f, allow_unicode=True, sort_keys=False)
+    with open("test/item_metadata.yaml", "w", encoding='utf-8') as file:
+        yaml.dump(item_metadata, file, encoding="utf8-", sort_keys=False, allow_unicode=True)
 
-    # Xoá giá trị ngoại lai
-    dataset.remove_outlier()
-    new_stats = dataset.get_items_stats()
-    print(len(dataset))
-    with open('new_stats.yaml', 'w', encoding='utf-8') as f:
-        yaml.dump(new_stats, f, allow_unicode=True, sort_keys=False)
+    # Kiểm tra metadata của cột
+    col_metadata = dataset.get_col_metadata()
+    with open("test/col_metadata.yaml", "w", encoding='utf-8') as file:
+        yaml.dump(col_metadata, file, encoding="utf8-", sort_keys=False, allow_unicode=True)
+
+    # Kiểm tra metadata của tập dữ liệu
+    metadata = dataset.get_metadata()
+    with open("test/metadata.yaml", "w", encoding='utf-8') as file:
+        yaml.dump(metadata, file, encoding="utf8-", sort_keys=False, allow_unicode=True)
