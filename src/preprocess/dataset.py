@@ -12,7 +12,7 @@ import statistics as stats
 ARRAY = np.ndarray|list|tuple|pd.Series
 
 
-class RawDataset:
+class VNAgriDataset:
 
     def __init__(self, path: str):
         """
