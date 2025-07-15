@@ -1,0 +1,166 @@
+import os
+from pathlib import Path
+import yaml
+
+import pandas as pd
+import numpy as np
+
+from statsmodels.tsa.stattools import adfuller
+from sklearn.preprocessing import MinMaxScaler, LabelEncoder
+
+
+class RawDataset:
+
+    def __init__(self, path: str):
+        assert os.path.exists(path), "Đường dẫn không tồn tại"
+        self.df = pd.read_csv(path)
+        self.df["Ngày"] = pd.to_datetime(self.df["Ngày"], format="%m/%d/%Y %I:%M:%S %p")
+        self._update_items()
+
+        self.lbl_mm_dict = dict()
+        del self.df["Loại_tiền"]
+        del self.df["Đơn_vị_tính"]
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, idx):
+        return self.df.iloc[idx]
+
+    def _update_items(self):
+        self.items = self.df["Tên_mặt_hàng"].unique()
+
+    def _remove_duplicates(self):
+        self.df.drop_duplicates(inplace=True)
+
+    def _remove_null(self):
+        self.df.dropna(inplace=True)
+
+    def _remove_outlier(self):
+        outlier_mask = pd.Series(False, index=self.df.index)
+
+        for item in self.items:
+            item_df = self.df[self.df["Tên_mặt_hàng"] == item]
+            prices = item_df["Giá"]
+            q1 = prices.quantile(0.25)
+            q3 = prices.quantile(0.75)
+            iqr = q3 - q1
+            min_thresh = max(1000, q1 - 1.5 * iqr)
+            max_thresh = q3 + 1.5 * iqr
+            outlier = (self.df["Tên_mặt_hàng"] == item) & (
+                (self.df["Giá"] < min_thresh) | (self.df["Giá"] > max_thresh)
+            )
+            outlier_mask |= outlier
+
+        self.df = self.df[~outlier_mask]
+        self._update_items()
+
+    def _adf_filter(self):
+        result_rows = []
+
+        for item in self.items:
+            prices = self.df.loc[self.df["Tên_mặt_hàng"] == item, "Giá"].values
+
+            if len(prices) < 3:
+                continue
+            if np.all(prices == prices[0]):
+                continue
+
+            try:
+                adf_result = adfuller(prices)
+                result_rows.append({
+                    "Tên_mặt_hàng": item,
+                    "adf": adf_result[0],
+                    "p-value": adf_result[1],
+                    "n_lags": adf_result[2],
+                    "n_obs": adf_result[3],
+                    "1%": adf_result[4]["1%"],
+                    "5%": adf_result[4]["5%"],
+                    "10%": adf_result[4]["10%"]
+                })
+            except Exception:
+                continue
+
+        results_df = pd.DataFrame(result_rows)
+
+        # Lọc ra những mặt hàng không ổn định
+        filtered_items = results_df.loc[
+            (results_df["p-value"] >= 0.05) &
+            (results_df["adf"] >= results_df["1%"])
+        ]["Tên_mặt_hàng"]
+
+        self.df = self.df[self.df["Tên_mặt_hàng"].isin(filtered_items)]
+        self._update_items()
+
+
+    def _label_encoding(self):
+        lbl_encoder = LabelEncoder()
+
+        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        for col in cat_cols:
+            self.df[col] = lbl_encoder.fit_transform(self.df[col])
+            self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
+    
+
+    def _mm_normalizing(self):
+        mm_normalizer = MinMaxScaler()
+
+        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        for col in cat_cols:
+            self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
+            self.lbl_mm_dict[col].update({
+                "max": int(mm_normalizer.data_max_[0])
+            })
+
+
+    def preprocess_all(self):
+        self._remove_null()
+        self._remove_duplicates()
+        self._remove_outlier()
+        self._adf_filter()
+        self._label_encoding()
+        self._mm_normalizing()
+
+    def get_raw_metadata(self, to_yaml: str = None) -> dict:
+        metadata = {
+            item: {
+                "n_rows": len(item_df),
+                "id": idx,
+                "first_update": item_df["Ngày"].min().strftime("%d/%m/%Y"),
+                "last_update": item_df["Ngày"].max().strftime("%d/%m/%Y")
+            }
+            for idx, item in enumerate(self.items)
+            if not (item_df := self.df[self.df["Tên_mặt_hàng"] == item]).empty
+        }
+
+        if to_yaml:
+            yaml_path = Path(to_yaml)
+            assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
+            with open(to_yaml, "w", encoding="utf-8") as file:
+                yaml.dump(metadata, file, allow_unicode=True)
+
+        return metadata
+    
+
+    def get_preprocess_metadata(self, to_yaml: str=None):
+        if to_yaml:
+            yaml_path = Path(to_yaml)
+            assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
+            with open(to_yaml, "w", encoding="utf-8") as file:
+                yaml.dump(self.lbl_mm_dict, file, allow_unicode=True)
+
+        return self.lbl_mm_dict
+
+
+if __name__ == "__main__":
+    dataset = RawDataset("data/data.csv")
+    print(f"Before preprocessing: {len(dataset)} rows")
+
+    metadata = dataset.get_raw_metadata("data/metadata/raw.yaml")
+
+    dataset.preprocess_all()
+    print(f"After preprocessing: {len(dataset)} rows")
+    print(dataset.df.head())
+
+    pre_metadata = dataset.get_preprocess_metadata("data/metadata/pre.yaml")
+
