@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 import yaml
+import pickle
 
 import pandas as pd
 import numpy as np
@@ -85,7 +86,7 @@ class RawDataset:
 
         # Lọc ra những mặt hàng không ổn định
         filtered_items = results_df.loc[
-            (results_df["p-value"] >= 0.05) &
+            (results_df["p-value"] >= 0.01) &
             (results_df["adf"] >= results_df["1%"])
         ]["Tên_mặt_hàng"]
 
@@ -100,7 +101,10 @@ class RawDataset:
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
             self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
-    
+
+            with open(f"src/train/lbl_scaler/{col}.pkl", "wb") as file:
+                pickle.dump(lbl_encoder, file)
+                
 
     def _mm_normalizing(self):
         mm_normalizer = MinMaxScaler()
@@ -112,16 +116,20 @@ class RawDataset:
                 "max": int(mm_normalizer.data_max_[0])
             })
 
+            with open(f"src/train/mm_scaler/{col}.pkl", "wb") as file:
+                pickle.dump(mm_normalizer, file)
+
 
     def preprocess_all(self):
         self._remove_null()
         self._remove_duplicates()
         self._remove_outlier()
         self._adf_filter()
+        self.get_item_metadata("data/metadata/item.yaml")
         self._label_encoding()
         self._mm_normalizing()
 
-    def get_raw_metadata(self, to_yaml: str = None) -> dict:
+    def get_item_metadata(self, to_yaml: str = None) -> dict:
         metadata = {
             item: {
                 "n_rows": len(item_df),
@@ -137,17 +145,17 @@ class RawDataset:
             yaml_path = Path(to_yaml)
             assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
             with open(to_yaml, "w", encoding="utf-8") as file:
-                yaml.dump(metadata, file, allow_unicode=True)
+                yaml.dump(metadata, file, allow_unicode=True, sort_keys=False)
 
         return metadata
     
 
-    def get_preprocess_metadata(self, to_yaml: str=None):
+    def get_scaler_metadata(self, to_yaml: str=None):
         if to_yaml:
             yaml_path = Path(to_yaml)
             assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
             with open(to_yaml, "w", encoding="utf-8") as file:
-                yaml.dump(self.lbl_mm_dict, file, allow_unicode=True)
+                yaml.dump(self.lbl_mm_dict, file, allow_unicode=True, sort_keys=False)
 
         return self.lbl_mm_dict
 
@@ -156,11 +164,12 @@ if __name__ == "__main__":
     dataset = RawDataset("data/data.csv")
     print(f"Before preprocessing: {len(dataset)} rows")
 
-    metadata = dataset.get_raw_metadata("data/metadata/raw.yaml")
+    metadata = dataset.get_item_metadata("data/metadata/raw.yaml")
 
     dataset.preprocess_all()
     print(f"After preprocessing: {len(dataset)} rows")
     print(dataset.df.head())
 
-    pre_metadata = dataset.get_preprocess_metadata("data/metadata/pre.yaml")
+    pre_metadata = dataset.get_scaler_metadata("data/metadata/scaler.yaml")
+
 

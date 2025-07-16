@@ -1,4 +1,5 @@
 import os
+import yaml
 from datetime import datetime as dt
 
 import pandas as pd
@@ -15,75 +16,67 @@ warnings.filterwarnings("ignore")
 
 class ForecastModel:
 
-    def __init__(self, model_path: str, encoder_path: str):
-        assert os.path.exists(model_path), "Đường dẫn của model không tồn tại"
-        assert os.path.exists(encoder_path), "Đường dẫn của các encoder không tồn tại"
+    def __init__(self,
+        df_path: str,
+        models_dir: str,
+        item_metadata_path: str,
+        scaler_path: str
+    ):
+        self.df = pd.read_csv(df_path)
+        self.items = self.df["Tên_mặt_hàng"].unique().tolist()
+        print(self.items)
+        self.df["Ngày"] = pd.to_datetime(self.df["Ngày"], format="%Y-%m-%d")
 
-        cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
-        self.cols = cols
+        self.models_dir = models_dir
 
-        # Load model
-        with open(f"{model_path}", "rb") as file:
-            self.model = pickle.load(file)
+        with open(item_metadata_path, "r", encoding="utf-8") as file:
+            self.item_metadata = yaml.safe_load(file)
 
-        # Tạo từ điển các MinMax Scaler
-        self.mm_scaler = dict()
-        for col in cols:
-            with open(f"{encoder_path}/mm_scaler/{col}.pkl", "rb") as file:
-                mm_scaler = pickle.load(file)
-                self.mm_scaler.update({col: mm_scaler})
-
-        # Tạo từ điển các Label Scaler
-        self.lbl_encoder = dict()
-        for col in cols:
-            with open(f"{encoder_path}/lbl_scaler/{col}.pkl", "rb") as file:
-                mm_scaler = pickle.load(file)
-                self.lbl_encoder.update({col: mm_scaler})
+        with open(scaler_path, "r", encoding="utf-8") as file:
+            self.scaler_metadata = yaml.safe_load(file)
 
 
-    def forecast(self, ten_mat_hang, thi_truong, loai_gia, nguon, steps=1):
-        # Encode categorical values
-        encoded = dict()
-        for col, val in zip(self.cols, [ten_mat_hang, thi_truong, loai_gia, nguon]):
-            lbl = self.lbl_encoder[col].transform([val])[0]
-            mm = self.mm_scaler[col].transform([[lbl]])[0][0]
-            encoded[col] = mm
-
-        exog = pd.DataFrame([encoded]*steps)
-
-        prediction = self.model.forecast(steps=steps, exog=exog)
-        return prediction
-    
-
-    def forecast_by_date(self, 
-        ngay, 
-        ten_mat_hang, 
-        thi_truong, 
-        loai_gia, 
+    def forecast_date(self, 
+        ngay,
+        ten_mat_hang,
+        thi_truong,
+        loai_gia,
         nguon
     ):
-        try:
-            ngay = dt.strptime(ngay, "%Y/%m/%d")
-        except ValueError as e:
-            print("Khong dung dinh dang ngay: %Y/%m/%d")
-            print(e)
-    
-    
-    def predict_raw(self, ten_mat_hang, thi_truong, loai_gia, nguon, steps=1):
-        exog = np.array([[ten_mat_hang, thi_truong, loai_gia, nguon]] * steps)
-        prediction = self.model.forecast(steps=steps, exog=exog)
-        return prediction
+        ngay = pd.to_datetime(ngay, format="%d/%m/%Y")
+        item_df = self.df[self.df["Tên_mặt_hàng"] == ten_mat_hang]
+        last_update = item_df["Ngày"].max()
+        
+        steps = abs((last_update - ngay).days)
+        item_idx = self.items.index(ten_mat_hang)
+
+        model_path = os.path.join(self.models_dir, f"{item_idx}.pkl")
+        with open(model_path, "rb") as file:
+            model = pickle.load(file)
+
+        # Exog
+        thi_truong =    self.scaler_metadata["Thị_trường"][thi_truong] / \
+                        self.scaler_metadata["Thị_trường"]["max"]
+
+        loai_gia =  self.scaler_metadata["Loại_giá"][loai_gia] / \
+                    self.scaler_metadata["Loại_giá"]["max"]
+        
+        nguon = self.scaler_metadata["Nguồn"][nguon] / \
+                self.scaler_metadata["Nguồn"]["max"]
+
+        exog = [[thi_truong, loai_gia, nguon]*steps]
+
+        results = model.forecast(exog = exog, steps=steps)
+
+        print(results)
 
 
 if __name__ == "__main__":
-    model = ForecastModel("src/train/sarimax.pkl", "src/train")
-    items = model.lbl_encoder["Tên_mặt_hàng"].classes_ 
-    print(items)
+    model = ForecastModel(
+        "data/pre_data.csv",
+        "models",
+        "data/metadata/item.yaml",
+        "data/metadata/scaler.yaml"
+    )
 
-    result = model.forecast("Gạo NL 25% tấm", "Kiên Giang", "Thu mua", "CTV địa phương", steps=10)
-    print(result)
-
-    raw = model.predict_raw(0, 0, 0, 0, steps=10)
-    print(raw)
-
-    model.forecast_by_date("2024-01-01", None, None, None, None)
+    model.forecast_date("01/01/2024", "OM 5451", "Cần Thơ", "Thương lái thu mua", "CTV địa phương")
