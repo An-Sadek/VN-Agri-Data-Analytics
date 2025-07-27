@@ -22,6 +22,7 @@ class RawDataset:
         self.oh_dict = dict()
         del self.df["Loại_tiền"]
         del self.df["Đơn_vị_tính"]
+        del self.df["Ngành_hàng"]
 
     def __len__(self):
         return len(self.df)
@@ -87,7 +88,7 @@ class RawDataset:
 
         # Lọc ra những mặt hàng không ổn định
         filtered_items = results_df.loc[
-            (results_df["p-value"] >= 0.01) &
+            (results_df["p-value"] >= 0.05) &
             (results_df["adf"] >= results_df["1%"])
         ]["Tên_mặt_hàng"]
 
@@ -107,7 +108,7 @@ class RawDataset:
     def _label_encoding(self):
         lbl_encoder = LabelEncoder()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
             self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
@@ -119,7 +120,7 @@ class RawDataset:
     def _mm_normalizing(self):
         mm_normalizer = MinMaxScaler()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
             self.lbl_mm_dict[col].update({
