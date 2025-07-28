@@ -18,9 +18,9 @@ class RawDataset:
         self.df["Ngày"] = pd.to_datetime(self.df["Ngày"], format="%m/%d/%Y %I:%M:%S %p")
         self._update_items()
 
-        self.lbl_mm_dict = dict()
         del self.df["Loại_tiền"]
         del self.df["Đơn_vị_tính"]
+        del self.df["Ngành_hàng"]
 
     def __len__(self):
         return len(self.df)
@@ -86,7 +86,7 @@ class RawDataset:
 
         # Lọc ra những mặt hàng không ổn định
         filtered_items = results_df.loc[
-            (results_df["p-value"] >= 0.01) &
+            (results_df["p-value"] >= 0.05) &
             (results_df["adf"] >= results_df["1%"])
         ]["Tên_mặt_hàng"]
 
@@ -94,40 +94,54 @@ class RawDataset:
         self._update_items()
 
 
+    def _one_hot_encoding(self):
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
+
+        for col in cat_cols:
+            one_hot = pd.get_dummies(self.df[col], prefix=col)
+            self.df = pd.concat([self.df.drop(columns=[col]), one_hot], axis=1)
+
+
     def _label_encoding(self):
         lbl_encoder = LabelEncoder()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
-            self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
-
-            with open(f"src/train/lbl_scaler/{col}.pkl", "wb") as file:
-                pickle.dump(lbl_encoder, file)
                 
 
     def _mm_normalizing(self):
         mm_normalizer = MinMaxScaler()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"]).columns
         for col in cat_cols:
             self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
-            self.lbl_mm_dict[col].update({
-                "max": int(mm_normalizer.data_max_[0])
-            })
-
-            with open(f"src/train/mm_scaler/{col}.pkl", "wb") as file:
-                pickle.dump(mm_normalizer, file)
 
 
-    def preprocess_all(self):
+    def preprocess_all(self, oh_encoding=False, b4_oh_scaler=None, after_oh_scaler=None):
         self._remove_null()
         self._remove_duplicates()
         self._remove_outlier()
         self._adf_filter()
+
+        # Lưu item và scaler
         self.get_item_metadata("data/metadata/item.yaml")
-        self._label_encoding()
-        self._mm_normalizing()
+        self.get_scaler_metadata("data/metadata/scaler.yaml")
+
+        if b4_oh_scaler:
+            print("B4 OH scaler working")
+            self.df.to_csv(b4_oh_scaler, index=False)
+
+        if oh_encoding:
+            self._one_hot_encoding()
+        else:
+            self._label_encoding()
+            self._mm_normalizing()
+
+        if after_oh_scaler:
+            print("after oh scaler working")
+            self.df.to_csv(after_oh_scaler, index=False)
+
 
     def get_item_metadata(self, to_yaml: str = None) -> dict:
         metadata = {
@@ -151,13 +165,24 @@ class RawDataset:
     
 
     def get_scaler_metadata(self, to_yaml: str=None):
-        if to_yaml:
-            yaml_path = Path(to_yaml)
-            assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
-            with open(to_yaml, "w", encoding="utf-8") as file:
-                yaml.dump(self.lbl_mm_dict, file, allow_unicode=True, sort_keys=False)
+        metadata = dict()
 
-        return self.lbl_mm_dict
+        for col in ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]:
+            metadata.update({
+                col: {
+                    value: idx for idx, value in enumerate(self.df[col].unique())
+                }
+            })
+
+            metadata[col].update({
+                "max": len(self.df[col].unique()) -1
+            })
+
+        if to_yaml:
+            with open(to_yaml, "w", encoding="utf-8") as file:
+                yaml.safe_dump(metadata, stream=file, allow_unicode=True, sort_keys=False)
+
+        return metadata
 
 
 if __name__ == "__main__":
@@ -166,10 +191,10 @@ if __name__ == "__main__":
 
     metadata = dataset.get_item_metadata("data/metadata/raw.yaml")
 
-    dataset.preprocess_all()
+    # LBL + MM
+    dataset.preprocess_all(b4_oh_scaler="data/pre_data.csv", after_oh_scaler="data/scaler.csv")
     print(f"After preprocessing: {len(dataset)} rows")
-    print(dataset.df.head())
 
-    pre_metadata = dataset.get_scaler_metadata("data/metadata/scaler.yaml")
-
-
+    # OH encoding
+    new_dataset = RawDataset("data/data.csv")
+    new_dataset.preprocess_all(True, after_oh_scaler="data/oh.csv")

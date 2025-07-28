@@ -8,9 +8,6 @@ import pickle
 
 import warnings
 
-from statsmodels.tsa.statespace.sarimax import SARIMAX
-from sklearn.preprocessing import LabelEncoder, MinMaxScaler
-
 warnings.filterwarnings("ignore")
 
 
@@ -74,9 +71,9 @@ class ForecastModel:
 if __name__ == "__main__":
     model = ForecastModel(
         "data/pre_data.csv",
-        "models",
+        "models/sarimax",
         "data/metadata/item.yaml",
         "data/metadata/scaler.yaml"
     )
 
-    model.forecast_date("01/01/2024", "OM 5451", "Cần Thơ", "Thương lái thu mua", "CTV địa phương")
+    model.forecast_date("01/01/2040", "OM 5451", "Cần Thơ", "Thương lái thu mua", "CTV địa phương")
