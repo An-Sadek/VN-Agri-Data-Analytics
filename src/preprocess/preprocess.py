@@ -113,7 +113,7 @@ class RawDataset:
     def _mm_normalizing(self):
         mm_normalizer = MinMaxScaler()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"]).columns
         for col in cat_cols:
             self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
 

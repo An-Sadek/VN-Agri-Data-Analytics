@@ -17,6 +17,8 @@ class ForcastModel:
         assert os.path.exists(models_path), "Đường dẫn đến models không tồn tại"
         assert os.path.exists(metadata_path), "Đường dẫn đến metadata không hợp lệ"
 
+        self.models_path = models_path
+
         with open(os.path.join(metadata_path, "item.yaml"), "r", encoding="utf-8") as file:
             self.item_meta = yaml.safe_load(file)
 
@@ -47,14 +49,16 @@ class ForcastModel:
         # Lấy ngày cập nhật cuối và số bước
         last_update = self.item_meta[ten_mat_hang]["last_update"]
         last_update = pd.to_datetime(last_update, format="%d/%m/%Y")
-        steps = (ngay-last_update).days
+        steps = abs((ngay-last_update).days)
 
-        # Láy mô hình dựa trên idx trên tên mặt hàng
+        # Lấy index mặt hàng từ metadata
+        idx = self.scaler["Thị_trường"][thi_truong]
+
+        # Encoding các biến ngoại sinh
         if encoding_type=="OH":
-            idx = self.scaler["Thị_trường"][thi_truong]
             e_thi_truong = np.zeros(
                 (
-                    self.scaler["Thị_trường"]["max"]
+                    self.scaler["Thị_trường"]["max"] + 1
                 ), dtype=int
             )
             e_thi_truong[idx] = 1
@@ -63,7 +67,7 @@ class ForcastModel:
             idx = self.scaler["Loại_giá"][loai_gia]
             e_loai_gia = np.zeros(
                 (
-                    self.scaler["Loại_giá"]["max"]
+                    self.scaler["Loại_giá"]["max"] + 1
                 ), dtype=int
             )
             e_loai_gia[idx] = 1
@@ -72,7 +76,7 @@ class ForcastModel:
             idx = self.scaler["Nguồn"][nguon]
             e_nguon = np.zeros(
                 (
-                    self.scaler["Nguồn"]["max"]
+                    self.scaler["Nguồn"]["max"] + 1
                 ), dtype=int
             )
             e_nguon[idx] = 1
@@ -93,13 +97,21 @@ class ForcastModel:
             e_nguon = self.scaler["Nguồn"][nguon] / \
                         self.scaler["Nguồn"]["max"]
         
-            exog = [[e_thi_truong, e_loai_gia, e_nguon]*steps]
-            exog = np.array(exog)
+            exog = np.array([e_thi_truong, e_loai_gia, e_nguon])
+            exog = np.tile(exog, (steps, 1))
+            print(exog.shape)
             
-    
-            
-            
+        # Lấy model từ idx và loại model
+        with open(os.path.join(self.models_path, f"{model_type}_{encoding_type}/{idx}.pkl"), "rb") as file:
+            model = pickle.load(file)
+
+        if model_type=="sarimax":
+            y_pred = model.forecast(exog=exog, steps=steps)
+
+        
+        return y_pred
+
 
 if __name__ == "__main__":
     model = ForcastModel("models", "data/metadata")
-    model.forcast_by_date("01/01/2030", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="OH")
+    model.forcast_by_date("01/01/2030", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="OH", model_type="dlm")
