@@ -112,9 +112,6 @@ class RawDataset:
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
             self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
-
-            with open(f"src/train/lbl_scaler/{col}.pkl", "wb") as file:
-                pickle.dump(lbl_encoder, file)
                 
 
     def _mm_normalizing(self):
@@ -126,9 +123,6 @@ class RawDataset:
             self.lbl_mm_dict[col].update({
                 "max": int(mm_normalizer.data_max_[0])
             })
-
-            with open(f"src/train/mm_scaler/{col}.pkl", "wb") as file:
-                pickle.dump(mm_normalizer, file)
 
 
     def preprocess_all(self, oh_encoding=False, b4_oh_scaler=None, after_oh_scaler=None):
@@ -147,12 +141,10 @@ class RawDataset:
         else:
             self._label_encoding()
             self._mm_normalizing()
-        
-        # Export result regardless of encoding method
+
         if after_oh_scaler:
             print("after oh scaler working")
             self.df.to_csv(after_oh_scaler, index=False)
-
 
 
     def get_item_metadata(self, to_yaml: str = None) -> dict:
