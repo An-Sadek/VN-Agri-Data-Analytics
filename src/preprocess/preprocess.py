@@ -18,8 +18,6 @@ class RawDataset:
         self.df["Ngày"] = pd.to_datetime(self.df["Ngày"], format="%m/%d/%Y %I:%M:%S %p")
         self._update_items()
 
-        self.lbl_mm_dict = dict()
-        self.oh_dict = dict()
         del self.df["Loại_tiền"]
         del self.df["Đơn_vị_tính"]
         del self.df["Ngành_hàng"]
@@ -101,7 +99,6 @@ class RawDataset:
 
         for col in cat_cols:
             one_hot = pd.get_dummies(self.df[col], prefix=col)
-            self.oh_dict[col] = list(self.df[col].unique())  # lưu thông tin các nhãn gốc
             self.df = pd.concat([self.df.drop(columns=[col]), one_hot], axis=1)
 
 
@@ -111,7 +108,6 @@ class RawDataset:
         cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
-            self.lbl_mm_dict[col] = {name: int(idx) for idx, name in enumerate(lbl_encoder.classes_)}
                 
 
     def _mm_normalizing(self):
@@ -120,9 +116,6 @@ class RawDataset:
         cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
-            self.lbl_mm_dict[col].update({
-                "max": int(mm_normalizer.data_max_[0])
-            })
 
 
     def preprocess_all(self, oh_encoding=False, b4_oh_scaler=None, after_oh_scaler=None):
@@ -130,7 +123,10 @@ class RawDataset:
         self._remove_duplicates()
         self._remove_outlier()
         self._adf_filter()
+
+        # Lưu item và scaler
         self.get_item_metadata("data/metadata/item.yaml")
+        self.get_scaler_metadata("data/metadata/scaler.yaml")
 
         if b4_oh_scaler:
             print("B4 OH scaler working")
@@ -169,13 +165,24 @@ class RawDataset:
     
 
     def get_scaler_metadata(self, to_yaml: str=None):
-        if to_yaml:
-            yaml_path = Path(to_yaml)
-            assert yaml_path.parent.exists(), "Đường dẫn gốc không tồn tại"
-            with open(to_yaml, "w", encoding="utf-8") as file:
-                yaml.dump(self.lbl_mm_dict, file, allow_unicode=True, sort_keys=False)
+        metadata = dict()
 
-        return self.lbl_mm_dict
+        for col in ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]:
+            metadata.update({
+                col: {
+                    value: idx for idx, value in enumerate(self.df[col].unique())
+                }
+            })
+
+            metadata[col].update({
+                "max": len(self.df[col].unique()) -1
+            })
+
+        if to_yaml:
+            with open(to_yaml, "w", encoding="utf-8") as file:
+                yaml.safe_dump(metadata, stream=file, allow_unicode=True, sort_keys=False)
+
+        return metadata
 
 
 if __name__ == "__main__":
