@@ -23,322 +23,163 @@ OM 18:
   id: 4
   first_update: 02/01/2024
   last_update: 19/05/2025
-<<<<<<< HEAD
-OM 5451:
-  n_rows: 225
-  id: 5
-  first_update: 22/02/2024
-  last_update: 19/05/2025
-Đài Thơm 8:
-  n_rows: 212
-  id: 6
-=======
 Đài Thơm 8:
   n_rows: 212
   id: 5
->>>>>>> train
   first_update: 04/01/2023
   last_update: 19/05/2025
 Gạo thường:
   n_rows: 240
-<<<<<<< HEAD
-  id: 7
-=======
   id: 6
->>>>>>> train
   first_update: 04/01/2023
   last_update: 19/05/2025
 Gạo 15% tấm:
   n_rows: 75
-<<<<<<< HEAD
-  id: 8
-=======
   id: 7
->>>>>>> train
   first_update: 02/01/2024
   last_update: 16/05/2025
 Gạo 25% tấm:
   n_rows: 75
-<<<<<<< HEAD
-  id: 9
-=======
   id: 8
->>>>>>> train
   first_update: 02/01/2024
   last_update: 16/05/2025
 Gạo 5% tấm:
   n_rows: 75
-<<<<<<< HEAD
-  id: 10
-=======
   id: 9
->>>>>>> train
   first_update: 02/01/2024
   last_update: 16/05/2025
 Gạo thơm:
   n_rows: 184
-<<<<<<< HEAD
-  id: 11
-=======
   id: 10
->>>>>>> train
   first_update: 05/01/2023
   last_update: 16/05/2025
 Gạo thường (IR 50404):
   n_rows: 184
-<<<<<<< HEAD
-  id: 12
-=======
   id: 11
->>>>>>> train
   first_update: 05/01/2023
   last_update: 16/05/2025
 IR 50404:
   n_rows: 417
-<<<<<<< HEAD
-  id: 13
-=======
   id: 12
->>>>>>> train
   first_update: 05/01/2023
   last_update: 16/05/2025
 OM 6976:
   n_rows: 199
-<<<<<<< HEAD
-  id: 14
-=======
   id: 13
->>>>>>> train
   first_update: 05/01/2023
   last_update: 16/05/2025
 Đài thơm 8:
   n_rows: 313
-<<<<<<< HEAD
-  id: 15
-=======
   id: 14
->>>>>>> train
   first_update: 04/01/2023
   last_update: 16/05/2025
 Gạo NL 5% tấm:
   n_rows: 193
-<<<<<<< HEAD
-  id: 16
-=======
   id: 15
->>>>>>> train
   first_update: 05/01/2023
   last_update: 16/05/2025
 Gạo XK 15% tấm:
   n_rows: 221
-<<<<<<< HEAD
-  id: 17
-=======
   id: 16
->>>>>>> train
   first_update: 04/01/2023
   last_update: 16/05/2025
 Gạo XK 25% tấm:
   n_rows: 220
-<<<<<<< HEAD
-  id: 18
-=======
   id: 17
->>>>>>> train
   first_update: 04/01/2023
   last_update: 16/05/2025
 Nhật:
   n_rows: 218
-<<<<<<< HEAD
-  id: 19
-=======
   id: 18
->>>>>>> train
   first_update: 02/01/2024
   last_update: 16/05/2025
 RVT:
   n_rows: 206
-<<<<<<< HEAD
-  id: 20
-=======
   id: 19
->>>>>>> train
   first_update: 04/01/2023
   last_update: 16/05/2025
 ST 24:
   n_rows: 109
-<<<<<<< HEAD
-  id: 21
-=======
   id: 20
->>>>>>> train
   first_update: 03/01/2024
   last_update: 16/05/2025
 Nàng Nhen:
   n_rows: 109
-<<<<<<< HEAD
-  id: 22
-=======
   id: 21
->>>>>>> train
   first_update: 02/01/2024
   last_update: 15/05/2025
 Sóc Thái:
   n_rows: 109
-<<<<<<< HEAD
-  id: 23
-=======
   id: 22
->>>>>>> train
   first_update: 02/01/2024
   last_update: 15/05/2025
 Jacmine (Vàng):
   n_rows: 6
-<<<<<<< HEAD
-  id: 24
-=======
   id: 23
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 Lức đỏ (Huyết Rồng Thái):
   n_rows: 6
-<<<<<<< HEAD
-  id: 25
-=======
   id: 24
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 NL L1:
   n_rows: 6
-<<<<<<< HEAD
-  id: 26
-=======
   id: 25
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 NL L2 (lức):
   n_rows: 5
-<<<<<<< HEAD
-  id: 27
-=======
   id: 26
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 SaRi hạt nhỏ:
   n_rows: 6
-<<<<<<< HEAD
-  id: 28
-=======
   id: 27
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 T 164:
   n_rows: 6
-<<<<<<< HEAD
-  id: 29
-=======
   id: 28
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 15% tấm:
   n_rows: 6
-<<<<<<< HEAD
-  id: 30
-=======
   id: 29
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 25% tấm:
   n_rows: 6
-<<<<<<< HEAD
-  id: 31
-=======
   id: 30
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 5% tấm:
   n_rows: 6
-<<<<<<< HEAD
-  id: 32
-=======
   id: 31
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 Hạt dài:
   n_rows: 6
-<<<<<<< HEAD
-  id: 33
-=======
   id: 32
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 IR50404:
   n_rows: 6
-<<<<<<< HEAD
-  id: 34
-  first_update: 02/04/2025
-  last_update: 14/05/2025
-OM 4900:
-  n_rows: 6
-  id: 35
-=======
   id: 33
->>>>>>> train
   first_update: 02/04/2025
   last_update: 14/05/2025
 Lúa IR 50404 (lúa tươi):
   n_rows: 853
-<<<<<<< HEAD
-  id: 36
-=======
   id: 34
->>>>>>> train
   first_update: 04/01/2021
   last_update: 06/05/2025
 Nếp AG (IR 4625):
   n_rows: 4
-<<<<<<< HEAD
-  id: 37
-=======
   id: 35
->>>>>>> train
   first_update: 03/04/2025
   last_update: 24/04/2025
 IR 5451:
   n_rows: 110
-<<<<<<< HEAD
-  id: 38
-  first_update: 02/01/2024
-  last_update: 24/04/2025
-Lúa IR 50404:
-  n_rows: 632
-  id: 39
-  first_update: 04/01/2021
-  last_update: 14/03/2025
-Lúa OM 6976:
-  n_rows: 255
-  id: 40
-  first_update: 04/03/2021
-  last_update: 14/03/2025
-Lúa Jasmine:
-  n_rows: 175
-  id: 41
-  first_update: 04/01/2021
-  last_update: 14/03/2025
-Bắc Thơm 7:
-  n_rows: 192
-  id: 42
-=======
   id: 36
   first_update: 02/01/2024
   last_update: 24/04/2025
@@ -350,923 +191,460 @@ Lúa OM 6976:
 Bắc Thơm 7:
   n_rows: 192
   id: 38
->>>>>>> train
   first_update: 04/01/2023
   last_update: 20/12/2024
 Gạo BC15:
   n_rows: 232
-<<<<<<< HEAD
-  id: 43
-=======
   id: 39
->>>>>>> train
   first_update: 02/01/2023
   last_update: 20/12/2024
 Gạo nếp cái hoa vàng:
   n_rows: 230
-<<<<<<< HEAD
-  id: 44
-=======
   id: 40
->>>>>>> train
   first_update: 02/01/2023
   last_update: 20/12/2024
 Gạo Q5:
   n_rows: 212
-<<<<<<< HEAD
-  id: 45
-=======
   id: 41
->>>>>>> train
   first_update: 02/01/2023
   last_update: 20/12/2024
 Lúa BC15:
   n_rows: 296
-<<<<<<< HEAD
-  id: 46
-=======
   id: 42
->>>>>>> train
   first_update: 08/03/2021
   last_update: 20/12/2024
 Lúa nếp 97:
   n_rows: 297
-<<<<<<< HEAD
-  id: 47
-=======
   id: 43
->>>>>>> train
   first_update: 08/03/2021
   last_update: 20/12/2024
 Lúa Q5:
   n_rows: 241
-<<<<<<< HEAD
-  id: 48
-=======
   id: 44
->>>>>>> train
   first_update: 19/04/2021
   last_update: 20/12/2024
 T10:
   n_rows: 192
-<<<<<<< HEAD
-  id: 49
-=======
   id: 45
->>>>>>> train
   first_update: 04/01/2023
   last_update: 20/12/2024
 Thiên Ưu:
   n_rows: 191
-<<<<<<< HEAD
-  id: 50
-=======
   id: 46
->>>>>>> train
   first_update: 04/01/2023
   last_update: 20/12/2024
 VN10:
   n_rows: 191
-<<<<<<< HEAD
-  id: 51
-=======
   id: 47
->>>>>>> train
   first_update: 04/01/2023
   last_update: 20/12/2024
 Gạo NL 15% tấm:
   n_rows: 89
-<<<<<<< HEAD
-  id: 52
-=======
   id: 48
->>>>>>> train
   first_update: 03/01/2024
   last_update: 06/11/2024
 Lúa Nhật:
   n_rows: 166
-<<<<<<< HEAD
-  id: 53
-=======
   id: 49
->>>>>>> train
   first_update: 04/01/2023
   last_update: 26/09/2024
 Nàng Hoa 9:
   n_rows: 59
-<<<<<<< HEAD
-  id: 54
-=======
   id: 50
->>>>>>> train
   first_update: 27/02/2024
   last_update: 26/09/2024
 Nếp AG:
   n_rows: 78
-<<<<<<< HEAD
-  id: 55
-=======
   id: 51
->>>>>>> train
   first_update: 02/01/2024
   last_update: 26/09/2024
 Lúa IR 50404 - lúa tươi:
   n_rows: 233
-<<<<<<< HEAD
-  id: 56
-=======
   id: 52
->>>>>>> train
   first_update: 04/01/2022
   last_update: 07/08/2024
 Gạo thơm Jasmine:
   n_rows: 107
-<<<<<<< HEAD
-  id: 57
-=======
   id: 53
->>>>>>> train
   first_update: 04/01/2023
   last_update: 20/12/2023
 Lúa IR 50404 (lúa khô):
   n_rows: 98
-<<<<<<< HEAD
-  id: 58
-=======
   id: 54
->>>>>>> train
   first_update: 05/01/2023
   last_update: 20/12/2023
 Lúa Jasmine (lúa khô):
   n_rows: 98
-<<<<<<< HEAD
-  id: 59
-=======
   id: 55
->>>>>>> train
   first_update: 05/01/2023
   last_update: 20/12/2023
 Lúa OM 4218 (lúa khô):
   n_rows: 98
-<<<<<<< HEAD
-  id: 60
-=======
   id: 56
->>>>>>> train
   first_update: 05/01/2023
   last_update: 20/12/2023
 Lúa OM 4218 (lúa tươi):
   n_rows: 153
-<<<<<<< HEAD
-  id: 61
-=======
   id: 57
->>>>>>> train
   first_update: 04/01/2021
   last_update: 20/12/2023
 Gạo (15% tấm):
   n_rows: 109
-<<<<<<< HEAD
-  id: 62
-=======
   id: 58
->>>>>>> train
   first_update: 05/01/2023
   last_update: 19/12/2023
 Gạo (25% tấm):
   n_rows: 109
-<<<<<<< HEAD
-  id: 63
-=======
   id: 59
->>>>>>> train
   first_update: 05/01/2023
   last_update: 19/12/2023
 Gạo (5% tấm):
   n_rows: 109
-<<<<<<< HEAD
-  id: 64
-=======
   id: 60
->>>>>>> train
   first_update: 05/01/2023
   last_update: 19/12/2023
 Lúa OM 18:
   n_rows: 144
-<<<<<<< HEAD
-  id: 65
-=======
   id: 61
->>>>>>> train
   first_update: 07/09/2021
   last_update: 19/12/2023
 Lúa Nhật (lúa tươi):
   n_rows: 131
-<<<<<<< HEAD
-  id: 66
-=======
   id: 62
->>>>>>> train
   first_update: 01/04/2021
   last_update: 18/12/2023
 Gạo Sóc Thái:
   n_rows: 113
-<<<<<<< HEAD
-  id: 67
-=======
   id: 63
->>>>>>> train
   first_update: 04/01/2023
   last_update: 04/12/2023
 Đài thơm 8 (lúa tươi):
   n_rows: 333
-<<<<<<< HEAD
-  id: 68
-  first_update: 04/03/2021
-  last_update: 15/11/2023
-Gạo Sóc thường:
-  n_rows: 105
-  id: 69
-  first_update: 04/01/2023
-  last_update: 15/11/2023
-Gạo Hương Lài:
-  n_rows: 108
-  id: 70
-  first_update: 04/01/2023
-  last_update: 16/10/2023
-Gạo trắng thông dụng:
-  n_rows: 101
-  id: 71
-=======
   id: 64
   first_update: 04/03/2021
   last_update: 15/11/2023
 Gạo trắng thông dụng:
   n_rows: 101
   id: 65
->>>>>>> train
   first_update: 04/01/2023
   last_update: 16/10/2023
 Lúa ST 24:
   n_rows: 90
-<<<<<<< HEAD
-  id: 72
-  first_update: 04/01/2023
-  last_update: 27/09/2023
-Lúa IR Jasmine (lúa tươi):
-  n_rows: 79
-  id: 73
-  first_update: 05/01/2023
-  last_update: 22/09/2023
-Lúa OM 4218:
-  n_rows: 154
-  id: 74
-  first_update: 04/01/2021
-  last_update: 18/05/2023
-Lúa Thơm RVT:
-  n_rows: 146
-  id: 75
-=======
   id: 66
   first_update: 04/01/2023
   last_update: 27/09/2023
 Lúa Thơm RVT:
   n_rows: 146
   id: 67
->>>>>>> train
   first_update: 29/03/2021
   last_update: 12/05/2023
 Gạo Khang dân:
   n_rows: 20
-<<<<<<< HEAD
-  id: 76
-=======
   id: 68
->>>>>>> train
   first_update: 05/01/2023
   last_update: 08/05/2023
 Gạo nếp 97:
   n_rows: 15
-<<<<<<< HEAD
-  id: 77
-=======
   id: 69
->>>>>>> train
   first_update: 05/01/2023
   last_update: 08/05/2023
 Gạo nếp cẩm:
   n_rows: 20
-<<<<<<< HEAD
-  id: 78
-=======
   id: 70
->>>>>>> train
   first_update: 05/01/2023
   last_update: 08/05/2023
 Gạo Xi23:
   n_rows: 20
-<<<<<<< HEAD
-  id: 79
-=======
   id: 71
->>>>>>> train
   first_update: 05/01/2023
   last_update: 08/05/2023
 Gạo Bắc thơm 7:
   n_rows: 20
-<<<<<<< HEAD
-  id: 80
-=======
   id: 72
->>>>>>> train
   first_update: 02/01/2023
   last_update: 27/04/2023
 Lúa VN10:
   n_rows: 46
-<<<<<<< HEAD
-  id: 81
-=======
   id: 73
->>>>>>> train
   first_update: 19/04/2021
   last_update: 27/04/2023
 Đài Thơm 8 (lúa khô):
   n_rows: 163
-<<<<<<< HEAD
-  id: 82
-=======
   id: 74
->>>>>>> train
   first_update: 04/03/2021
   last_update: 19/04/2022
 Lúa OM 5451 (lúa tươi):
   n_rows: 173
-<<<<<<< HEAD
-  id: 83
-=======
   id: 75
->>>>>>> train
   first_update: 04/02/2021
   last_update: 19/04/2022
 Lúa OM 18 (lúa tươi):
   n_rows: 50
-<<<<<<< HEAD
-  id: 84
-=======
   id: 76
->>>>>>> train
   first_update: 30/03/2021
   last_update: 19/04/2022
 Lúa OM 6976 (lúa tươi):
   n_rows: 196
-<<<<<<< HEAD
-  id: 85
-=======
   id: 77
->>>>>>> train
   first_update: 04/03/2021
   last_update: 19/04/2022
 Lúa ST24 (lúa tươi):
   n_rows: 127
-<<<<<<< HEAD
-  id: 86
-=======
   id: 78
->>>>>>> train
   first_update: 29/03/2021
   last_update: 19/04/2022
 Lúa Thơm RVT (lúa tươi):
   n_rows: 48
-<<<<<<< HEAD
-  id: 87
-=======
   id: 79
->>>>>>> train
   first_update: 06/04/2021
   last_update: 19/04/2022
 Lúa OM 4900 (lúa tươi):
   n_rows: 76
-<<<<<<< HEAD
-  id: 88
-=======
   id: 80
->>>>>>> train
   first_update: 12/03/2021
   last_update: 18/04/2022
 Lúa Jasmine (lúa tươi):
   n_rows: 36
-<<<<<<< HEAD
-  id: 89
-=======
   id: 81
->>>>>>> train
   first_update: 04/01/2021
   last_update: 15/04/2022
 Lúa OM 2514 (lúa tươi):
   n_rows: 41
-<<<<<<< HEAD
-  id: 90
-=======
   id: 82
->>>>>>> train
   first_update: 04/03/2021
   last_update: 15/04/2022
 Lúa OM 2517 (lúa tươi):
   n_rows: 52
-<<<<<<< HEAD
-  id: 91
-=======
   id: 83
->>>>>>> train
   first_update: 04/03/2021
   last_update: 15/04/2022
 Lúa hạt dài (lúa tươi):
   n_rows: 49
-<<<<<<< HEAD
-  id: 92
-=======
   id: 84
->>>>>>> train
   first_update: 04/03/2021
   last_update: 14/04/2022
 Lúa OM 4900:
   n_rows: 146
-<<<<<<< HEAD
-  id: 93
-=======
   id: 85
->>>>>>> train
   first_update: 04/03/2021
   last_update: 14/04/2022
 Lúa OM18 (lúa tươi):
   n_rows: 10
-<<<<<<< HEAD
-  id: 94
-=======
   id: 86
->>>>>>> train
   first_update: 18/08/2021
   last_update: 13/04/2022
 Nếp vỏ (lúa tươi):
   n_rows: 32
-<<<<<<< HEAD
-  id: 95
-=======
   id: 87
->>>>>>> train
   first_update: 08/04/2021
   last_update: 07/04/2022
 Lúa RVT (lúa tươi):
   n_rows: 73
-<<<<<<< HEAD
-  id: 96
-=======
   id: 88
->>>>>>> train
   first_update: 29/03/2021
   last_update: 30/03/2022
 Lúa ST:
   n_rows: 42
-<<<<<<< HEAD
-  id: 97
-=======
   id: 89
->>>>>>> train
   first_update: 30/03/2021
   last_update: 15/03/2022
 Lúa Tài nguyên cũ:
   n_rows: 42
-<<<<<<< HEAD
-  id: 98
-=======
   id: 90
->>>>>>> train
   first_update: 30/03/2021
   last_update: 15/03/2022
 Lúa ST5:
   n_rows: 46
-<<<<<<< HEAD
-  id: 99
-=======
   id: 91
->>>>>>> train
   first_update: 04/08/2021
   last_update: 07/03/2022
 Lúa nếp vỏ:
   n_rows: 21
-<<<<<<< HEAD
-  id: 100
-=======
   id: 92
->>>>>>> train
   first_update: 13/05/2021
   last_update: 10/02/2022
 Lúa Bắc thơm 7 (khô):
   n_rows: 30
-<<<<<<< HEAD
-  id: 101
-=======
   id: 93
->>>>>>> train
   first_update: 19/04/2021
   last_update: 20/09/2021
 Lúa T10:
   n_rows: 30
-<<<<<<< HEAD
-  id: 102
-=======
   id: 94
->>>>>>> train
   first_update: 19/04/2021
   last_update: 20/09/2021
 Lúa OM 2514:
   n_rows: 33
-<<<<<<< HEAD
-  id: 103
-=======
   id: 95
->>>>>>> train
   first_update: 04/03/2021
   last_update: 17/09/2021
 Lúa OM 2517:
   n_rows: 32
-<<<<<<< HEAD
-  id: 104
-=======
   id: 96
->>>>>>> train
   first_update: 04/03/2021
   last_update: 17/09/2021
 Bắc Thơm 7 (lúa tươi):
   n_rows: 16
-<<<<<<< HEAD
-  id: 105
-=======
   id: 97
->>>>>>> train
   first_update: 07/06/2021
   last_update: 22/07/2021
 Lúa BC15 (lúa tươi):
   n_rows: 17
-<<<<<<< HEAD
-  id: 106
-=======
   id: 98
->>>>>>> train
   first_update: 07/06/2021
   last_update: 22/07/2021
 Lúa nếp 97 (lúa tươi):
   n_rows: 12
-<<<<<<< HEAD
-  id: 107
-=======
   id: 99
->>>>>>> train
   first_update: 07/06/2021
   last_update: 22/07/2021
 Lúa nếp cái hoa vàng:
   n_rows: 7
-<<<<<<< HEAD
-  id: 108
-  first_update: 05/07/2021
-  last_update: 22/07/2021
-Lúa Thiên Ưu (lúa tươi):
-  n_rows: 17
-  id: 109
-  first_update: 24/05/2021
-  last_update: 22/07/2021
-Lúa VN10 (lúa tươi):
-  n_rows: 16
-  id: 110
-=======
   id: 100
   first_update: 05/07/2021
   last_update: 22/07/2021
 Lúa VN10 (lúa tươi):
   n_rows: 16
   id: 101
->>>>>>> train
   first_update: 24/05/2021
   last_update: 22/07/2021
 Lúa Thiên Ưu:
   n_rows: 23
-<<<<<<< HEAD
-  id: 111
-=======
   id: 102
->>>>>>> train
   first_update: 19/04/2021
   last_update: 22/06/2021
 Nàng hoa 9 (lúa tươi):
   n_rows: 6
-<<<<<<< HEAD
-  id: 112
-=======
   id: 103
->>>>>>> train
   first_update: 12/03/2021
   last_update: 16/04/2021
 Lúa (hạt dài) lúa tươi:
   n_rows: 6
-<<<<<<< HEAD
-  id: 113
-=======
   id: 104
->>>>>>> train
   first_update: 05/03/2021
   last_update: 09/04/2021
 Bắp cải thảo:
   n_rows: 104
-<<<<<<< HEAD
-  id: 114
-=======
   id: 105
->>>>>>> train
   first_update: 01/02/2024
   last_update: 19/05/2025
 Bưởi Diễn:
   n_rows: 47
-<<<<<<< HEAD
-  id: 115
-  first_update: 27/12/2021
-  last_update: 19/05/2025
-Cà chua:
-  n_rows: 880
-  id: 116
-  first_update: 04/01/2021
-  last_update: 19/05/2025
-Củ cải:
-  n_rows: 204
-  id: 117
-=======
   id: 106
   first_update: 27/12/2021
   last_update: 19/05/2025
 Củ cải:
   n_rows: 204
   id: 107
->>>>>>> train
   first_update: 09/05/2022
   last_update: 19/05/2025
 Đào:
   n_rows: 60
-<<<<<<< HEAD
-  id: 118
-  first_update: 17/06/2021
-  last_update: 19/05/2025
-Đậu cove:
-  n_rows: 352
-  id: 119
-  first_update: 04/01/2021
-  last_update: 19/05/2025
-Dưa chuột/dưa chuột:
-  n_rows: 280
-  id: 120
-  first_update: 03/01/2023
-  last_update: 19/05/2025
-Mận hậu:
-  n_rows: 191
-  id: 121
-  first_update: 11/05/2021
-  last_update: 19/05/2025
-Mít thái:
-  n_rows: 314
-  id: 122
-  first_update: 07/06/2021
-  last_update: 19/05/2025
-Ổi:
-  n_rows: 318
-  id: 123
-=======
   id: 108
   first_update: 17/06/2021
   last_update: 19/05/2025
 Ổi:
   n_rows: 318
   id: 109
->>>>>>> train
   first_update: 23/07/2021
   last_update: 19/05/2025
 Quả bầu:
   n_rows: 497
-<<<<<<< HEAD
-  id: 124
-=======
   id: 110
->>>>>>> train
   first_update: 04/01/2021
   last_update: 19/05/2025
 Rau cải bó xôi:
   n_rows: 116
-<<<<<<< HEAD
-  id: 125
-  first_update: 18/01/2023
-  last_update: 19/05/2025
-Rau ngót:
-  n_rows: 527
-  id: 126
-  first_update: 04/05/2021
-  last_update: 19/05/2025
-Su hào:
-  n_rows: 238
-  id: 127
-=======
   id: 111
   first_update: 18/01/2023
   last_update: 19/05/2025
 Su hào:
   n_rows: 238
   id: 112
->>>>>>> train
   first_update: 04/01/2021
   last_update: 19/05/2025
 Vải:
   n_rows: 63
-<<<<<<< HEAD
-  id: 128
-=======
   id: 113
->>>>>>> train
   first_update: 21/05/2021
   last_update: 19/05/2025
 Xoài tròn Yên Châu:
   n_rows: 47
-<<<<<<< HEAD
-  id: 129
-  first_update: 17/05/2021
-  last_update: 19/05/2025
-Cam sành:
-  n_rows: 627
-  id: 130
-  first_update: 05/01/2021
-  last_update: 13/05/2025
-Chôm chôm:
-  n_rows: 125
-  id: 131
-=======
   id: 114
   first_update: 17/05/2021
   last_update: 19/05/2025
 Chôm chôm:
   n_rows: 125
   id: 115
->>>>>>> train
   first_update: 01/07/2021
   last_update: 13/05/2025
 Dưa hấu:
   n_rows: 946
-<<<<<<< HEAD
-  id: 132
-=======
   id: 116
->>>>>>> train
   first_update: 05/01/2021
   last_update: 13/05/2025
 Rau dền:
   n_rows: 107
-<<<<<<< HEAD
-  id: 133
-=======
   id: 117
->>>>>>> train
   first_update: 17/08/2021
   last_update: 13/05/2025
 Rau mùng tơi:
   n_rows: 136
-<<<<<<< HEAD
-  id: 134
-  first_update: 13/07/2021
-  last_update: 13/05/2025
-Rau muống:
-  n_rows: 322
-  id: 135
-  first_update: 12/07/2021
-  last_update: 13/05/2025
-Thanh long ruột trắng:
-  n_rows: 460
-  id: 136
-=======
   id: 118
   first_update: 13/07/2021
   last_update: 13/05/2025
 Thanh long ruột trắng:
   n_rows: 460
   id: 119
->>>>>>> train
   first_update: 15/04/2021
   last_update: 13/05/2025
 Xoài Cát Chu:
   n_rows: 672
-<<<<<<< HEAD
-  id: 137
-=======
   id: 120
->>>>>>> train
   first_update: 14/04/2021
   last_update: 13/05/2025
 Dưa lê:
   n_rows: 130
-<<<<<<< HEAD
-  id: 138
-=======
   id: 121
->>>>>>> train
   first_update: 15/04/2021
   last_update: 09/05/2025
 Quả bí đao:
   n_rows: 29
-<<<<<<< HEAD
-  id: 139
-=======
   id: 122
->>>>>>> train
   first_update: 17/12/2024
   last_update: 09/05/2025
 Chanh leo tím:
   n_rows: 59
-<<<<<<< HEAD
-  id: 140
-  first_update: 04/09/2023
-  last_update: 08/05/2025
-Bưởi long Núm:
-  n_rows: 179
-  id: 141
-  first_update: 05/01/2021
-  last_update: 07/05/2025
-Cải bẹ xanh:
-  n_rows: 172
-  id: 142
-=======
   id: 123
   first_update: 04/09/2023
   last_update: 08/05/2025
 Cải bẹ xanh:
   n_rows: 172
   id: 124
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Cam dây:
   n_rows: 181
-<<<<<<< HEAD
-  id: 143
-=======
   id: 125
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Chôm chôm nhãn:
   n_rows: 169
-<<<<<<< HEAD
-  id: 144
-=======
   id: 126
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Chuối già:
   n_rows: 179
-<<<<<<< HEAD
-  id: 145
-=======
   id: 127
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Dừa khô:
   n_rows: 334
-<<<<<<< HEAD
-  id: 146
-=======
   id: 128
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Dừa tươi:
   n_rows: 61
-<<<<<<< HEAD
-  id: 147
-  first_update: 03/01/2023
-  last_update: 07/05/2025
-Hồng xiêm:
-  n_rows: 232
-  id: 148
-  first_update: 15/04/2021
-  last_update: 07/05/2025
-Ổi không hạt:
-  n_rows: 179
-  id: 149
-  first_update: 05/01/2021
-  last_update: 07/05/2025
-Sầu Riêng Ri 6 (loại đẹp):
-  n_rows: 69
-  id: 150
-  first_update: 03/01/2023
-  last_update: 07/05/2025
-Thanh long ruột đỏ:
-  n_rows: 497
-  id: 151
-=======
   id: 129
   first_update: 03/01/2023
   last_update: 07/05/2025
@@ -1278,788 +656,395 @@ Thanh long ruột đỏ:
 Thanh long ruột đỏ:
   n_rows: 497
   id: 131
->>>>>>> train
   first_update: 14/04/2021
   last_update: 07/05/2025
 Trái Cóc mỡ:
   n_rows: 181
-<<<<<<< HEAD
-  id: 152
-=======
   id: 132
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Trái dứa/thơm:
   n_rows: 414
-<<<<<<< HEAD
-  id: 153
-=======
   id: 133
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Xà lách:
   n_rows: 60
-<<<<<<< HEAD
-  id: 154
-=======
   id: 134
->>>>>>> train
   first_update: 03/01/2023
   last_update: 07/05/2025
 Xoài keo:
   n_rows: 175
-<<<<<<< HEAD
-  id: 155
-=======
   id: 135
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/05/2025
 Nhãn:
   n_rows: 395
-<<<<<<< HEAD
-  id: 156
-=======
   id: 136
->>>>>>> train
   first_update: 12/04/2021
   last_update: 06/05/2025
 Quýt sim:
   n_rows: 12
-<<<<<<< HEAD
-  id: 157
-=======
   id: 137
->>>>>>> train
   first_update: 21/03/2025
   last_update: 29/04/2025
 Súp lơ xanh:
   n_rows: 66
-<<<<<<< HEAD
-  id: 158
-=======
   id: 138
->>>>>>> train
   first_update: 03/01/2023
   last_update: 22/04/2025
 Dâu tây:
   n_rows: 18
-<<<<<<< HEAD
-  id: 159
-=======
   id: 139
->>>>>>> train
   first_update: 06/02/2025
   last_update: 14/04/2025
 Táo đại:
   n_rows: 48
-<<<<<<< HEAD
-  id: 160
-=======
   id: 140
->>>>>>> train
   first_update: 26/01/2024
   last_update: 14/04/2025
 Táo ngọt:
   n_rows: 33
-<<<<<<< HEAD
-  id: 161
-=======
   id: 141
->>>>>>> train
   first_update: 22/02/2024
   last_update: 14/04/2025
 Vú sữa lò rèn Cần Thơ:
   n_rows: 36
-<<<<<<< HEAD
-  id: 162
-  first_update: 03/01/2023
-  last_update: 09/04/2025
-Rau cần:
-  n_rows: 95
-  id: 163
-  first_update: 16/11/2021
-  last_update: 08/04/2025
-Cam Cao Phong:
-  n_rows: 96
-  id: 164
-=======
   id: 142
   first_update: 03/01/2023
   last_update: 09/04/2025
 Cam Cao Phong:
   n_rows: 96
   id: 143
->>>>>>> train
   first_update: 05/11/2021
   last_update: 28/03/2025
 Vú sữa lò rèn Tiền Giang:
   n_rows: 21
-<<<<<<< HEAD
-  id: 165
-  first_update: 03/01/2023
-  last_update: 26/03/2025
-Vú sữa:
-  n_rows: 48
-  id: 166
-  first_update: 03/01/2023
-  last_update: 18/03/2025
-Na sầu riêng:
-  n_rows: 64
-  id: 167
-=======
   id: 144
   first_update: 03/01/2023
   last_update: 26/03/2025
 Na sầu riêng:
   n_rows: 64
   id: 145
->>>>>>> train
   first_update: 04/01/2023
   last_update: 03/03/2025
 Táo mèo:
   n_rows: 166
-<<<<<<< HEAD
-  id: 168
-=======
   id: 146
->>>>>>> train
   first_update: 08/07/2021
   last_update: 10/02/2025
 Chanh leo vàng:
   n_rows: 122
-<<<<<<< HEAD
-  id: 169
-=======
   id: 147
->>>>>>> train
   first_update: 04/01/2023
   last_update: 03/02/2025
 Quýt ngọt Phù Yên:
   n_rows: 59
-<<<<<<< HEAD
-  id: 170
-=======
   id: 148
->>>>>>> train
   first_update: 04/01/2021
   last_update: 03/02/2025
 Lê:
   n_rows: 116
-<<<<<<< HEAD
-  id: 171
-=======
   id: 149
->>>>>>> train
   first_update: 17/08/2021
   last_update: 24/01/2025
 Quýt Sài Gòn:
   n_rows: 65
-<<<<<<< HEAD
-  id: 172
-=======
   id: 150
->>>>>>> train
   first_update: 30/01/2024
   last_update: 24/01/2025
 Hồng ngâm:
   n_rows: 88
-<<<<<<< HEAD
-  id: 173
-=======
   id: 151
->>>>>>> train
   first_update: 07/09/2021
   last_update: 12/11/2024
 Lựu:
   n_rows: 74
-<<<<<<< HEAD
-  id: 174
-=======
   id: 152
->>>>>>> train
   first_update: 21/09/2021
   last_update: 12/11/2024
 Bơ nếp:
   n_rows: 44
-<<<<<<< HEAD
-  id: 175
-=======
   id: 153
->>>>>>> train
   first_update: 10/08/2023
   last_update: 07/11/2024
 Hồng giòn:
   n_rows: 24
-<<<<<<< HEAD
-  id: 176
-=======
   id: 154
->>>>>>> train
   first_update: 12/08/2024
   last_update: 07/11/2024
 Mít dai:
   n_rows: 117
-<<<<<<< HEAD
-  id: 177
-=======
   id: 155
->>>>>>> train
   first_update: 07/06/2021
   last_update: 26/09/2024
 Mít mật:
   n_rows: 104
-<<<<<<< HEAD
-  id: 178
-  first_update: 07/06/2021
-  last_update: 26/09/2024
-Xoài Đài Loan:
-  n_rows: 227
-  id: 179
-  first_update: 12/04/2021
-  last_update: 26/08/2024
-Đào mỏ quạ:
-  n_rows: 23
-  id: 180
-=======
   id: 156
   first_update: 07/06/2021
   last_update: 26/09/2024
 Đào mỏ quạ:
   n_rows: 23
   id: 157
->>>>>>> train
   first_update: 11/07/2023
   last_update: 01/08/2024
 Xoài Thái:
   n_rows: 25
-<<<<<<< HEAD
-  id: 181
-  first_update: 26/04/2022
-  last_update: 19/07/2024
-Nhãn tiêu quế:
-  n_rows: 139
-  id: 182
-  first_update: 05/01/2021
-  last_update: 03/07/2024
-Súp lơ:
-  n_rows: 125
-  id: 183
-=======
   id: 158
   first_update: 26/04/2022
   last_update: 19/07/2024
 Súp lơ:
   n_rows: 125
   id: 159
->>>>>>> train
   first_update: 04/01/2021
   last_update: 10/06/2024
 Dâu tây Hana:
   n_rows: 26
-<<<<<<< HEAD
-  id: 184
-=======
   id: 160
->>>>>>> train
   first_update: 18/01/2023
   last_update: 02/05/2024
 Na Đài Loan:
   n_rows: 18
-<<<<<<< HEAD
-  id: 185
-=======
   id: 161
->>>>>>> train
   first_update: 29/01/2024
   last_update: 11/04/2024
 Cam Canh:
   n_rows: 10
-<<<<<<< HEAD
-  id: 186
-=======
   id: 162
->>>>>>> train
   first_update: 09/01/2023
   last_update: 08/03/2024
 Na Thái:
   n_rows: 35
-<<<<<<< HEAD
-  id: 187
-=======
   id: 163
->>>>>>> train
   first_update: 04/01/2023
   last_update: 25/01/2024
 Quýt:
   n_rows: 11
-<<<<<<< HEAD
-  id: 188
-=======
   id: 164
->>>>>>> train
   first_update: 07/12/2021
   last_update: 19/12/2023
 Cải xà lách:
   n_rows: 118
-<<<<<<< HEAD
-  id: 189
-=======
   id: 165
->>>>>>> train
   first_update: 05/01/2021
   last_update: 13/12/2023
 Bơ:
   n_rows: 57
-<<<<<<< HEAD
-  id: 190
-=======
   id: 166
->>>>>>> train
   first_update: 12/07/2021
   last_update: 23/11/2023
 Quýt Sài gòn:
   n_rows: 198
-<<<<<<< HEAD
-  id: 191
-  first_update: 15/04/2021
-  last_update: 14/11/2023
-Cam xoàn:
-  n_rows: 59
-  id: 192
-  first_update: 23/04/2021
-  last_update: 06/10/2023
-Cốc Thái:
-  n_rows: 37
-  id: 193
-=======
   id: 167
   first_update: 15/04/2021
   last_update: 14/11/2023
 Cốc Thái:
   n_rows: 37
   id: 168
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Ổi Đài Loan:
   n_rows: 61
-<<<<<<< HEAD
-  id: 194
-  first_update: 23/04/2021
-  last_update: 06/10/2023
-Bưởi năm roi (loại 1):
-  n_rows: 258
-  id: 195
-=======
   id: 169
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Bưởi năm roi (loại 2):
   n_rows: 199
-<<<<<<< HEAD
-  id: 196
-=======
   id: 170
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Chôm chôm thái:
   n_rows: 112
-<<<<<<< HEAD
-  id: 197
-=======
   id: 171
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Dừa xiêm:
   n_rows: 108
-<<<<<<< HEAD
-  id: 198
-=======
   id: 172
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Nhãn tiêu da bò:
   n_rows: 271
-<<<<<<< HEAD
-  id: 199
-  first_update: 23/04/2021
-  last_update: 06/10/2023
-Sầu riêng cơm vàng hạt lép:
-  n_rows: 309
-  id: 200
-  first_update: 12/04/2021
-  last_update: 06/10/2023
-Sầu riêng KQX:
-  n_rows: 88
-  id: 201
-=======
   id: 173
   first_update: 23/04/2021
   last_update: 06/10/2023
 Sầu riêng KQX:
   n_rows: 88
   id: 174
->>>>>>> train
   first_update: 23/04/2021
   last_update: 06/10/2023
 Củ cải trắng:
   n_rows: 96
-<<<<<<< HEAD
-  id: 202
-  first_update: 04/01/2021
-  last_update: 05/10/2023
-Trái dứa/thơm (nhỏ):
-  n_rows: 87
-  id: 203
-  first_update: 12/04/2021
-  last_update: 05/10/2023
-Bưởi da xanh (loại 1):
-  n_rows: 214
-  id: 204
-  first_update: 13/04/2021
-  last_update: 05/10/2023
-Nhãn xuồng vàng:
-  n_rows: 95
-  id: 205
-=======
   id: 175
   first_update: 04/01/2021
   last_update: 05/10/2023
 Nhãn xuồng vàng:
   n_rows: 95
   id: 176
->>>>>>> train
   first_update: 09/05/2022
   last_update: 05/10/2023
 Chuối:
   n_rows: 65
-<<<<<<< HEAD
-  id: 206
-=======
   id: 177
->>>>>>> train
   first_update: 11/05/2022
   last_update: 04/10/2023
 Khổ qua:
   n_rows: 164
-<<<<<<< HEAD
-  id: 207
-=======
   id: 178
->>>>>>> train
   first_update: 09/05/2022
   last_update: 04/10/2023
 Sầu Riêng Ri 6:
   n_rows: 136
-<<<<<<< HEAD
-  id: 208
-=======
   id: 179
->>>>>>> train
   first_update: 05/01/2021
   last_update: 04/10/2023
 Dưa hấu (loại 1):
   n_rows: 76
-<<<<<<< HEAD
-  id: 209
-  first_update: 13/04/2021
-  last_update: 03/10/2023
-Dừa xiêm lai:
-  n_rows: 57
-  id: 210
-  first_update: 13/04/2021
-  last_update: 03/10/2023
-Dừa xiêm xanh:
-  n_rows: 54
-  id: 211
-=======
   id: 180
->>>>>>> train
   first_update: 13/04/2021
   last_update: 03/10/2023
 Hạt ca cao:
   n_rows: 57
-<<<<<<< HEAD
-  id: 212
-=======
   id: 181
->>>>>>> train
   first_update: 14/06/2022
   last_update: 03/10/2023
 Trái Ca cao:
   n_rows: 60
-<<<<<<< HEAD
-  id: 213
-=======
   id: 182
->>>>>>> train
   first_update: 14/06/2022
   last_update: 03/10/2023
 Chanh không hạt:
   n_rows: 66
-<<<<<<< HEAD
-  id: 214
-=======
   id: 183
->>>>>>> train
   first_update: 26/04/2022
   last_update: 03/10/2023
 Mít ruột đỏ:
   n_rows: 57
-<<<<<<< HEAD
-  id: 215
-=======
   id: 184
->>>>>>> train
   first_update: 26/04/2022
   last_update: 03/10/2023
 Chanh nấm:
   n_rows: 60
-<<<<<<< HEAD
-  id: 216
-=======
   id: 185
->>>>>>> train
   first_update: 26/04/2021
   last_update: 29/09/2023
 Cải thảo:
   n_rows: 127
-<<<<<<< HEAD
-  id: 217
-=======
   id: 186
->>>>>>> train
   first_update: 04/01/2021
   last_update: 07/08/2023
 Xoài Tròn Sông Mã (Sơn La):
   n_rows: 23
-<<<<<<< HEAD
-  id: 218
-=======
   id: 187
->>>>>>> train
   first_update: 06/07/2021
   last_update: 07/08/2023
 Nhãn miền Nam:
   n_rows: 7
-<<<<<<< HEAD
-  id: 219
-=======
   id: 188
->>>>>>> train
   first_update: 14/07/2023
   last_update: 04/08/2023
 Nhãn xuồng trắng:
   n_rows: 38
-<<<<<<< HEAD
-  id: 220
-=======
   id: 189
->>>>>>> train
   first_update: 21/11/2022
   last_update: 03/08/2023
 Vải thiều:
   n_rows: 11
-<<<<<<< HEAD
-  id: 221
-=======
   id: 190
->>>>>>> train
   first_update: 26/05/2023
   last_update: 30/06/2023
 Trái Vú Sữa lò rèn TG:
   n_rows: 30
-<<<<<<< HEAD
-  id: 222
-=======
   id: 191
->>>>>>> train
   first_update: 05/01/2021
   last_update: 07/06/2023
 Cam Vinh:
   n_rows: 53
-<<<<<<< HEAD
-  id: 223
-=======
   id: 192
->>>>>>> train
   first_update: 04/01/2021
   last_update: 09/03/2023
 Trái Vú Sữa lò rèn Cần Thơ:
   n_rows: 35
-<<<<<<< HEAD
-  id: 224
-=======
   id: 193
->>>>>>> train
   first_update: 05/01/2021
   last_update: 08/02/2023
 Chanh tươi:
   n_rows: 158
-<<<<<<< HEAD
-  id: 225
-  first_update: 04/01/2021
-  last_update: 01/12/2022
-Bông cải Xanh:
-  n_rows: 27
-  id: 226
-  first_update: 11/05/2022
-  last_update: 30/11/2022
-Quả sấu:
-  n_rows: 17
-  id: 227
-=======
   id: 194
   first_update: 04/01/2021
   last_update: 01/12/2022
 Quả sấu:
   n_rows: 17
   id: 195
->>>>>>> train
   first_update: 08/07/2021
   last_update: 01/09/2022
 Quả Mắc cọp (lê rừng):
   n_rows: 32
-<<<<<<< HEAD
-  id: 228
-  first_update: 08/07/2021
-  last_update: 08/08/2022
-Ngọn su su:
-  n_rows: 106
-  id: 229
-  first_update: 12/04/2021
-  last_update: 04/07/2022
-Xoài Tròn Sông Mã:
-  n_rows: 34
-  id: 230
-=======
   id: 196
   first_update: 08/07/2021
   last_update: 08/08/2022
 Xoài Tròn Sông Mã:
   n_rows: 34
   id: 197
->>>>>>> train
   first_update: 18/05/2021
   last_update: 04/07/2022
 Xoài Úc:
   n_rows: 53
-<<<<<<< HEAD
-  id: 231
-=======
   id: 198
->>>>>>> train
   first_update: 12/04/2021
   last_update: 04/07/2022
 Cải ngọt:
   n_rows: 103
-<<<<<<< HEAD
-  id: 232
-=======
   id: 199
->>>>>>> train
   first_update: 15/04/2021
   last_update: 24/05/2022
 Quả bí thơm:
   n_rows: 105
-<<<<<<< HEAD
-  id: 233
-=======
   id: 200
->>>>>>> train
   first_update: 04/01/2021
   last_update: 12/05/2022
 Cải mơ:
   n_rows: 10
-<<<<<<< HEAD
-  id: 234
-=======
   id: 201
->>>>>>> train
   first_update: 04/11/2021
   last_update: 06/05/2022
 Sapo:
   n_rows: 50
-<<<<<<< HEAD
-  id: 235
-=======
   id: 202
->>>>>>> train
   first_update: 05/01/2021
   last_update: 04/05/2022
 Sầu riêng:
   n_rows: 21
-<<<<<<< HEAD
-  id: 236
-=======
   id: 203
->>>>>>> train
   first_update: 14/04/2021
   last_update: 04/05/2022
 Quả đào:
   n_rows: 13
-<<<<<<< HEAD
-  id: 237
-  first_update: 12/04/2021
-  last_update: 25/04/2022
-Đu đủ ruột đỏ:
-  n_rows: 94
-  id: 238
-  first_update: 12/04/2021
-  last_update: 02/12/2021
-Chanh leo:
-  n_rows: 15
-  id: 239
-=======
   id: 204
   first_update: 12/04/2021
   last_update: 25/04/2022
 Chanh leo:
   n_rows: 15
   id: 205
->>>>>>> train
   first_update: 02/07/2021
   last_update: 26/08/2021
 Dưa lưới:
   n_rows: 11
-<<<<<<< HEAD
-  id: 240
-=======
   id: 206
->>>>>>> train
   first_update: 25/06/2021
   last_update: 29/07/2021
 Mận hậu (loại 1):
   n_rows: 25
-<<<<<<< HEAD
-  id: 241
-=======
   id: 207
->>>>>>> train
   first_update: 12/04/2021
   last_update: 08/07/2021
 Dưa hấu (trái dài):
   n_rows: 19
-<<<<<<< HEAD
-  id: 242
-=======
   id: 208
->>>>>>> train
   first_update: 14/04/2021
   last_update: 07/07/2021
 Mận Tam Hoa (loại 1):
   n_rows: 10
-<<<<<<< HEAD
-  id: 243
-=======
   id: 209
->>>>>>> train
   first_update: 12/04/2021
   last_update: 06/05/2021

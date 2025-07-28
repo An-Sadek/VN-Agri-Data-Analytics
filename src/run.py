@@ -107,6 +107,7 @@ class ForcastModel:
 
         if model_type=="sarimax":
             y_pred = model.forecast(exog=exog, steps=steps)
+            print(y_pred)
 
         
         return y_pred
@@ -114,4 +115,4 @@ class ForcastModel:
 
 if __name__ == "__main__":
     model = ForcastModel("models", "data/metadata")
-    model.forcast_by_date("01/01/2030", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="OH", model_type="dlm")
+    model.forcast_by_date("01/01/2030", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="OH", model_type="sarimax")
