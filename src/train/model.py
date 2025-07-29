@@ -78,3 +78,5 @@ for epoch in range(10):
         optimizer.step()
 
     print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
+
+torch.save(model, "transformer_model_full.pth")
