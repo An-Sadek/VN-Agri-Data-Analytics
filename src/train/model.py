@@ -1,79 +1,80 @@
 import os
-import yaml
-from datetime import datetime as dt
-
+import torch
+import torch.nn as nn
 import pandas as pd
-import numpy as np
-import pickle
-
-import warnings
-
-warnings.filterwarnings("ignore")
 
 
-class ForecastModel:
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
 
-    def __init__(self,
-        df_path: str,
-        models_dir: str,
-        item_metadata_path: str,
-        scaler_path: str
-    ):
-        self.df = pd.read_csv(df_path)
-        self.items = self.df["Tên_mặt_hàng"].unique().tolist()
-        print(self.items)
-        self.df["Ngày"] = pd.to_datetime(self.df["Ngày"], format="%Y-%m-%d")
+from torch.utils.data import DataLoader, TensorDataset
 
-        self.models_dir = models_dir
+class TimeSeriesTransformer(nn.Module):
+    def __init__(self, input_dim, model_dim, num_heads, num_layers, output_dim, dropout=0.3):
+        super().__init__()
+        self.model_dim = model_dim
+        self.input_proj = nn.Linear(input_dim, model_dim)
+        self.pos_encoder = nn.Parameter(torch.randn(1, 500, model_dim))  # assume max seq_len = 500
 
-        with open(item_metadata_path, "r", encoding="utf-8") as file:
-            self.item_metadata = yaml.safe_load(file)
+        encoder_layer = nn.TransformerEncoderLayer(d_model=model_dim, nhead=num_heads, dropout=dropout)
+        self.encoder = nn.TransformerEncoder(encoder_layer, num_layers=num_layers)
 
-        with open(scaler_path, "r", encoding="utf-8") as file:
-            self.scaler_metadata = yaml.safe_load(file)
+        self.decoder = nn.Sequential(
+            nn.Linear(model_dim, 128),
+            nn.ReLU(),
+            nn.Linear(128, output_dim)
+        )
 
-
-    def forecast_date(self, 
-        ngay,
-        ten_mat_hang,
-        thi_truong,
-        loai_gia,
-        nguon
-    ):
-        ngay = pd.to_datetime(ngay, format="%d/%m/%Y")
-        item_df = self.df[self.df["Tên_mặt_hàng"] == ten_mat_hang]
-        last_update = item_df["Ngày"].max()
-        
-        steps = abs((last_update - ngay).days)
-        item_idx = self.items.index(ten_mat_hang)
-
-        model_path = os.path.join(self.models_dir, f"{item_idx}.pkl")
-        with open(model_path, "rb") as file:
-            model = pickle.load(file)
-
-        # Exog
-        thi_truong =    self.scaler_metadata["Thị_trường"][thi_truong] / \
-                        self.scaler_metadata["Thị_trường"]["max"]
-
-        loai_gia =  self.scaler_metadata["Loại_giá"][loai_gia] / \
-                    self.scaler_metadata["Loại_giá"]["max"]
-        
-        nguon = self.scaler_metadata["Nguồn"][nguon] / \
-                self.scaler_metadata["Nguồn"]["max"]
-
-        exog = [[thi_truong, loai_gia, nguon]*steps]
-
-        results = model.forecast(exog = exog, steps=steps)
-
-        print(results)
+    def forward(self, x):
+        x = self.input_proj(x) + self.pos_encoder[:, :x.size(1)]
+        x = self.encoder(x)
+        out = self.decoder(x[:, -1])  # use last token for prediction
+        return out
 
 
-if __name__ == "__main__":
-    model = ForecastModel(
-        "data/pre_data.csv",
-        "models/sarimax",
-        "data/metadata/item.yaml",
-        "data/metadata/scaler.yaml"
-    )
+df = pd.read_csv("data/scaler_all.csv")
+df["Ngày"] = pd.to_datetime(df["Ngày"], format="%Y-%m-%d")
+cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
 
-    model.forecast_date("01/01/2040", "OM 5451", "Cần Thơ", "Thương lái thu mua", "CTV địa phương")
+SEQ_LEN = 10
+input_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
+X, y = [], []
+
+for item in df["Tên_mặt_hàng"].unique():
+    item_df = df[df["Tên_mặt_hàng"] == item]
+
+    item_values = item_df[input_cols + ["Giá"]].values
+
+    for i in range(len(item_values) - SEQ_LEN):
+        seq_x = item_values[i:i+SEQ_LEN, :-1]  # exclude "Giá"
+        seq_y = item_values[i+SEQ_LEN, -1]     # "Giá" tại bước kế tiếp
+        X.append(seq_x)
+        y.append(seq_y)
+
+X = torch.tensor(X, dtype=torch.float32)  # shape: [batch, seq_len, input_dim]
+y = torch.tensor(y, dtype=torch.float32).unsqueeze(-1)
+
+# Tạo DataLoader
+dataset = TensorDataset(X, y)
+loader = DataLoader(dataset, batch_size=32, shuffle=True)
+
+model = TimeSeriesTransformer(
+    input_dim=X.shape[2],
+    model_dim=64,
+    num_heads=4,
+    num_layers=2,
+    output_dim=1
+)
+
+optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+loss_fn = nn.MSELoss()
+
+for epoch in range(10):
+    for batch_x, batch_y in loader:
+        output = model(batch_x)
+        loss = loss_fn(output, batch_y)
+
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
+
+    print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")

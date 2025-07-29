@@ -1,6 +1,7 @@
 import os
 import yaml
 from datetime import datetime as dt
+from orbit.forecaster import Forecaster
 
 import pandas as pd
 import numpy as np
@@ -36,7 +37,7 @@ class ForcastModel:
             model_type: str="dlm",
             encoding_type: str="OH"
     ):
-        assert model_type in ["dlm", "sarimax"]
+        assert model_type in ["dlm", "sarimax", "dlt"]
         assert encoding_type in ["OH", "LBL"]
 
         # Chuyển ngày về pd TimeStamp
@@ -83,8 +84,8 @@ class ForcastModel:
 
             # Gộp lại các cột
             exog = np.concat([e_thi_truong, e_loai_gia, e_nguon])
+            exog_df = pd.DataFrame(exog, columns=["Thị_trường", "Loại_giá", "Nguồn"])
             exog = np.tile(exog, (steps, 1))
-            print(exog.shape)
 
         elif encoding_type=="LBL":
             
@@ -99,7 +100,7 @@ class ForcastModel:
         
             exog = np.array([e_thi_truong, e_loai_gia, e_nguon])
             exog = np.tile(exog, (steps, 1))
-            print(exog.shape)
+
             
         # Lấy model từ idx và loại model
         with open(os.path.join(self.models_path, f"{model_type}_{encoding_type}/{idx}.pkl"), "rb") as file:
@@ -109,10 +110,15 @@ class ForcastModel:
             y_pred = model.forecast(exog=exog, steps=steps)
             print(y_pred)
 
+        if model_type=="dlt":
+            forecaster = Forecaster(model=model)
+            y_pred = forecaster.predict(df=exog_df, steps_ahead=10)
+            print(y_pred)
+
         
         return y_pred
 
 
 if __name__ == "__main__":
     model = ForcastModel("models", "data/metadata")
-    model.forcast_by_date("01/01/2030", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="OH", model_type="sarimax")
+    model.forcast_by_date("01/01/2026", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="LBL", model_type="sarimax")

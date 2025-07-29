@@ -105,7 +105,7 @@ class RawDataset:
     def _label_encoding(self):
         lbl_encoder = LabelEncoder()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"], errors='ignore').columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá"], errors='ignore').columns
         for col in cat_cols:
             self.df[col] = lbl_encoder.fit_transform(self.df[col])
                 
@@ -113,7 +113,7 @@ class RawDataset:
     def _mm_normalizing(self):
         mm_normalizer = MinMaxScaler()
 
-        cat_cols = self.df.drop(columns=["Ngày", "Giá", "Tên_mặt_hàng"]).columns
+        cat_cols = self.df.drop(columns=["Ngày", "Giá"]).columns
         for col in cat_cols:
             self.df[col] = mm_normalizer.fit_transform(self.df[[col]])
 
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     metadata = dataset.get_item_metadata("data/metadata/raw.yaml")
 
     # LBL + MM
-    dataset.preprocess_all(b4_oh_scaler="data/pre_data.csv", after_oh_scaler="data/scaler.csv")
+    dataset.preprocess_all(b4_oh_scaler="data/pre_data.csv", after_oh_scaler="data/scaler_all.csv")
     print(f"After preprocessing: {len(dataset)} rows")
 
     # OH encoding
