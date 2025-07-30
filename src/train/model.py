@@ -68,7 +68,7 @@ model = TimeSeriesTransformer(
 optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 loss_fn = nn.MSELoss()
 
-for epoch in range(10):
+for epoch in range(1):
     for batch_x, batch_y in loader:
         output = model(batch_x)
         loss = loss_fn(output, batch_y)
@@ -79,4 +79,4 @@ for epoch in range(10):
 
     print(f"Epoch {epoch+1}, Loss: {loss.item():.4f}")
 
-torch.save(model, "transformer_model_full.pth")
+torch.save(model, "model.pth")
