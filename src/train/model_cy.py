@@ -46,10 +46,11 @@ df["Ngày"] = pd.to_datetime(df["Ngày"], format="%Y-%m-%d")
 # Add day-of-year sine as positional encoding
 df["dayofyear"] = df["Ngày"].dt.dayofyear
 df["dayofyear_sin"] = np.sin(2 * np.pi * df["dayofyear"] / 365)
+df["dayofyear_cos"] = np.cos(2 * np.pi * df["dayofyear"] / 365)
 
 # Define input columns
 cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
-input_cols = cat_cols + ["dayofyear_sin"]
+input_cols = cat_cols + ["dayofyear_sin", "dayofyear_cos"]
 SEQ_LEN = 10
 
 # Encode categorical features numerically
@@ -89,7 +90,7 @@ loss_fn = nn.MSELoss()
 loss_history = []
 
 # --- Training ---
-EPOCHS = 2
+EPOCHS = 300
 for epoch in range(EPOCHS):
     model.train()
     epoch_losses = []
