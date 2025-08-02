@@ -1,35 +1,53 @@
-import pandas as pd
-import numpy as np
+import torch
+import torch.nn as nn
+torch.torch.manual_seed(42)
+vocab = ["i", "love", "pizza"]
 
-# Create example data
-np.random.seed(42)
+word_to_index = {"i": 0, "love": 1, "pizza": 2}
+sentence = ["i", "love", "pizza"]
+indices = [word_to_index[word] for word in sentence]  # [0, 1, 2]
 
-dates = pd.to_datetime([
-    "2023-01-01", "2023-01-05", "2023-01-10", "2023-01-15", "2023-01-20",
-    "2023-02-01", "2023-02-03", "2023-02-15", "2023-03-01", "2023-03-10"
-])
-n = len(dates)
+# Create embedding layer
+vocab_size = len(vocab)        # 3
+embedding_dim = 5              # You choose this (e.g., 50, 100, etc.)
+embedding = nn.Embedding(vocab_size, embedding_dim)
 
-df = pd.DataFrame({
-    "date": dates,
-    "y": np.random.randn(n).cumsum() + 10,
-    "x1": np.random.randn(n),
-    "x2": np.random.rand(n) * 5
-})
+# Convert indices to tensor
+input_indices = torch.tensor(indices)  # shape: [3]
 
-# Simple fix - just fit the model directly
-from orbit.models.dlt import DLT
+# Get embeddings
+embedded = embedding(input_indices)    # shape: [3, 5]
+print(embedded)
 
-model = DLT(
-    response_col="y",
-    date_col="date",
-    regressor_col=["x1", "x2"],
-    seed=42
-)
+d = embedded.shape[1]
+dk = 5
+dv = 4
 
-# Don't use Forecaster - just fit directly
-model.fit(df)
+W_q = torch.nn.Parameter(torch.rand(d, dk))
+W_k = torch.nn.Parameter(torch.rand(d, dk))
+W_v = torch.nn.Parameter(torch.rand(d, dv))
 
-# Make predictions
-predictions = model.predict(df)
-print(predictions)
+Q = embedded @ W_q
+K = embedded @ W_k
+V = embedded @ W_v
+
+print("\nQ")
+print(Q)
+
+print("\nK")
+print(K)
+
+print("\nV")
+print(V)
+
+scores = Q @ K.T
+print(scores)
+
+scaled_scores = scores/(d**1/2)
+print(scaled_scores)
+
+attention_weights = torch.softmax(scaled_scores, dim=1)
+print(attention_weights)
+
+output = attention_weights @ V
+print(output)

@@ -9,6 +9,8 @@ import pickle
 
 import warnings
 
+from train.model import TimeSeriesTransformer
+
 warnings.filterwarnings("ignore")
 
 
@@ -119,6 +121,35 @@ class ForcastModel:
         return y_pred
 
 
+    def transformer_forecast(self,
+            df: pd.DataFrame,
+            model,
+            seq_len=10
+    ):
+        df["Ngày"] = pd.to_datetime(df["Ngày"], format="%Y-%m-%d")
+        df["dayofyear"] = df["Ngày"].dt.dayofyear
+        df["dayofyear_sin"] = np.sin(2 * np.pi * df["dayofyear"] / 365)
+        df["dayofyear_cos"] = np.cos(2 * np.pi * df["dayofyear"] / 365)
+
+        df["Thị_trường"] = df["Thị_trường"].apply(
+            lambda x: self.scaler["Thị_trường"][x] / \
+                        self.scaler["Thị_trường"]["max"]
+        )
+
+        df["Loại_giá"] = df["Loại_giá"].apply(
+            lambda x: self.scaler["Loại_giá"][x] / \
+                        self.scaler["Loại_giá"]["max"]
+        )
+
+        df["Nguồn"] = df["Nguồn"].apply(
+            lambda x: self.scaler["Nguồn"][x] / \
+                        self.scaler["Nguồn"]["max"]
+        )
+
+
 if __name__ == "__main__":
     model = ForcastModel("models", "data/metadata")
     model.forcast_by_date("01/01/2026", "Cà phê Robusta nhân xô", "An Giang", "Bán buôn", "Bán lẻ", encoding_type="LBL", model_type="sarimax")
+
+
+    
