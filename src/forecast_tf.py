@@ -1,15 +1,17 @@
+import os
+
 import pandas as pd
 import numpy as np
 import torch
-from model import TimeSeriesTransformer  # Adjust this if your file is in a different folder
+from model import TimeSeriesTransformer
 
-# --- Device Setup ---
+# --- Setup ---
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-# --- Constants ---
 SEQ_LEN = 10
 MODEL_PATH = "model.pth"
 CSV_PATH = "data/scaler_all.csv"
+
+assert os.path.exists(MODEL_PATH)
 
 # --- Load and Preprocess Data ---
 df = pd.read_csv(CSV_PATH)
@@ -18,11 +20,10 @@ df["dayofyear"] = df["Ngày"].dt.dayofyear
 df["dayofyear_sin"] = np.sin(2 * np.pi * df["dayofyear"] / 365)
 df["dayofyear_cos"] = np.cos(2 * np.pi * df["dayofyear"] / 365)
 
-# Define input columns
 cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
 input_cols = cat_cols + ["dayofyear_sin", "dayofyear_cos"]
 
-# Encode categorical features (NOTE: This must match training! Use same mappings if possible)
+# Factorize categorical columns
 for col in cat_cols:
     df[col] = pd.factorize(df[col])[0]
 
@@ -38,17 +39,37 @@ model = TimeSeriesTransformer(
 model.load_state_dict(torch.load(MODEL_PATH, map_location=device))
 model.eval()
 
-# --- Forecast for a Given Product ---
-item_id = 0  # Replace with desired product ID (based on factorized "Tên_mặt_hàng")
+# --- Reforecast All Training Sequences ---
+predictions = []
+actuals = []
+dates = []
+items = []
 
-item_df = df[df["Tên_mặt_hàng"] == item_id].sort_values("Ngày")
-if len(item_df) < SEQ_LEN:
-    raise ValueError(f"Not enough data for item {item_id} to create a sequence of length {SEQ_LEN}")
+for item_id in df["Tên_mặt_hàng"].unique():
+    item_df = df[df["Tên_mặt_hàng"] == item_id].sort_values("Ngày").reset_index(drop=True)
+    item_values = item_df[input_cols + ["Giá"]].values
 
-latest_seq = item_df[input_cols].values[-SEQ_LEN:]  # shape: (SEQ_LEN, input_dim)
-x_input = torch.tensor(latest_seq, dtype=torch.float32).unsqueeze(0).to(device)  # shape: (1, SEQ_LEN, input_dim)
+    for i in range(len(item_values) - SEQ_LEN):
+        seq_x = item_values[i:i + SEQ_LEN, :-1]
+        target_y = item_values[i + SEQ_LEN, -1]
+        target_date = item_df.loc[i + SEQ_LEN, "Ngày"]
 
-# --- Make Prediction ---
-with torch.no_grad():
-    prediction = model(x_input)
-    print(f"Forecasted 'Giá' for item {item_id}: {prediction.item():.2f}")
+        x_input = torch.tensor(seq_x, dtype=torch.float32).unsqueeze(0).to(device)
+
+        with torch.no_grad():
+            pred_y = model(x_input).item()
+
+        predictions.append(pred_y)
+        actuals.append(target_y)
+        dates.append(target_date)
+        items.append(item_id)
+
+# --- Save Forecast Results ---
+results_df = pd.DataFrame({
+    "Tên_mặt_hàng": items,
+    "Ngày": dates,
+    "Actual_Giá": actuals,
+    "Forecasted_Giá": predictions
+})
+
+results_df.to_csv("forecast_from_training.csv", index=False)
