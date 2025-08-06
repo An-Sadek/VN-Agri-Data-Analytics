@@ -1,0 +1,1970 @@
+Cà phê Robusta nhân xô:
+  n_rows: 4824
+  id: 0
+  first_update: 01/01/2020
+  last_update: 09/05/2025
+Cà phê Arabica nhân xô:
+  n_rows: 21
+  id: 1
+  first_update: 06/04/2021
+  last_update: 18/06/2021
+CLC 4900:
+  n_rows: 116
+  id: 2
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+IR 5451:
+  n_rows: 116
+  id: 3
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+Jasmine:
+  n_rows: 334
+  id: 4
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+OM 18:
+  n_rows: 360
+  id: 5
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+OM 5451:
+  n_rows: 264
+  id: 6
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+ST25:
+  n_rows: 129
+  id: 7
+  first_update: 02/01/2024
+  last_update: 19/05/2025
+Đài Thơm 8:
+  n_rows: 219
+  id: 8
+  first_update: 04/01/2023
+  last_update: 19/05/2025
+Gạo thường:
+  n_rows: 240
+  id: 9
+  first_update: 04/01/2023
+  last_update: 19/05/2025
+Gạo 15% tấm:
+  n_rows: 111
+  id: 10
+  first_update: 02/01/2024
+  last_update: 16/05/2025
+Gạo 25% tấm:
+  n_rows: 111
+  id: 11
+  first_update: 02/01/2024
+  last_update: 16/05/2025
+Gạo 5% tấm:
+  n_rows: 111
+  id: 12
+  first_update: 02/01/2024
+  last_update: 16/05/2025
+Gạo thơm:
+  n_rows: 220
+  id: 13
+  first_update: 05/01/2023
+  last_update: 16/05/2025
+Gạo thường (IR 50404):
+  n_rows: 220
+  id: 14
+  first_update: 05/01/2023
+  last_update: 16/05/2025
+IR 50404:
+  n_rows: 453
+  id: 15
+  first_update: 05/01/2023
+  last_update: 16/05/2025
+OM 6976:
+  n_rows: 235
+  id: 16
+  first_update: 05/01/2023
+  last_update: 16/05/2025
+Đài thơm 8:
+  n_rows: 313
+  id: 17
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Gạo NL 15% tấm:
+  n_rows: 107
+  id: 18
+  first_update: 03/01/2024
+  last_update: 16/05/2025
+Gạo NL 25% tấm:
+  n_rows: 221
+  id: 19
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Gạo NL 5% tấm:
+  n_rows: 221
+  id: 20
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Gạo XK 15% tấm:
+  n_rows: 221
+  id: 21
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Gạo XK 25% tấm:
+  n_rows: 221
+  id: 22
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Gạo XK 5% tấm:
+  n_rows: 227
+  id: 23
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+Nhật:
+  n_rows: 218
+  id: 24
+  first_update: 02/01/2024
+  last_update: 16/05/2025
+RVT:
+  n_rows: 213
+  id: 25
+  first_update: 04/01/2023
+  last_update: 16/05/2025
+ST 24:
+  n_rows: 109
+  id: 26
+  first_update: 03/01/2024
+  last_update: 16/05/2025
+Đài Loan:
+  n_rows: 109
+  id: 27
+  first_update: 02/01/2024
+  last_update: 15/05/2025
+Hương Lài:
+  n_rows: 109
+  id: 28
+  first_update: 02/01/2024
+  last_update: 15/05/2025
+Nàng Hoa 9:
+  n_rows: 83
+  id: 29
+  first_update: 02/01/2024
+  last_update: 15/05/2025
+Nàng Nhen:
+  n_rows: 109
+  id: 30
+  first_update: 02/01/2024
+  last_update: 15/05/2025
+Sóc Thái:
+  n_rows: 109
+  id: 31
+  first_update: 02/01/2024
+  last_update: 15/05/2025
+'108':
+  n_rows: 6
+  id: 32
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Gạo XK 10% tấm:
+  n_rows: 6
+  id: 33
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Jacmine (Vàng):
+  n_rows: 6
+  id: 34
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Lức đỏ (Huyết Rồng Thái):
+  n_rows: 6
+  id: 35
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Nếp Sáp (Huyện Chợ Gạo- TG):
+  n_rows: 6
+  id: 36
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+NL L1:
+  n_rows: 6
+  id: 37
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+NL L2 (lức):
+  n_rows: 6
+  id: 38
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+OM 380:
+  n_rows: 6
+  id: 39
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Ôtin:
+  n_rows: 6
+  id: 40
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+SaRi hạt nhỏ:
+  n_rows: 6
+  id: 41
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+T 164:
+  n_rows: 6
+  id: 42
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+15% tấm:
+  n_rows: 6
+  id: 43
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+25% tấm:
+  n_rows: 6
+  id: 44
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+5% tấm:
+  n_rows: 6
+  id: 45
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+Hạt dài:
+  n_rows: 6
+  id: 46
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+IR50404:
+  n_rows: 6
+  id: 47
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+OM 4900:
+  n_rows: 6
+  id: 48
+  first_update: 02/04/2025
+  last_update: 14/05/2025
+ST24:
+  n_rows: 12
+  id: 49
+  first_update: 31/03/2025
+  last_update: 13/05/2025
+Lúa IR 50404 (lúa tươi):
+  n_rows: 894
+  id: 50
+  first_update: 04/01/2021
+  last_update: 06/05/2025
+Nếp AG (IR 4625):
+  n_rows: 4
+  id: 51
+  first_update: 03/04/2025
+  last_update: 24/04/2025
+Gạo nhóm lúa chất lượng cao (OM18):
+  n_rows: 2
+  id: 52
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Gạo nhóm lúa chất lượng trung bình (OM 576):
+  n_rows: 2
+  id: 53
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Gạo nhóm lúa thơm đặc sản (ST24):
+  n_rows: 2
+  id: 54
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Gạo nhóm lúa thơm đặc sản (ST25):
+  n_rows: 2
+  id: 55
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Lúa chất lượng cao (OM18):
+  n_rows: 2
+  id: 56
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Lúa chất lượng trung bình (OM576):
+  n_rows: 2
+  id: 57
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Lúa thơm đặc sản (ST24):
+  n_rows: 2
+  id: 58
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Lúa thơm đặc sản (ST25):
+  n_rows: 2
+  id: 59
+  first_update: 03/04/2025
+  last_update: 10/04/2025
+Gạo dài thường:
+  n_rows: 2
+  id: 60
+  first_update: 28/03/2025
+  last_update: 04/04/2025
+Gạo tài nguyên:
+  n_rows: 2
+  id: 61
+  first_update: 28/03/2025
+  last_update: 04/04/2025
+Gạo thơm thường:
+  n_rows: 2
+  id: 62
+  first_update: 28/03/2025
+  last_update: 04/04/2025
+OM 4218:
+  n_rows: 2
+  id: 63
+  first_update: 28/03/2025
+  last_update: 04/04/2025
+Gạo NL:
+  n_rows: 1
+  id: 64
+  first_update: 28/03/2025
+  last_update: 28/03/2025
+Gạo XK:
+  n_rows: 1
+  id: 65
+  first_update: 28/03/2025
+  last_update: 28/03/2025
+Lúa IR 50404:
+  n_rows: 676
+  id: 66
+  first_update: 04/01/2021
+  last_update: 14/03/2025
+Lúa Jasmine:
+  n_rows: 190
+  id: 67
+  first_update: 04/01/2021
+  last_update: 14/03/2025
+Lúa OM 6976:
+  n_rows: 282
+  id: 68
+  first_update: 04/03/2021
+  last_update: 14/03/2025
+Bắc Thơm 7:
+  n_rows: 199
+  id: 69
+  first_update: 04/01/2023
+  last_update: 20/12/2024
+Gạo BC15:
+  n_rows: 239
+  id: 70
+  first_update: 02/01/2023
+  last_update: 20/12/2024
+Gạo nếp cái hoa vàng:
+  n_rows: 239
+  id: 71
+  first_update: 02/01/2023
+  last_update: 20/12/2024
+Gạo Q5:
+  n_rows: 219
+  id: 72
+  first_update: 02/01/2023
+  last_update: 20/12/2024
+Lúa BC15:
+  n_rows: 304
+  id: 73
+  first_update: 08/03/2021
+  last_update: 20/12/2024
+Lúa nếp 97:
+  n_rows: 304
+  id: 74
+  first_update: 08/03/2021
+  last_update: 20/12/2024
+Lúa Q5:
+  n_rows: 249
+  id: 75
+  first_update: 19/04/2021
+  last_update: 20/12/2024
+T10:
+  n_rows: 199
+  id: 76
+  first_update: 04/01/2023
+  last_update: 20/12/2024
+Thiên Ưu:
+  n_rows: 199
+  id: 77
+  first_update: 04/01/2023
+  last_update: 20/12/2024
+VN10:
+  n_rows: 199
+  id: 78
+  first_update: 04/01/2023
+  last_update: 20/12/2024
+Lúa Nhật:
+  n_rows: 212
+  id: 79
+  first_update: 04/01/2023
+  last_update: 26/09/2024
+Nếp AG:
+  n_rows: 78
+  id: 80
+  first_update: 02/01/2024
+  last_update: 26/09/2024
+Lúa IR 50404 - lúa tươi:
+  n_rows: 233
+  id: 81
+  first_update: 04/01/2022
+  last_update: 07/08/2024
+Đài thơm 8 (lúa tươi):
+  n_rows: 349
+  id: 82
+  first_update: 04/03/2021
+  last_update: 20/12/2023
+Gạo Hương Lài:
+  n_rows: 127
+  id: 83
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Gạo Sóc Thái:
+  n_rows: 120
+  id: 84
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Gạo Sóc thường:
+  n_rows: 120
+  id: 85
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Gạo thơm Đài Loan (trong):
+  n_rows: 120
+  id: 86
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Gạo thơm Jasmine:
+  n_rows: 125
+  id: 87
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Gạo trắng thông dụng:
+  n_rows: 120
+  id: 88
+  first_update: 04/01/2023
+  last_update: 20/12/2023
+Lúa Nhật (lúa tươi):
+  n_rows: 134
+  id: 89
+  first_update: 01/04/2021
+  last_update: 20/12/2023
+Gạo 504:
+  n_rows: 98
+  id: 90
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Gạo CLC 4900:
+  n_rows: 105
+  id: 91
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Gạo Hương lài:
+  n_rows: 98
+  id: 92
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Gạo Jasmine:
+  n_rows: 98
+  id: 93
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Gạo nàng hoa:
+  n_rows: 105
+  id: 94
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Lúa IR 50404 (lúa khô):
+  n_rows: 98
+  id: 95
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Lúa IR Jasmine (lúa tươi):
+  n_rows: 115
+  id: 96
+  first_update: 14/02/2022
+  last_update: 20/12/2023
+Lúa Jasmine (lúa khô):
+  n_rows: 98
+  id: 97
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Lúa OM 4218 (lúa khô):
+  n_rows: 98
+  id: 98
+  first_update: 05/01/2023
+  last_update: 20/12/2023
+Lúa OM 4218 (lúa tươi):
+  n_rows: 153
+  id: 99
+  first_update: 04/01/2021
+  last_update: 20/12/2023
+Gạo (15% tấm):
+  n_rows: 109
+  id: 100
+  first_update: 05/01/2023
+  last_update: 19/12/2023
+Gạo (25% tấm):
+  n_rows: 109
+  id: 101
+  first_update: 05/01/2023
+  last_update: 19/12/2023
+Gạo (5% tấm):
+  n_rows: 109
+  id: 102
+  first_update: 05/01/2023
+  last_update: 19/12/2023
+Gạo NL 15%:
+  n_rows: 114
+  id: 103
+  first_update: 04/01/2023
+  last_update: 19/12/2023
+Lúa OM 18:
+  n_rows: 144
+  id: 104
+  first_update: 07/09/2021
+  last_update: 19/12/2023
+Lúa OM 5451:
+  n_rows: 405
+  id: 105
+  first_update: 04/02/2021
+  last_update: 19/12/2023
+Lúa ST 24:
+  n_rows: 114
+  id: 106
+  first_update: 04/01/2023
+  last_update: 19/12/2023
+Gạo IR50404:
+  n_rows: 19
+  id: 107
+  first_update: 05/01/2023
+  last_update: 18/05/2023
+Lúa OM 4218:
+  n_rows: 169
+  id: 108
+  first_update: 04/01/2021
+  last_update: 18/05/2023
+Lúa OM 6977:
+  n_rows: 1
+  id: 109
+  first_update: 12/05/2023
+  last_update: 12/05/2023
+lúa IR50404:
+  n_rows: 19
+  id: 110
+  first_update: 05/01/2023
+  last_update: 12/05/2023
+Lúa Thơm RVT:
+  n_rows: 146
+  id: 111
+  first_update: 29/03/2021
+  last_update: 12/05/2023
+Gạo Bắc thơm:
+  n_rows: 20
+  id: 112
+  first_update: 05/01/2023
+  last_update: 08/05/2023
+Gạo J02:
+  n_rows: 3
+  id: 113
+  first_update: 06/04/2023
+  last_update: 08/05/2023
+Gạo Khang dân:
+  n_rows: 20
+  id: 114
+  first_update: 05/01/2023
+  last_update: 08/05/2023
+Gạo nếp 97:
+  n_rows: 20
+  id: 115
+  first_update: 05/01/2023
+  last_update: 08/05/2023
+Gạo nếp cẩm:
+  n_rows: 20
+  id: 116
+  first_update: 05/01/2023
+  last_update: 08/05/2023
+Gạo Xi23:
+  n_rows: 20
+  id: 117
+  first_update: 05/01/2023
+  last_update: 08/05/2023
+Lúa Bắc thơm:
+  n_rows: 56
+  id: 118
+  first_update: 08/03/2021
+  last_update: 08/05/2023
+Lúa Khang dân:
+  n_rows: 56
+  id: 119
+  first_update: 08/03/2021
+  last_update: 08/05/2023
+Gạo Bắc thơm 7:
+  n_rows: 20
+  id: 120
+  first_update: 02/01/2023
+  last_update: 27/04/2023
+Lúa VN10:
+  n_rows: 46
+  id: 121
+  first_update: 19/04/2021
+  last_update: 27/04/2023
+Lúa ST:
+  n_rows: 50
+  id: 122
+  first_update: 30/03/2021
+  last_update: 19/04/2022
+Lúa Tài nguyên cũ:
+  n_rows: 49
+  id: 123
+  first_update: 30/03/2021
+  last_update: 19/04/2022
+Đài Thơm 8 (lúa khô):
+  n_rows: 186
+  id: 124
+  first_update: 04/03/2021
+  last_update: 19/04/2022
+Lúa OM 5451 (lúa tươi):
+  n_rows: 177
+  id: 125
+  first_update: 04/02/2021
+  last_update: 19/04/2022
+Lúa OM 18 (lúa tươi):
+  n_rows: 51
+  id: 126
+  first_update: 30/03/2021
+  last_update: 19/04/2022
+Lúa OM 6976 (lúa tươi):
+  n_rows: 199
+  id: 127
+  first_update: 04/03/2021
+  last_update: 19/04/2022
+Lúa ST24:
+  n_rows: 80
+  id: 128
+  first_update: 29/03/2021
+  last_update: 19/04/2022
+Lúa ST24 (lúa tươi):
+  n_rows: 127
+  id: 129
+  first_update: 29/03/2021
+  last_update: 19/04/2022
+Lúa Thơm RVT (lúa tươi):
+  n_rows: 48
+  id: 130
+  first_update: 06/04/2021
+  last_update: 19/04/2022
+Lúa RVT (lúa tươi):
+  n_rows: 80
+  id: 131
+  first_update: 29/03/2021
+  last_update: 18/04/2022
+Lúa OM 4900 (lúa tươi):
+  n_rows: 76
+  id: 132
+  first_update: 12/03/2021
+  last_update: 18/04/2022
+Lúa Jasmine (lúa tươi):
+  n_rows: 36
+  id: 133
+  first_update: 04/01/2021
+  last_update: 15/04/2022
+Lúa OM 2514 (lúa tươi):
+  n_rows: 44
+  id: 134
+  first_update: 04/03/2021
+  last_update: 15/04/2022
+Lúa OM 2517 (lúa tươi):
+  n_rows: 55
+  id: 135
+  first_update: 04/03/2021
+  last_update: 15/04/2022
+Lúa ST 24 (lúa tươi):
+  n_rows: 32
+  id: 136
+  first_update: 05/03/2021
+  last_update: 15/04/2022
+Nếp vỏ (lúa tươi):
+  n_rows: 35
+  id: 137
+  first_update: 08/04/2021
+  last_update: 14/04/2022
+Lúa Hạt dài (lúa khô):
+  n_rows: 48
+  id: 138
+  first_update: 04/03/2021
+  last_update: 14/04/2022
+Lúa hạt dài (lúa tươi):
+  n_rows: 49
+  id: 139
+  first_update: 04/03/2021
+  last_update: 14/04/2022
+Lúa OM 4900:
+  n_rows: 146
+  id: 140
+  first_update: 04/03/2021
+  last_update: 14/04/2022
+Lúa OM18 (lúa tươi):
+  n_rows: 14
+  id: 141
+  first_update: 07/06/2021
+  last_update: 13/04/2022
+Lúa OM576 (lúa tươi):
+  n_rows: 12
+  id: 142
+  first_update: 05/01/2022
+  last_update: 13/04/2022
+Lúa ST25 (lúa tươi):
+  n_rows: 12
+  id: 143
+  first_update: 05/01/2022
+  last_update: 13/04/2022
+Lúa thường IR 50404 (khô):
+  n_rows: 10
+  id: 144
+  first_update: 19/01/2022
+  last_update: 13/04/2022
+Lúa thường IR 50404 (tươi):
+  n_rows: 10
+  id: 145
+  first_update: 19/01/2022
+  last_update: 13/04/2022
+Lúa ST20 (lúa tươi):
+  n_rows: 50
+  id: 146
+  first_update: 04/08/2021
+  last_update: 07/03/2022
+Lúa ST5:
+  n_rows: 46
+  id: 147
+  first_update: 04/08/2021
+  last_update: 07/03/2022
+Lúa nếp vỏ:
+  n_rows: 25
+  id: 148
+  first_update: 01/04/2021
+  last_update: 10/02/2022
+Lúa Bắc thơm 7 (khô):
+  n_rows: 30
+  id: 149
+  first_update: 19/04/2021
+  last_update: 20/09/2021
+Lúa T10:
+  n_rows: 30
+  id: 150
+  first_update: 19/04/2021
+  last_update: 20/09/2021
+Lúa Thiên Ưu:
+  n_rows: 30
+  id: 151
+  first_update: 19/04/2021
+  last_update: 20/09/2021
+Lúa OM 2514:
+  n_rows: 33
+  id: 152
+  first_update: 04/03/2021
+  last_update: 17/09/2021
+Lúa OM 2517:
+  n_rows: 32
+  id: 153
+  first_update: 04/03/2021
+  last_update: 17/09/2021
+Lúa Một bụi đỏ (lúa tươi):
+  n_rows: 1
+  id: 154
+  first_update: 18/08/2021
+  last_update: 18/08/2021
+Lúa OM5454 (lúa tươi):
+  n_rows: 1
+  id: 155
+  first_update: 18/08/2021
+  last_update: 18/08/2021
+Lúa hạt dài 6976:
+  n_rows: 2
+  id: 156
+  first_update: 06/08/2021
+  last_update: 13/08/2021
+Lúa Nàng hoa 9 (lúa tươi):
+  n_rows: 2
+  id: 157
+  first_update: 06/08/2021
+  last_update: 13/08/2021
+Lúa OM 1490:
+  n_rows: 21
+  id: 158
+  first_update: 05/03/2021
+  last_update: 13/08/2021
+Lúa VD20:
+  n_rows: 21
+  id: 159
+  first_update: 05/03/2021
+  last_update: 13/08/2021
+Lúa Nếp chùm (lúa tươi):
+  n_rows: 1
+  id: 160
+  first_update: 06/08/2021
+  last_update: 06/08/2021
+Lúa (hạt dài):
+  n_rows: 1
+  id: 161
+  first_update: 06/08/2021
+  last_update: 06/08/2021
+Lúa chất lượng cao (lúa khô):
+  n_rows: 17
+  id: 162
+  first_update: 29/03/2021
+  last_update: 26/07/2021
+Lúa tài nguyên (cũ) (lúa tươi):
+  n_rows: 17
+  id: 163
+  first_update: 29/03/2021
+  last_update: 26/07/2021
+Lúa (hạt dài) lúa tươi:
+  n_rows: 7
+  id: 164
+  first_update: 05/03/2021
+  last_update: 23/07/2021
+Bắc Thơm 7 (lúa tươi):
+  n_rows: 16
+  id: 165
+  first_update: 07/06/2021
+  last_update: 22/07/2021
+Lúa BC15 (lúa tươi):
+  n_rows: 17
+  id: 166
+  first_update: 07/06/2021
+  last_update: 22/07/2021
+Lúa nếp 97 (lúa tươi):
+  n_rows: 12
+  id: 167
+  first_update: 07/06/2021
+  last_update: 22/07/2021
+Lúa nếp cái hoa vàng:
+  n_rows: 7
+  id: 168
+  first_update: 05/07/2021
+  last_update: 22/07/2021
+Lúa Q5 (lúa tươi):
+  n_rows: 16
+  id: 169
+  first_update: 07/06/2021
+  last_update: 22/07/2021
+Lúa T10 (lúa tươi):
+  n_rows: 16
+  id: 170
+  first_update: 07/06/2021
+  last_update: 22/07/2021
+Lúa Thiên Ưu (lúa tươi):
+  n_rows: 20
+  id: 171
+  first_update: 24/05/2021
+  last_update: 22/07/2021
+Lúa VN10 (lúa tươi):
+  n_rows: 16
+  id: 172
+  first_update: 24/05/2021
+  last_update: 22/07/2021
+Lúa OM 1490 (lúa tươi):
+  n_rows: 8
+  id: 173
+  first_update: 02/04/2021
+  last_update: 16/07/2021
+Lúa OM4218:
+  n_rows: 1
+  id: 174
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa OM5451:
+  n_rows: 2
+  id: 175
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa OM6976:
+  n_rows: 1
+  id: 176
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa Đài Thơm 8:
+  n_rows: 1
+  id: 177
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa Đài Thơm 8 (lúa tươi):
+  n_rows: 1
+  id: 178
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa OM5451 (lúa tươi):
+  n_rows: 1
+  id: 179
+  first_update: 07/06/2021
+  last_update: 07/06/2021
+Lúa OC 10:
+  n_rows: 1
+  id: 180
+  first_update: 19/05/2021
+  last_update: 19/05/2021
+Nếp chùm (lúa tươi):
+  n_rows: 7
+  id: 181
+  first_update: 02/04/2021
+  last_update: 14/05/2021
+Nàng hoa 9 (lúa tươi):
+  n_rows: 6
+  id: 182
+  first_update: 12/03/2021
+  last_update: 16/04/2021
+Bắp cải:
+  n_rows: 563
+  id: 183
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Bắp cải thảo:
+  n_rows: 112
+  id: 184
+  first_update: 01/02/2024
+  last_update: 19/05/2025
+Bưởi da xanh:
+  n_rows: 661
+  id: 185
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Bưởi Diễn:
+  n_rows: 57
+  id: 186
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Cà chua:
+  n_rows: 909
+  id: 187
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Cà rốt:
+  n_rows: 757
+  id: 188
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Chanh:
+  n_rows: 218
+  id: 189
+  first_update: 08/12/2022
+  last_update: 19/05/2025
+Củ cải:
+  n_rows: 204
+  id: 190
+  first_update: 09/05/2022
+  last_update: 19/05/2025
+Đào:
+  n_rows: 62
+  id: 191
+  first_update: 17/06/2021
+  last_update: 19/05/2025
+Đậu cove:
+  n_rows: 360
+  id: 192
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Dưa chuột/dưa chuột:
+  n_rows: 292
+  id: 193
+  first_update: 03/01/2023
+  last_update: 19/05/2025
+Khoai tây:
+  n_rows: 704
+  id: 194
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Mận hậu:
+  n_rows: 191
+  id: 195
+  first_update: 11/05/2021
+  last_update: 19/05/2025
+Mận tam hoa:
+  n_rows: 38
+  id: 196
+  first_update: 21/04/2022
+  last_update: 19/05/2025
+Mít thái:
+  n_rows: 367
+  id: 197
+  first_update: 07/06/2021
+  last_update: 19/05/2025
+Mơ:
+  n_rows: 7
+  id: 198
+  first_update: 21/04/2025
+  last_update: 19/05/2025
+Mồng tơi:
+  n_rows: 451
+  id: 199
+  first_update: 12/04/2021
+  last_update: 19/05/2025
+Mướp đắng:
+  n_rows: 370
+  id: 200
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Mướp hương:
+  n_rows: 454
+  id: 201
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Ổi:
+  n_rows: 414
+  id: 202
+  first_update: 23/04/2021
+  last_update: 19/05/2025
+Quả bầu:
+  n_rows: 506
+  id: 203
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Quả bí đỏ:
+  n_rows: 722
+  id: 204
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Quả bí xanh:
+  n_rows: 359
+  id: 205
+  first_update: 12/04/2021
+  last_update: 19/05/2025
+Rau cải:
+  n_rows: 362
+  id: 206
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Rau cải bó xôi:
+  n_rows: 116
+  id: 207
+  first_update: 18/01/2023
+  last_update: 19/05/2025
+Rau ngót:
+  n_rows: 539
+  id: 208
+  first_update: 04/05/2021
+  last_update: 19/05/2025
+Su hào:
+  n_rows: 238
+  id: 209
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Su su quả:
+  n_rows: 377
+  id: 210
+  first_update: 04/01/2021
+  last_update: 19/05/2025
+Thanh long:
+  n_rows: 336
+  id: 211
+  first_update: 07/06/2021
+  last_update: 19/05/2025
+Vải:
+  n_rows: 65
+  id: 212
+  first_update: 21/05/2021
+  last_update: 19/05/2025
+Xoài tròn Sông Mã:
+  n_rows: 20
+  id: 213
+  first_update: 13/05/2024
+  last_update: 19/05/2025
+Xoài tròn Yên Châu:
+  n_rows: 47
+  id: 214
+  first_update: 17/05/2021
+  last_update: 19/05/2025
+Cam sành:
+  n_rows: 630
+  id: 215
+  first_update: 05/01/2021
+  last_update: 13/05/2025
+Chôm chôm:
+  n_rows: 133
+  id: 216
+  first_update: 01/07/2021
+  last_update: 13/05/2025
+Dưa hấu:
+  n_rows: 958
+  id: 217
+  first_update: 05/01/2021
+  last_update: 13/05/2025
+Dưa lưới vàng:
+  n_rows: 37
+  id: 218
+  first_update: 21/06/2024
+  last_update: 13/05/2025
+Măng cụt:
+  n_rows: 217
+  id: 219
+  first_update: 29/07/2021
+  last_update: 13/05/2025
+Mướp:
+  n_rows: 203
+  id: 220
+  first_update: 10/06/2021
+  last_update: 13/05/2025
+Rau cải mơ:
+  n_rows: 253
+  id: 221
+  first_update: 26/04/2022
+  last_update: 13/05/2025
+Rau cải ngọt:
+  n_rows: 200
+  id: 222
+  first_update: 05/01/2023
+  last_update: 13/05/2025
+Rau dền:
+  n_rows: 121
+  id: 223
+  first_update: 17/08/2021
+  last_update: 13/05/2025
+Rau mùng tơi:
+  n_rows: 140
+  id: 224
+  first_update: 13/07/2021
+  last_update: 13/05/2025
+Rau muống:
+  n_rows: 355
+  id: 225
+  first_update: 12/07/2021
+  last_update: 13/05/2025
+Thanh long ruột trắng:
+  n_rows: 465
+  id: 226
+  first_update: 15/04/2021
+  last_update: 13/05/2025
+Xoài Cát Chu:
+  n_rows: 684
+  id: 227
+  first_update: 14/04/2021
+  last_update: 13/05/2025
+Dứa:
+  n_rows: 13
+  id: 228
+  first_update: 25/03/2025
+  last_update: 09/05/2025
+Dưa lê:
+  n_rows: 133
+  id: 229
+  first_update: 15/04/2021
+  last_update: 09/05/2025
+Quả bí đao:
+  n_rows: 35
+  id: 230
+  first_update: 17/12/2024
+  last_update: 09/05/2025
+Chanh leo tím:
+  n_rows: 59
+  id: 231
+  first_update: 04/09/2023
+  last_update: 08/05/2025
+Bưởi long Núm:
+  n_rows: 181
+  id: 232
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Bưởi năm roi:
+  n_rows: 179
+  id: 233
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Cải bẹ xanh:
+  n_rows: 181
+  id: 234
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Cam dây:
+  n_rows: 181
+  id: 235
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Chôm chôm Java:
+  n_rows: 184
+  id: 236
+  first_update: 23/04/2021
+  last_update: 07/05/2025
+Chôm chôm nhãn:
+  n_rows: 170
+  id: 237
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Chuối già:
+  n_rows: 181
+  id: 238
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Chuối sim:
+  n_rows: 181
+  id: 239
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Đu đủ:
+  n_rows: 170
+  id: 240
+  first_update: 14/04/2021
+  last_update: 07/05/2025
+Dừa khô:
+  n_rows: 334
+  id: 241
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Dừa tươi:
+  n_rows: 61
+  id: 242
+  first_update: 03/01/2023
+  last_update: 07/05/2025
+Hồng xiêm:
+  n_rows: 232
+  id: 243
+  first_update: 15/04/2021
+  last_update: 07/05/2025
+Ổi không hạt:
+  n_rows: 181
+  id: 244
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Sầu Riêng Ri 6 (loại đẹp):
+  n_rows: 69
+  id: 245
+  first_update: 03/01/2023
+  last_update: 07/05/2025
+Sầu Riêng Ri 6 (loại xô):
+  n_rows: 69
+  id: 246
+  first_update: 03/01/2023
+  last_update: 07/05/2025
+Thanh long ruột đỏ:
+  n_rows: 506
+  id: 247
+  first_update: 14/04/2021
+  last_update: 07/05/2025
+Trái Cóc mỡ:
+  n_rows: 181
+  id: 248
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Trái dứa/thơm:
+  n_rows: 522
+  id: 249
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Vú sữa lò rèn TG:
+  n_rows: 4
+  id: 250
+  first_update: 16/04/2025
+  last_update: 07/05/2025
+Xà lách:
+  n_rows: 60
+  id: 251
+  first_update: 03/01/2023
+  last_update: 07/05/2025
+Xoài keo:
+  n_rows: 183
+  id: 252
+  first_update: 05/01/2021
+  last_update: 07/05/2025
+Nhãn:
+  n_rows: 401
+  id: 253
+  first_update: 12/04/2021
+  last_update: 06/05/2025
+Quýt sim:
+  n_rows: 12
+  id: 254
+  first_update: 21/03/2025
+  last_update: 29/04/2025
+Súp lơ xanh:
+  n_rows: 70
+  id: 255
+  first_update: 03/01/2023
+  last_update: 22/04/2025
+Cam vinh:
+  n_rows: 42
+  id: 256
+  first_update: 04/01/2023
+  last_update: 14/04/2025
+Dâu tây:
+  n_rows: 19
+  id: 257
+  first_update: 16/12/2024
+  last_update: 14/04/2025
+Măng tây:
+  n_rows: 10
+  id: 258
+  first_update: 06/03/2025
+  last_update: 14/04/2025
+Táo đại:
+  n_rows: 48
+  id: 259
+  first_update: 26/01/2024
+  last_update: 14/04/2025
+Táo ngọt:
+  n_rows: 33
+  id: 260
+  first_update: 22/02/2024
+  last_update: 14/04/2025
+Vú sữa lò rèn Cần Thơ:
+  n_rows: 36
+  id: 261
+  first_update: 03/01/2023
+  last_update: 09/04/2025
+Rau cần:
+  n_rows: 105
+  id: 262
+  first_update: 11/11/2021
+  last_update: 08/04/2025
+Cam Cao Phong:
+  n_rows: 96
+  id: 263
+  first_update: 05/11/2021
+  last_update: 28/03/2025
+Vú sữa lò rèn Tiền Giang:
+  n_rows: 22
+  id: 264
+  first_update: 03/01/2023
+  last_update: 26/03/2025
+Na thái:
+  n_rows: 31
+  id: 265
+  first_update: 11/11/2024
+  last_update: 24/03/2025
+Táo:
+  n_rows: 14
+  id: 266
+  first_update: 04/02/2025
+  last_update: 21/03/2025
+Vú sữa:
+  n_rows: 48
+  id: 267
+  first_update: 03/01/2023
+  last_update: 18/03/2025
+Cam canh:
+  n_rows: 122
+  id: 268
+  first_update: 04/01/2021
+  last_update: 04/03/2025
+Na sầu riêng:
+  n_rows: 64
+  id: 269
+  first_update: 04/01/2023
+  last_update: 03/03/2025
+Bơ Boot:
+  n_rows: 20
+  id: 270
+  first_update: 11/11/2024
+  last_update: 10/02/2025
+Táo mèo:
+  n_rows: 171
+  id: 271
+  first_update: 08/07/2021
+  last_update: 10/02/2025
+Cam cara ruột đỏ:
+  n_rows: 17
+  id: 272
+  first_update: 11/11/2024
+  last_update: 03/02/2025
+Cam ly không hạt:
+  n_rows: 17
+  id: 273
+  first_update: 11/11/2024
+  last_update: 03/02/2025
+Chanh leo vàng:
+  n_rows: 122
+  id: 274
+  first_update: 04/01/2023
+  last_update: 03/02/2025
+Khoai sọ:
+  n_rows: 83
+  id: 275
+  first_update: 04/01/2021
+  last_update: 03/02/2025
+Quýt ngọt Phù Yên:
+  n_rows: 59
+  id: 276
+  first_update: 04/01/2021
+  last_update: 03/02/2025
+Lê:
+  n_rows: 121
+  id: 277
+  first_update: 17/08/2021
+  last_update: 24/01/2025
+Quýt Sài Gòn:
+  n_rows: 77
+  id: 278
+  first_update: 30/01/2024
+  last_update: 24/01/2025
+Bưởi diễn:
+  n_rows: 25
+  id: 279
+  first_update: 04/01/2023
+  last_update: 16/12/2024
+Mận hậu trái vụ:
+  n_rows: 1
+  id: 280
+  first_update: 16/12/2024
+  last_update: 16/12/2024
+Hồng ngâm:
+  n_rows: 88
+  id: 281
+  first_update: 07/09/2021
+  last_update: 12/11/2024
+Lựu:
+  n_rows: 79
+  id: 282
+  first_update: 21/09/2021
+  last_update: 12/11/2024
+Bơ nếp:
+  n_rows: 52
+  id: 283
+  first_update: 17/07/2023
+  last_update: 07/11/2024
+Hồng giòn:
+  n_rows: 24
+  id: 284
+  first_update: 12/08/2024
+  last_update: 07/11/2024
+Na:
+  n_rows: 154
+  id: 285
+  first_update: 16/07/2021
+  last_update: 07/11/2024
+Lê xanh:
+  n_rows: 18
+  id: 286
+  first_update: 25/07/2024
+  last_update: 26/09/2024
+Mít dai:
+  n_rows: 117
+  id: 287
+  first_update: 07/06/2021
+  last_update: 26/09/2024
+Mít mật:
+  n_rows: 105
+  id: 288
+  first_update: 07/06/2021
+  last_update: 26/09/2024
+Xoài Đài Loan:
+  n_rows: 229
+  id: 289
+  first_update: 12/04/2021
+  last_update: 26/08/2024
+Đào mỏ quạ:
+  n_rows: 28
+  id: 290
+  first_update: 11/07/2023
+  last_update: 06/08/2024
+Mận cơm xanh:
+  n_rows: 8
+  id: 291
+  first_update: 02/07/2024
+  last_update: 26/07/2024
+Xoài Thái:
+  n_rows: 25
+  id: 292
+  first_update: 26/04/2022
+  last_update: 19/07/2024
+Lê Tai Nung:
+  n_rows: 3
+  id: 293
+  first_update: 04/07/2022
+  last_update: 15/07/2024
+Nhãn tiêu quế:
+  n_rows: 141
+  id: 294
+  first_update: 05/01/2021
+  last_update: 03/07/2024
+Dưa bở:
+  n_rows: 3
+  id: 295
+  first_update: 28/05/2024
+  last_update: 11/06/2024
+Súp lơ:
+  n_rows: 125
+  id: 296
+  first_update: 04/01/2021
+  last_update: 10/06/2024
+Quả mơ:
+  n_rows: 8
+  id: 297
+  first_update: 25/04/2022
+  last_update: 06/05/2024
+Dâu tây Hana:
+  n_rows: 26
+  id: 298
+  first_update: 18/01/2023
+  last_update: 02/05/2024
+Na Đài Loan:
+  n_rows: 18
+  id: 299
+  first_update: 29/01/2024
+  last_update: 11/04/2024
+Cam Canh:
+  n_rows: 10
+  id: 300
+  first_update: 09/01/2023
+  last_update: 08/03/2024
+Quýt ngọt:
+  n_rows: 3
+  id: 301
+  first_update: 29/01/2024
+  last_update: 19/02/2024
+Táo chua, táo ngọt:
+  n_rows: 1
+  id: 302
+  first_update: 19/02/2024
+  last_update: 19/02/2024
+Na Thái:
+  n_rows: 36
+  id: 303
+  first_update: 04/01/2023
+  last_update: 25/01/2024
+Quýt:
+  n_rows: 11
+  id: 304
+  first_update: 07/12/2021
+  last_update: 19/12/2023
+Rau cải cúc:
+  n_rows: 3
+  id: 305
+  first_update: 01/12/2023
+  last_update: 19/12/2023
+Su su:
+  n_rows: 9
+  id: 306
+  first_update: 24/10/2023
+  last_update: 19/12/2023
+Dưa chuột/dưa chuội:
+  n_rows: 787
+  id: 307
+  first_update: 05/01/2021
+  last_update: 18/12/2023
+Cải xà lách:
+  n_rows: 121
+  id: 308
+  first_update: 05/01/2021
+  last_update: 13/12/2023
+Bơ:
+  n_rows: 57
+  id: 309
+  first_update: 12/07/2021
+  last_update: 23/11/2023
+Quýt Sài gòn:
+  n_rows: 198
+  id: 310
+  first_update: 15/04/2021
+  last_update: 14/11/2023
+Cam xoàn:
+  n_rows: 61
+  id: 311
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Cốc Thái:
+  n_rows: 43
+  id: 312
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Ổi Đài Loan:
+  n_rows: 61
+  id: 313
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Quýt đường:
+  n_rows: 115
+  id: 314
+  first_update: 26/04/2022
+  last_update: 06/10/2023
+Xoài cát Hòa Lộc:
+  n_rows: 300
+  id: 315
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Bưởi năm roi (loại 1):
+  n_rows: 259
+  id: 316
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Bưởi năm roi (loại 2):
+  n_rows: 199
+  id: 317
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Cam sành (loại 1):
+  n_rows: 159
+  id: 318
+  first_update: 13/04/2021
+  last_update: 06/10/2023
+Cam sành (loại 2):
+  n_rows: 159
+  id: 319
+  first_update: 13/04/2021
+  last_update: 06/10/2023
+Chôm chôm đường:
+  n_rows: 109
+  id: 320
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Chôm chôm thái:
+  n_rows: 112
+  id: 321
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Dừa xiêm:
+  n_rows: 109
+  id: 322
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Nhãn tiêu da bò:
+  n_rows: 307
+  id: 323
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Sầu riêng cơm vàng hạt lép:
+  n_rows: 322
+  id: 324
+  first_update: 12/04/2021
+  last_update: 06/10/2023
+Sầu riêng KQX:
+  n_rows: 88
+  id: 325
+  first_update: 23/04/2021
+  last_update: 06/10/2023
+Củ cải trắng:
+  n_rows: 97
+  id: 326
+  first_update: 04/01/2021
+  last_update: 05/10/2023
+Trái dứa/thơm (nhỏ):
+  n_rows: 94
+  id: 327
+  first_update: 12/04/2021
+  last_update: 05/10/2023
+Trái dứa/thơm (to):
+  n_rows: 94
+  id: 328
+  first_update: 12/04/2021
+  last_update: 05/10/2023
+Bưởi da xanh (loại 1):
+  n_rows: 218
+  id: 329
+  first_update: 13/04/2021
+  last_update: 05/10/2023
+Bưởi da xanh (loại 2):
+  n_rows: 151
+  id: 330
+  first_update: 13/04/2021
+  last_update: 05/10/2023
+Nhãn xuồng vàng:
+  n_rows: 95
+  id: 331
+  first_update: 09/05/2022
+  last_update: 05/10/2023
+Bồn bồn:
+  n_rows: 47
+  id: 332
+  first_update: 11/05/2022
+  last_update: 04/10/2023
+Chuối:
+  n_rows: 65
+  id: 333
+  first_update: 11/05/2022
+  last_update: 04/10/2023
+Dừa:
+  n_rows: 63
+  id: 334
+  first_update: 07/07/2021
+  last_update: 04/10/2023
+Khổ qua:
+  n_rows: 167
+  id: 335
+  first_update: 09/05/2022
+  last_update: 04/10/2023
+Sầu Riêng Ri 6:
+  n_rows: 139
+  id: 336
+  first_update: 05/01/2021
+  last_update: 04/10/2023
+Dưa hấu (loại 1):
+  n_rows: 76
+  id: 337
+  first_update: 13/04/2021
+  last_update: 03/10/2023
+Dưa hấu (loại 2):
+  n_rows: 74
+  id: 338
+  first_update: 13/04/2021
+  last_update: 03/10/2023
+Dừa xiêm lai:
+  n_rows: 58
+  id: 339
+  first_update: 13/04/2021
+  last_update: 03/10/2023
+Dừa xiêm xanh:
+  n_rows: 59
+  id: 340
+  first_update: 13/04/2021
+  last_update: 03/10/2023
+Hạt ca cao:
+  n_rows: 57
+  id: 341
+  first_update: 14/06/2022
+  last_update: 03/10/2023
+Trái Ca cao:
+  n_rows: 60
+  id: 342
+  first_update: 14/06/2022
+  last_update: 03/10/2023
+Chanh không hạt:
+  n_rows: 66
+  id: 343
+  first_update: 26/04/2022
+  last_update: 03/10/2023
+Mít ruột đỏ:
+  n_rows: 66
+  id: 344
+  first_update: 26/04/2022
+  last_update: 03/10/2023
+Mít Thái:
+  n_rows: 42
+  id: 345
+  first_update: 28/06/2021
+  last_update: 03/10/2023
+Chanh nấm:
+  n_rows: 60
+  id: 346
+  first_update: 26/04/2021
+  last_update: 29/09/2023
+Khoai sọ tím:
+  n_rows: 8
+  id: 347
+  first_update: 04/09/2023
+  last_update: 28/09/2023
+Nhãn ghép:
+  n_rows: 14
+  id: 348
+  first_update: 10/08/2023
+  last_update: 28/09/2023
+Nhãn miền Bắc:
+  n_rows: 14
+  id: 349
+  first_update: 01/08/2023
+  last_update: 26/09/2023
+Dưa vàng:
+  n_rows: 50
+  id: 350
+  first_update: 24/09/2021
+  last_update: 29/08/2023
+Cải thảo:
+  n_rows: 163
+  id: 351
+  first_update: 04/01/2021
+  last_update: 07/08/2023
+Xoài Tròn Sông Mã (Sơn La):
+  n_rows: 23
+  id: 352
+  first_update: 06/07/2021
+  last_update: 07/08/2023
+Nhãn miền Nam:
+  n_rows: 7
+  id: 353
+  first_update: 14/07/2023
+  last_update: 04/08/2023
+Nhãn xuồng trắng:
+  n_rows: 38
+  id: 354
+  first_update: 21/11/2022
+  last_update: 03/08/2023
+Xoài tròn Yên Châu (Sơn La):
+  n_rows: 16
+  id: 355
+  first_update: 06/07/2021
+  last_update: 13/07/2023
+Vải thiều:
+  n_rows: 11
+  id: 356
+  first_update: 26/05/2023
+  last_update: 30/06/2023
+Trái Vú Sữa lò rèn TG:
+  n_rows: 30
+  id: 357
+  first_update: 05/01/2021
+  last_update: 07/06/2023
+Cam Vinh:
+  n_rows: 53
+  id: 358
+  first_update: 04/01/2021
+  last_update: 09/03/2023
+Trái Vú Sữa lò rèn Cần Thơ:
+  n_rows: 35
+  id: 359
+  first_update: 05/01/2021
+  last_update: 08/02/2023
+Chanh tươi:
+  n_rows: 158
+  id: 360
+  first_update: 04/01/2021
+  last_update: 01/12/2022
+Bông cải Xanh:
+  n_rows: 28
+  id: 361
+  first_update: 11/05/2022
+  last_update: 30/11/2022
+Quả sấu:
+  n_rows: 17
+  id: 362
+  first_update: 08/07/2021
+  last_update: 01/09/2022
+Quả Mắc cọp (lê rừng):
+  n_rows: 32
+  id: 363
+  first_update: 08/07/2021
+  last_update: 08/08/2022
+Mận cơm:
+  n_rows: 5
+  id: 364
+  first_update: 12/07/2022
+  last_update: 02/08/2022
+Ngọn su su:
+  n_rows: 124
+  id: 365
+  first_update: 12/04/2021
+  last_update: 04/07/2022
+Xoài Tròn Sông Mã:
+  n_rows: 34
+  id: 366
+  first_update: 18/05/2021
+  last_update: 04/07/2022
+Xoài Úc:
+  n_rows: 53
+  id: 367
+  first_update: 12/04/2021
+  last_update: 04/07/2022
+Me chua, me ngọt:
+  n_rows: 20
+  id: 368
+  first_update: 15/04/2021
+  last_update: 16/06/2022
+Phật thủ:
+  n_rows: 1
+  id: 369
+  first_update: 16/06/2022
+  last_update: 16/06/2022
+Nhãn Idor:
+  n_rows: 6
+  id: 370
+  first_update: 23/04/2021
+  last_update: 10/06/2022
+Cải ngọt:
+  n_rows: 103
+  id: 371
+  first_update: 15/04/2021
+  last_update: 24/05/2022
+Quả bí thơm:
+  n_rows: 105
+  id: 372
+  first_update: 04/01/2021
+  last_update: 12/05/2022
+Xoài:
+  n_rows: 1
+  id: 373
+  first_update: 10/05/2022
+  last_update: 10/05/2022
+Cải mơ:
+  n_rows: 10
+  id: 374
+  first_update: 04/11/2021
+  last_update: 06/05/2022
+Sapo:
+  n_rows: 51
+  id: 375
+  first_update: 05/01/2021
+  last_update: 04/05/2022
+Sầu riêng:
+  n_rows: 21
+  id: 376
+  first_update: 14/04/2021
+  last_update: 04/05/2022
+Quả đào:
+  n_rows: 14
+  id: 377
+  first_update: 12/04/2021
+  last_update: 25/04/2022
+Dâu xanh:
+  n_rows: 1
+  id: 378
+  first_update: 12/01/2022
+  last_update: 12/01/2022
+Đu đủ ruột đỏ:
+  n_rows: 94
+  id: 379
+  first_update: 12/04/2021
+  last_update: 02/12/2021
+Táo đá Hà Giang:
+  n_rows: 1
+  id: 380
+  first_update: 04/11/2021
+  last_update: 04/11/2021
+Chanh leo:
+  n_rows: 15
+  id: 381
+  first_update: 02/07/2021
+  last_update: 26/08/2021
+Dưa lưới:
+  n_rows: 11
+  id: 382
+  first_update: 25/06/2021
+  last_update: 29/07/2021
+Bơ Sơn La:
+  n_rows: 3
+  id: 383
+  first_update: 05/07/2021
+  last_update: 08/07/2021
+Chanh leo Sơn La:
+  n_rows: 3
+  id: 384
+  first_update: 05/07/2021
+  last_update: 08/07/2021
+Mận hậu (loại 1):
+  n_rows: 25
+  id: 385
+  first_update: 12/04/2021
+  last_update: 08/07/2021
+Xoài Đài Loan Sơn La:
+  n_rows: 2
+  id: 386
+  first_update: 06/07/2021
+  last_update: 08/07/2021
+Dưa hấu (trái dài):
+  n_rows: 19
+  id: 387
+  first_update: 14/04/2021
+  last_update: 07/07/2021
+Nhãn chín sớm Sơn La:
+  n_rows: 1
+  id: 388
+  first_update: 06/07/2021
+  last_update: 06/07/2021
+Thanh long Sơn La:
+  n_rows: 5
+  id: 389
+  first_update: 28/06/2021
+  last_update: 06/07/2021
+Vải Sơn La:
+  n_rows: 1
+  id: 390
+  first_update: 01/07/2021
+  last_update: 01/07/2021
+Mận Tam Hoa (loại 1):
+  n_rows: 10
+  id: 391
+  first_update: 12/04/2021
+  last_update: 06/05/2021
+Nhãn da bò:
+  n_rows: 2
+  id: 392
+  first_update: 28/04/2021
+  last_update: 05/05/2021
+Bưởi diễn Sơn La:
+  n_rows: 7
+  id: 393
+  first_update: 12/04/2021
+  last_update: 26/04/2021
