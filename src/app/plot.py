@@ -31,8 +31,8 @@ def forecast_with_model(df_filtered, forecast_method, encoding_type, forecast_da
             return None, None
         
         # Load model
-        model_folder = f"{forecast_method.lower()}_{encoding_type}"
-        model_path = f"{base_path}/models/{model_folder}"
+        #@model_folder = f"{forecast_method.lower()}_{encoding_type}"
+        #model_path = f"{base_path}/models/{model_folder}"
         
         model_files = [f for f in os.listdir(model_path) if f.endswith('.pkl')]
         if not model_files:

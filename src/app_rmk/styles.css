@@ -1,0 +1,38 @@
+/* styles.css */
+.metric-box {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 1.5rem;
+    border-radius: 15px;
+    color: white;
+    margin: 1rem 0;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.metric-box h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.metric-box h2, .metric-box h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.footer-box {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 3rem;
+    border: 1px solid #e9ecef;
+}
+
+.stSelectbox > div > div {
+    background-color: #f8f9fa;
+}
+
+.stMultiSelect > div > div {
+    background-color: #f8f9fa;
+}
