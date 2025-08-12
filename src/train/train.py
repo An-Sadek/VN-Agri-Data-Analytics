@@ -52,7 +52,7 @@ def create_sequences(X, y, window_size=7):
     return torch.from_numpy(X_seq), torch.from_numpy(y_seq)
 
 
-window_size = 7
+window_size = 10
 X_seq, y_seq = create_sequences(X, y, window_size)
 
 # Add output dimension
