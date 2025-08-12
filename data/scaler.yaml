@@ -1,33 +1,33 @@
 Tên_mặt_hàng:
   Bơ: 0
-  Bưởi diễn: 1
-  Bắc Thơm 7: 2
-  Bắc Thơm 7 (lúa tươi): 3
-  Bắp cải thảo: 4
-  CLC 4900: 5
-  Cam Canh: 6
-  Cam Cao Phong: 7
-  Cam Vinh: 8
-  Cam canh: 9
-  Cam cara ruột đỏ: 10
-  Cam dây: 11
-  Cam sành (loại 2): 12
-  Cam vinh: 13
-  Cam xoàn: 14
-  Chanh không hạt: 15
-  Chanh leo: 16
-  Chanh leo tím: 17
-  Chanh leo vàng: 18
-  Chanh nấm: 19
-  Chanh tươi: 20
-  Chuối: 21
-  Chuối già: 22
-  Cà phê Arabica nhân xô: 23
-  Cà phê Robusta nhân xô: 24
-  Cải bẹ xanh: 25
-  Cải mơ: 26
-  Cải ngọt: 27
-  Cải thảo: 28
+  Bưởi da xanh (loại 1): 1
+  Bưởi diễn: 2
+  Bắc Thơm 7: 3
+  Bắc Thơm 7 (lúa tươi): 4
+  Bắp cải thảo: 5
+  CLC 4900: 6
+  Cam Canh: 7
+  Cam Cao Phong: 8
+  Cam Vinh: 9
+  Cam canh: 10
+  Cam cara ruột đỏ: 11
+  Cam dây: 12
+  Cam sành (loại 2): 13
+  Cam vinh: 14
+  Cam xoàn: 15
+  Chanh không hạt: 16
+  Chanh leo: 17
+  Chanh leo tím: 18
+  Chanh leo vàng: 19
+  Chanh nấm: 20
+  Chanh tươi: 21
+  Chuối: 22
+  Chuối già: 23
+  Cà phê Arabica nhân xô: 24
+  Cà phê Robusta nhân xô: 25
+  Cải bẹ xanh: 26
+  Cải mơ: 27
+  Cải ngọt: 28
   Cốc Thái: 29
   Củ cải: 30
   Củ cải trắng: 31
@@ -90,108 +90,111 @@ Tên_mặt_hàng:
   Lúa Jasmine: 88
   Lúa Jasmine (lúa khô): 89
   Lúa Jasmine (lúa tươi): 90
-  Lúa Nhật (lúa tươi): 91
-  Lúa OM 1490: 92
-  Lúa OM 18: 93
-  Lúa OM 2514: 94
-  Lúa OM 2514 (lúa tươi): 95
-  Lúa OM 2517 (lúa tươi): 96
-  Lúa OM 4218 (lúa khô): 97
-  Lúa OM 4218 (lúa tươi): 98
-  Lúa OM 4900: 99
-  Lúa OM 4900 (lúa tươi): 100
-  Lúa OM 5451 (lúa tươi): 101
-  Lúa OM 6976 (lúa tươi): 102
-  Lúa Q5: 103
-  Lúa RVT (lúa tươi): 104
-  Lúa ST: 105
-  Lúa ST 24: 106
-  Lúa ST20 (lúa tươi): 107
-  Lúa ST24 (lúa tươi): 108
-  Lúa ST5: 109
-  Lúa T10: 110
-  Lúa Thiên Ưu: 111
-  Lúa Thơm RVT: 112
-  Lúa Thơm RVT (lúa tươi): 113
-  Lúa Tài nguyên cũ: 114
-  Lúa VD20: 115
-  Lúa VN10: 116
-  Lúa nếp 97: 117
-  Lúa nếp 97 (lúa tươi): 118
-  Lựu: 119
-  Me chua, me ngọt: 120
-  Mít Thái: 121
-  Mít dai: 122
-  Mận Tam Hoa (loại 1): 123
-  Mận tam hoa: 124
-  Na Thái: 125
-  Na sầu riêng: 126
-  Na thái: 127
-  Na Đài Loan: 128
-  Ngọn su su: 129
-  Nhãn: 130
-  Nhãn miền Bắc: 131
-  Nhãn xuồng trắng: 132
-  Nhãn xuồng vàng: 133
-  Nhật: 134
-  Nàng Hoa 9: 135
-  Nàng Nhen: 136
-  Nếp AG: 137
-  Nếp vỏ (lúa tươi): 138
-  OM 18: 139
-  OM 6976: 140
-  Quýt: 141
-  Quýt Sài Gòn: 142
-  Quýt Sài gòn: 143
-  Quýt ngọt Phù Yên: 144
-  Quýt sim: 145
-  Quả bí thơm: 146
-  Quả bí đỏ: 147
-  Quả sấu: 148
-  Quả đào: 149
-  RVT: 150
-  Rau cải bó xôi: 151
-  ST 24: 152
-  ST24: 153
-  ST25: 154
-  Su hào: 155
-  Sóc Thái: 156
-  Súp lơ xanh: 157
-  Sầu Riêng Ri 6: 158
-  Sầu riêng: 159
-  Sầu riêng KQX: 160
-  Sầu riêng cơm vàng hạt lép: 161
-  T10: 162
-  Thanh long ruột trắng: 163
-  Thiên Ưu: 164
-  Trái Ca cao: 165
-  Trái Cóc mỡ: 166
-  Trái Vú Sữa lò rèn Cần Thơ: 167
-  Trái Vú Sữa lò rèn TG: 168
-  Táo ngọt: 169
-  Táo đại: 170
-  VN10: 171
-  Vú sữa: 172
-  Vú sữa lò rèn Cần Thơ: 173
-  Vải: 174
-  Vải thiều: 175
-  Xoài Thái: 176
-  Xoài Tròn Sông Mã: 177
-  Xoài Tròn Sông Mã (Sơn La): 178
-  Xoài tròn Sông Mã: 179
-  Xoài tròn Yên Châu: 180
-  Xoài Úc: 181
-  Xà lách: 182
-  Đu đủ ruột đỏ: 183
-  Đài Loan: 184
-  Đài Thơm 8: 185
-  Đài Thơm 8 (lúa khô): 186
-  Đài thơm 8: 187
-  Đài thơm 8 (lúa tươi): 188
-  Đào mỏ quạ: 189
-  Ổi: 190
-  Ổi không hạt: 191
-  max: 191
+  Lúa Nhật: 91
+  Lúa Nhật (lúa tươi): 92
+  Lúa OM 1490: 93
+  Lúa OM 18: 94
+  Lúa OM 2514: 95
+  Lúa OM 2514 (lúa tươi): 96
+  Lúa OM 2517 (lúa tươi): 97
+  Lúa OM 4218 (lúa khô): 98
+  Lúa OM 4218 (lúa tươi): 99
+  Lúa OM 4900: 100
+  Lúa OM 4900 (lúa tươi): 101
+  Lúa OM 5451: 102
+  Lúa OM 5451 (lúa tươi): 103
+  Lúa OM 6976: 104
+  Lúa OM 6976 (lúa tươi): 105
+  Lúa Q5: 106
+  Lúa RVT (lúa tươi): 107
+  Lúa ST: 108
+  Lúa ST 24: 109
+  Lúa ST20 (lúa tươi): 110
+  Lúa ST24 (lúa tươi): 111
+  Lúa ST5: 112
+  Lúa T10: 113
+  Lúa Thiên Ưu: 114
+  Lúa Thơm RVT: 115
+  Lúa Thơm RVT (lúa tươi): 116
+  Lúa Tài nguyên cũ: 117
+  Lúa VD20: 118
+  Lúa VN10: 119
+  Lúa nếp 97: 120
+  Lúa nếp 97 (lúa tươi): 121
+  Lựu: 122
+  Me chua, me ngọt: 123
+  Mít Thái: 124
+  Mít dai: 125
+  Mướp: 126
+  Mận Tam Hoa (loại 1): 127
+  Mận tam hoa: 128
+  Na Thái: 129
+  Na sầu riêng: 130
+  Na thái: 131
+  Na Đài Loan: 132
+  Ngọn su su: 133
+  Nhãn miền Bắc: 134
+  Nhãn xuồng trắng: 135
+  Nhãn xuồng vàng: 136
+  Nhật: 137
+  Nàng Hoa 9: 138
+  Nàng Nhen: 139
+  Nếp AG: 140
+  Nếp vỏ (lúa tươi): 141
+  OM 18: 142
+  OM 5451: 143
+  OM 6976: 144
+  Quýt: 145
+  Quýt Sài Gòn: 146
+  Quýt Sài gòn: 147
+  Quýt ngọt Phù Yên: 148
+  Quýt sim: 149
+  Quả bí thơm: 150
+  Quả bầu: 151
+  Quả sấu: 152
+  Quả đào: 153
+  RVT: 154
+  Rau cải bó xôi: 155
+  ST 24: 156
+  ST24: 157
+  ST25: 158
+  Sóc Thái: 159
+  Súp lơ xanh: 160
+  Sầu Riêng Ri 6: 161
+  Sầu riêng: 162
+  Sầu riêng KQX: 163
+  Sầu riêng cơm vàng hạt lép: 164
+  T10: 165
+  Thanh long ruột trắng: 166
+  Thiên Ưu: 167
+  Trái Ca cao: 168
+  Trái Cóc mỡ: 169
+  Trái Vú Sữa lò rèn Cần Thơ: 170
+  Trái Vú Sữa lò rèn TG: 171
+  Táo ngọt: 172
+  Táo đại: 173
+  VN10: 174
+  Vú sữa: 175
+  Vú sữa lò rèn Cần Thơ: 176
+  Vải: 177
+  Vải thiều: 178
+  Xoài Thái: 179
+  Xoài Tròn Sông Mã: 180
+  Xoài Tròn Sông Mã (Sơn La): 181
+  Xoài tròn Sông Mã: 182
+  Xoài tròn Yên Châu: 183
+  Xoài Úc: 184
+  Xà lách: 185
+  Đu đủ ruột đỏ: 186
+  Đài Loan: 187
+  Đài Thơm 8: 188
+  Đài Thơm 8 (lúa khô): 189
+  Đài thơm 8: 190
+  Đài thơm 8 (lúa tươi): 191
+  Đào mỏ quạ: 192
+  Ổi: 193
+  Ổi không hạt: 194
+  max: 194
 Thị_trường:
   An Giang: 0
   Bạc Liêu: 1
