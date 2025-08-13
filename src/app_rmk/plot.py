@@ -9,6 +9,7 @@ import pickle
 import warnings
 import yaml
 warnings.filterwarnings('ignore')
+import plotly.graph_objects as go
 
 
 class ForcastModel:
@@ -35,6 +36,9 @@ class ForcastModel:
 
 
 	def _get_encoded_feature(self, feature_dict: dict):
+		"""
+		Chuyển từ điển đặc trưng về dạng đã được encode
+		"""
 		encoded_dict = feature_dict.copy()
 
 		# Chuyển các đặc trưng bằng label encoding
@@ -63,6 +67,9 @@ class ForcastModel:
 
 	# Dự đoán
 	def forecast(self, model_type: str, feature_dict: dict):
+		"""
+		Dự báo giá tương lai bằng mô hình dlm hoặc sarimax bằng từ điển đặc trưng
+		"""
 		assert model_type in ["sarimax", "dlm"]
 		assert (feature_dict["Ngày"] != "") ^ (feature_dict["Steps"] != 0), "Bắt buộc chỉ có duy nhất Ngày hoặc số bước dự đoán"
 		assert  all(k in feature_dict for k in self.input_list), f"Feature dict là từ điển đặc trưng gồm các từ khóa sau: {self.input_list}"
@@ -102,49 +109,58 @@ class ForcastModel:
 		return y_pred
 	
 
-	def plot_forecast(self, model_type: str, feature_dict: dict, show_historical=True, figsize=(12, 8)):
-		# Get encoded features and predictions
+	def plot_forecast(self, model_type: str, feature_dict: dict, show_historical=True):
+		# Chuyển về dạng label
 		encoded_dict = self._get_encoded_feature(feature_dict)
 		
 		item_name = feature_dict["Tên_mặt_hàng"]
 		item_idx = encoded_dict["Tên_mặt_hàng"]
 		item_df = self.df[self.df["Tên_mặt_hàng"] == item_idx].sort_values("Ngày")
 		
-		# Convert dates
+		# Chuyển ngày sang pd date_time
 		item_df["Ngày"] = pd.to_datetime(item_df["Ngày"])
 
-		# Forecast
+		# Dự báo
 		y_pred = self.forecast(model_type, feature_dict)
-		
-		# Ensure y_pred is array-like and get its actual length
 		y_pred = np.array(y_pred)
 		actual_pred_length = len(y_pred)
-		
-		# Generate future dates for prediction based on actual prediction length
+
+		# Tạo các ngày tương lai
 		last_date = item_df["Ngày"].max()
 		future_dates = [last_date + timedelta(days=i) for i in range(1, actual_pred_length + 1)]
 
-		# Plotting
-		plt.figure(figsize=figsize)
+		# Create Plotly figure
+		fig = go.Figure()
 
+		# Historical data
 		if show_historical:
-			plt.plot(item_df["Ngày"], item_df["Giá"], label="Historical", color="blue")
+			fig.add_trace(go.Scatter(
+				x=item_df["Ngày"],
+				y=item_df["Giá"],
+				mode="lines",
+				name="Historical",
+				line=dict(color="blue")
+			))
 
-		plt.plot(future_dates, y_pred, label="Forecast", color="red", linestyle="--")
+		# Forecast data
+		fig.add_trace(go.Scatter(
+			x=future_dates,
+			y=y_pred,
+			mode="lines",
+			name="Forecast",
+			line=dict(color="red", dash="dash")
+		))
 
-		plt.title(f"Dự báo giá - {item_name} ({model_type.upper()})")
-		plt.xlabel("Ngày")
-		plt.ylabel("Giá")
-		plt.legend()
-		plt.grid(True)
+		# Layout
+		fig.update_layout(
+			title=f"Dự báo giá - {item_name} ({model_type.upper()})",
+			xaxis_title="Ngày",
+			yaxis_title="Giá",
+			hovermode="x unified",
+			template="plotly_white"
+		)
 
-		# Format x-axis dates
-		plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%Y-%m-%d"))
-		plt.xticks(rotation=45)
-
-		plt.tight_layout()
-		plt.show()
-
+		return fig
 
 
 if __name__ == "__main__":
@@ -178,6 +194,6 @@ if __name__ == "__main__":
 	)
 	print(y_pred2)
 
-	model.plot_forecast("dlm", features)
+	fig = model.plot_forecast("dlm", features)
 
 	

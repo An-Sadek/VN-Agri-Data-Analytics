@@ -1,0 +1,19 @@
+Collecting nbformat
+  Downloading nbformat-5.10.4-py3-none-any.whl.metadata (3.6 kB)
+Collecting fastjsonschema>=2.15 (from nbformat)
+  Downloading fastjsonschema-2.21.1-py3-none-any.whl.metadata (2.2 kB)
+Requirement already satisfied: jsonschema>=2.6 in d:\apps\miniconda\envs\project\lib\site-packages (from nbformat) (4.25.0)
+Requirement already satisfied: jupyter-core!=5.0.*,>=4.12 in d:\apps\miniconda\envs\project\lib\site-packages (from nbformat) (5.8.1)
+Requirement already satisfied: traitlets>=5.1 in d:\apps\miniconda\envs\project\lib\site-packages (from nbformat) (5.14.3)
+Requirement already satisfied: attrs>=22.2.0 in d:\apps\miniconda\envs\project\lib\site-packages (from jsonschema>=2.6->nbformat) (25.3.0)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in d:\apps\miniconda\envs\project\lib\site-packages (from jsonschema>=2.6->nbformat) (2025.4.1)
+Requirement already satisfied: referencing>=0.28.4 in d:\apps\miniconda\envs\project\lib\site-packages (from jsonschema>=2.6->nbformat) (0.36.2)
+Requirement already satisfied: rpds-py>=0.7.1 in d:\apps\miniconda\envs\project\lib\site-packages (from jsonschema>=2.6->nbformat) (0.26.0)
+Requirement already satisfied: platformdirs>=2.5 in d:\apps\miniconda\envs\project\lib\site-packages (from jupyter-core!=5.0.*,>=4.12->nbformat) (4.3.8)
+Requirement already satisfied: pywin32>=300 in d:\apps\miniconda\envs\project\lib\site-packages (from jupyter-core!=5.0.*,>=4.12->nbformat) (308)
+Requirement already satisfied: typing-extensions>=4.4.0 in d:\apps\miniconda\envs\project\lib\site-packages (from referencing>=0.28.4->jsonschema>=2.6->nbformat) (4.14.1)
+Downloading nbformat-5.10.4-py3-none-any.whl (78 kB)
+Downloading fastjsonschema-2.21.1-py3-none-any.whl (23 kB)
+Installing collected packages: fastjsonschema, nbformat
+
+Successfully installed fastjsonschema-2.21.1 nbformat-5.10.4
