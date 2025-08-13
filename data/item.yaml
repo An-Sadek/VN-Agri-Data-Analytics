@@ -3,137 +3,137 @@
   first_update: '2021-07-12'
   last_update: '2023-11-23'
 1:
-  name: Bưởi da xanh (loại 1)
-  first_update: '2021-04-13'
-  last_update: '2023-10-05'
-2:
   name: Bưởi diễn
   first_update: '2023-01-04'
   last_update: '2024-12-16'
-3:
+2:
   name: Bắc Thơm 7
   first_update: '2023-01-04'
   last_update: '2024-12-20'
-4:
+3:
   name: Bắc Thơm 7 (lúa tươi)
   first_update: '2021-06-07'
   last_update: '2021-07-22'
-5:
+4:
   name: Bắp cải thảo
   first_update: '2024-02-01'
   last_update: '2025-05-19'
-6:
+5:
   name: CLC 4900
   first_update: '2024-01-02'
   last_update: '2025-05-19'
-7:
+6:
   name: Cam Canh
   first_update: '2023-01-09'
   last_update: '2024-03-08'
-8:
+7:
   name: Cam Cao Phong
   first_update: '2021-11-05'
   last_update: '2025-03-28'
-9:
+8:
   name: Cam Vinh
   first_update: '2021-01-04'
   last_update: '2023-03-09'
-10:
+9:
   name: Cam canh
   first_update: '2021-01-04'
   last_update: '2025-03-04'
-11:
+10:
   name: Cam cara ruột đỏ
   first_update: '2024-11-11'
   last_update: '2025-02-03'
-12:
+11:
   name: Cam dây
   first_update: '2021-01-05'
   last_update: '2025-05-07'
-13:
+12:
   name: Cam sành (loại 2)
   first_update: '2021-04-13'
   last_update: '2023-10-06'
-14:
-  name: Cam vinh
-  first_update: '2023-01-04'
-  last_update: '2025-04-14'
-15:
+13:
   name: Cam xoàn
   first_update: '2021-04-23'
   last_update: '2023-10-06'
-16:
+14:
   name: Chanh không hạt
   first_update: '2022-04-26'
   last_update: '2023-10-03'
-17:
+15:
   name: Chanh leo
   first_update: '2021-07-02'
   last_update: '2021-08-26'
-18:
+16:
   name: Chanh leo tím
   first_update: '2023-09-04'
   last_update: '2025-05-08'
-19:
+17:
   name: Chanh leo vàng
   first_update: '2023-01-04'
   last_update: '2025-02-03'
-20:
+18:
   name: Chanh nấm
   first_update: '2021-04-26'
   last_update: '2023-09-29'
-21:
+19:
   name: Chanh tươi
   first_update: '2021-01-04'
   last_update: '2022-12-01'
-22:
+20:
   name: Chuối
   first_update: '2022-05-11'
   last_update: '2023-10-04'
-23:
+21:
   name: Chuối già
   first_update: '2021-01-05'
   last_update: '2025-05-07'
-24:
+22:
   name: Cà phê Arabica nhân xô
   first_update: '2021-04-06'
   last_update: '2021-06-18'
-25:
+23:
   name: Cà phê Robusta nhân xô
   first_update: '2020-01-01'
   last_update: '2025-05-09'
-26:
+24:
   name: Cải bẹ xanh
   first_update: '2021-01-05'
   last_update: '2025-05-07'
-27:
+25:
   name: Cải mơ
   first_update: '2021-11-04'
   last_update: '2022-05-06'
-28:
+26:
   name: Cải ngọt
   first_update: '2021-04-15'
   last_update: '2022-05-24'
-29:
+27:
+  name: Cải thảo
+  first_update: '2021-01-04'
+  last_update: '2023-08-07'
+28:
   name: Cốc Thái
   first_update: '2021-04-23'
   last_update: '2023-10-06'
-30:
+29:
   name: Củ cải
   first_update: '2022-05-09'
   last_update: '2025-05-19'
-31:
+30:
   name: Củ cải trắng
   first_update: '2021-01-04'
   last_update: '2023-10-05'
-32:
+31:
   name: Dâu tây
   first_update: '2025-02-13'
   last_update: '2025-04-14'
-33:
+32:
   name: Dâu tây Hana
   first_update: '2023-01-18'
   last_update: '2024-05-02'
+33:
+  name: Dưa hấu (loại 2)
+  first_update: '2021-04-13'
+  last_update: '2023-10-03'
 34:
   name: Dưa hấu (trái dài)
   first_update: '2021-04-14'
@@ -319,462 +319,442 @@
   first_update: '2024-01-02'
   last_update: '2025-05-19'
 80:
-  name: Khổ qua
-  first_update: '2022-05-09'
-  last_update: '2023-10-04'
-81:
   name: Lê
   first_update: '2021-08-17'
   last_update: '2025-01-24'
-82:
+81:
   name: Lúa BC15
   first_update: '2021-03-08'
   last_update: '2024-12-20'
-83:
+82:
   name: Lúa Bắc thơm 7 (khô)
   first_update: '2021-04-19'
   last_update: '2021-09-20'
-84:
+83:
   name: Lúa IR 50404 (lúa khô)
   first_update: '2023-01-05'
   last_update: '2023-12-20'
-85:
+84:
   name: Lúa IR 50404 (lúa tươi)
   first_update: '2021-01-04'
   last_update: '2025-05-06'
-86:
+85:
   name: Lúa IR 50404 - lúa tươi
   first_update: '2022-01-04'
   last_update: '2023-04-18'
-87:
+86:
   name: Lúa IR Jasmine (lúa tươi)
   first_update: '2022-02-14'
   last_update: '2023-12-20'
-88:
+87:
   name: Lúa Jasmine
   first_update: '2021-01-04'
   last_update: '2025-03-14'
-89:
+88:
   name: Lúa Jasmine (lúa khô)
   first_update: '2023-01-05'
   last_update: '2023-12-20'
-90:
+89:
   name: Lúa Jasmine (lúa tươi)
   first_update: '2021-01-04'
   last_update: '2022-04-15'
-91:
-  name: Lúa Nhật
-  first_update: '2023-01-04'
-  last_update: '2024-09-26'
-92:
+90:
   name: Lúa Nhật (lúa tươi)
   first_update: '2021-04-01'
   last_update: '2023-11-15'
-93:
+91:
   name: Lúa OM 1490
   first_update: '2021-03-05'
   last_update: '2021-08-13'
-94:
+92:
   name: Lúa OM 18
   first_update: '2021-09-07'
   last_update: '2023-09-15'
-95:
+93:
   name: Lúa OM 2514
   first_update: '2021-03-04'
   last_update: '2021-09-17'
-96:
+94:
   name: Lúa OM 2514 (lúa tươi)
   first_update: '2021-03-04'
   last_update: '2022-04-15'
-97:
+95:
   name: Lúa OM 2517 (lúa tươi)
   first_update: '2021-03-04'
   last_update: '2022-04-15'
-98:
+96:
   name: Lúa OM 4218 (lúa khô)
   first_update: '2023-01-05'
   last_update: '2023-12-20'
-99:
+97:
   name: Lúa OM 4218 (lúa tươi)
   first_update: '2021-01-04'
   last_update: '2023-12-20'
-100:
+98:
   name: Lúa OM 4900
   first_update: '2021-03-04'
   last_update: '2022-04-14'
-101:
+99:
   name: Lúa OM 4900 (lúa tươi)
   first_update: '2021-03-29'
   last_update: '2022-04-18'
-102:
-  name: Lúa OM 5451
-  first_update: '2021-03-04'
-  last_update: '2023-08-18'
-103:
+100:
   name: Lúa OM 5451 (lúa tươi)
   first_update: '2021-03-29'
   last_update: '2022-04-19'
-104:
-  name: Lúa OM 6976
-  first_update: '2021-03-04'
-  last_update: '2025-03-14'
-105:
+101:
   name: Lúa OM 6976 (lúa tươi)
   first_update: '2021-03-04'
   last_update: '2022-04-19'
-106:
+102:
   name: Lúa Q5
   first_update: '2021-04-19'
   last_update: '2024-12-20'
-107:
+103:
   name: Lúa RVT (lúa tươi)
   first_update: '2021-03-29'
   last_update: '2022-04-18'
-108:
+104:
   name: Lúa ST
   first_update: '2021-03-30'
   last_update: '2022-03-15'
-109:
+105:
   name: Lúa ST 24
   first_update: '2023-01-04'
   last_update: '2023-10-19'
-110:
+106:
   name: Lúa ST20 (lúa tươi)
   first_update: '2021-08-04'
   last_update: '2022-03-07'
-111:
+107:
   name: Lúa ST24 (lúa tươi)
   first_update: '2021-03-29'
   last_update: '2022-04-19'
-112:
+108:
   name: Lúa ST5
   first_update: '2021-08-04'
   last_update: '2022-03-07'
-113:
+109:
   name: Lúa T10
   first_update: '2021-04-19'
   last_update: '2021-09-20'
-114:
+110:
   name: Lúa Thiên Ưu
   first_update: '2021-04-19'
   last_update: '2021-09-20'
-115:
+111:
   name: Lúa Thơm RVT
   first_update: '2021-03-29'
   last_update: '2023-05-12'
-116:
-  name: Lúa Thơm RVT (lúa tươi)
-  first_update: '2021-04-06'
-  last_update: '2022-04-19'
-117:
+112:
   name: Lúa Tài nguyên cũ
   first_update: '2021-03-30'
   last_update: '2022-04-19'
-118:
+113:
   name: Lúa VD20
   first_update: '2021-03-05'
   last_update: '2021-08-13'
-119:
+114:
   name: Lúa VN10
   first_update: '2021-04-19'
   last_update: '2023-04-27'
-120:
+115:
   name: Lúa nếp 97
   first_update: '2021-03-08'
   last_update: '2024-12-20'
-121:
+116:
   name: Lúa nếp 97 (lúa tươi)
   first_update: '2021-06-07'
   last_update: '2021-07-22'
-122:
+117:
   name: Lựu
   first_update: '2021-09-21'
   last_update: '2024-11-12'
-123:
+118:
   name: Me chua, me ngọt
   first_update: '2021-04-15'
   last_update: '2022-06-16'
-124:
+119:
   name: Mít Thái
   first_update: '2021-06-28'
   last_update: '2023-10-03'
-125:
+120:
   name: Mít dai
   first_update: '2021-06-07'
   last_update: '2024-09-26'
-126:
+121:
   name: Mướp
   first_update: '2021-06-10'
   last_update: '2025-05-13'
-127:
+122:
   name: Mận Tam Hoa (loại 1)
   first_update: '2021-04-12'
   last_update: '2021-05-06'
-128:
+123:
   name: Mận tam hoa
   first_update: '2022-04-21'
   last_update: '2025-05-19'
-129:
+124:
   name: Na Thái
   first_update: '2023-01-04'
   last_update: '2024-01-25'
-130:
+125:
   name: Na sầu riêng
   first_update: '2023-01-04'
   last_update: '2025-03-03'
-131:
+126:
   name: Na thái
   first_update: '2024-11-11'
   last_update: '2025-03-24'
-132:
+127:
   name: Na Đài Loan
   first_update: '2024-01-29'
   last_update: '2024-04-11'
-133:
+128:
   name: Ngọn su su
   first_update: '2021-04-12'
   last_update: '2022-07-04'
-134:
+129:
+  name: Nhãn
+  first_update: '2021-04-12'
+  last_update: '2025-05-06'
+130:
   name: Nhãn miền Bắc
   first_update: '2023-08-01'
   last_update: '2023-09-26'
-135:
+131:
   name: Nhãn xuồng trắng
   first_update: '2022-11-21'
   last_update: '2023-08-03'
-136:
+132:
   name: Nhãn xuồng vàng
   first_update: '2022-05-09'
   last_update: '2023-10-05'
-137:
+133:
   name: Nhật
   first_update: '2024-01-02'
   last_update: '2025-05-16'
-138:
+134:
   name: Nàng Hoa 9
   first_update: '2024-02-27'
   last_update: '2024-09-26'
-139:
+135:
   name: Nàng Nhen
   first_update: '2024-01-02'
   last_update: '2025-05-15'
-140:
+136:
   name: Nếp AG
   first_update: '2024-01-02'
   last_update: '2024-09-26'
-141:
+137:
   name: Nếp vỏ (lúa tươi)
   first_update: '2021-04-08'
   last_update: '2022-04-07'
-142:
+138:
   name: OM 18
   first_update: '2024-01-02'
   last_update: '2025-05-19'
-143:
-  name: OM 5451
-  first_update: '2024-01-02'
-  last_update: '2025-05-19'
-144:
+139:
   name: OM 6976
   first_update: '2023-01-05'
   last_update: '2025-05-16'
-145:
+140:
   name: Quýt
   first_update: '2021-12-07'
   last_update: '2023-12-19'
-146:
+141:
   name: Quýt Sài Gòn
   first_update: '2024-01-30'
   last_update: '2025-01-24'
-147:
+142:
   name: Quýt Sài gòn
   first_update: '2021-04-15'
   last_update: '2023-11-14'
-148:
+143:
   name: Quýt ngọt Phù Yên
   first_update: '2021-01-04'
   last_update: '2025-02-03'
-149:
+144:
   name: Quýt sim
   first_update: '2025-03-21'
   last_update: '2025-04-29'
-150:
+145:
   name: Quả bí thơm
   first_update: '2021-01-04'
   last_update: '2022-05-12'
-151:
-  name: Quả bầu
-  first_update: '2021-01-04'
-  last_update: '2025-05-19'
-152:
+146:
   name: Quả sấu
   first_update: '2021-07-08'
   last_update: '2022-09-01'
-153:
+147:
   name: Quả đào
   first_update: '2021-04-12'
   last_update: '2022-04-25'
-154:
+148:
   name: RVT
   first_update: '2023-01-04'
   last_update: '2025-05-16'
-155:
+149:
   name: Rau cải bó xôi
   first_update: '2023-01-18'
   last_update: '2025-05-19'
-156:
+150:
   name: ST 24
   first_update: '2024-01-03'
   last_update: '2025-05-16'
-157:
+151:
   name: ST24
   first_update: '2025-03-31'
   last_update: '2025-05-13'
-158:
+152:
   name: ST25
   first_update: '2024-01-02'
   last_update: '2025-05-19'
-159:
+153:
+  name: Su hào
+  first_update: '2021-01-04'
+  last_update: '2025-05-19'
+154:
   name: Sóc Thái
   first_update: '2024-01-02'
   last_update: '2025-05-15'
-160:
+155:
   name: Súp lơ xanh
   first_update: '2023-01-03'
   last_update: '2025-04-22'
-161:
+156:
   name: Sầu Riêng Ri 6
   first_update: '2021-01-05'
   last_update: '2023-10-04'
-162:
+157:
   name: Sầu riêng
   first_update: '2021-04-14'
   last_update: '2022-05-04'
-163:
+158:
   name: Sầu riêng KQX
   first_update: '2021-04-23'
   last_update: '2022-09-02'
-164:
+159:
   name: Sầu riêng cơm vàng hạt lép
   first_update: '2021-04-12'
   last_update: '2023-10-06'
-165:
+160:
   name: T10
   first_update: '2023-01-04'
   last_update: '2024-12-20'
-166:
+161:
   name: Thanh long ruột trắng
   first_update: '2021-04-15'
   last_update: '2025-05-13'
-167:
+162:
   name: Thiên Ưu
   first_update: '2023-01-04'
   last_update: '2024-12-20'
-168:
+163:
   name: Trái Ca cao
   first_update: '2022-11-08'
   last_update: '2023-10-03'
-169:
+164:
   name: Trái Cóc mỡ
   first_update: '2021-01-05'
   last_update: '2025-05-07'
-170:
+165:
   name: Trái Vú Sữa lò rèn Cần Thơ
   first_update: '2021-01-05'
   last_update: '2023-02-08'
-171:
+166:
   name: Trái Vú Sữa lò rèn TG
   first_update: '2021-01-05'
   last_update: '2023-06-07'
-172:
+167:
   name: Táo ngọt
   first_update: '2024-02-22'
   last_update: '2025-04-14'
-173:
+168:
   name: Táo đại
   first_update: '2024-01-26'
   last_update: '2025-04-14'
-174:
+169:
   name: VN10
   first_update: '2023-01-04'
   last_update: '2024-12-20'
-175:
+170:
   name: Vú sữa
   first_update: '2023-01-03'
   last_update: '2025-03-18'
-176:
+171:
   name: Vú sữa lò rèn Cần Thơ
   first_update: '2023-01-03'
   last_update: '2025-04-09'
-177:
+172:
   name: Vải
   first_update: '2021-05-21'
   last_update: '2025-05-19'
-178:
+173:
   name: Vải thiều
   first_update: '2023-05-26'
   last_update: '2023-06-30'
-179:
+174:
   name: Xoài Thái
   first_update: '2022-04-26'
   last_update: '2024-07-19'
-180:
+175:
   name: Xoài Tròn Sông Mã
   first_update: '2021-05-18'
   last_update: '2022-07-04'
-181:
+176:
   name: Xoài Tròn Sông Mã (Sơn La)
   first_update: '2021-07-06'
   last_update: '2023-08-07'
-182:
+177:
   name: Xoài tròn Sông Mã
   first_update: '2024-05-13'
   last_update: '2025-05-19'
-183:
+178:
   name: Xoài tròn Yên Châu
   first_update: '2021-05-17'
   last_update: '2025-05-19'
-184:
+179:
   name: Xoài Úc
   first_update: '2021-04-12'
   last_update: '2022-07-04'
-185:
+180:
   name: Xà lách
   first_update: '2023-01-03'
   last_update: '2025-05-07'
-186:
+181:
   name: Đu đủ ruột đỏ
   first_update: '2021-04-12'
   last_update: '2021-12-02'
-187:
+182:
   name: Đài Loan
   first_update: '2024-01-02'
   last_update: '2025-05-15'
-188:
+183:
   name: Đài Thơm 8
   first_update: '2023-01-04'
   last_update: '2025-05-19'
-189:
+184:
   name: Đài Thơm 8 (lúa khô)
   first_update: '2021-03-04'
   last_update: '2022-04-19'
-190:
+185:
   name: Đài thơm 8
   first_update: '2023-01-04'
   last_update: '2025-05-16'
-191:
+186:
   name: Đài thơm 8 (lúa tươi)
   first_update: '2021-03-04'
   last_update: '2023-12-20'
-192:
+187:
   name: Đào mỏ quạ
   first_update: '2023-07-11'
   last_update: '2024-08-01'
-193:
+188:
   name: Ổi
   first_update: '2021-07-23'
   last_update: '2025-05-19'
-194:
+189:
   name: max
   first_update: '2021-01-05'
   last_update: '2025-05-07'

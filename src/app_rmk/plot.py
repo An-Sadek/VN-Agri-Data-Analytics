@@ -10,6 +10,7 @@ import warnings
 import yaml
 warnings.filterwarnings('ignore')
 import plotly.graph_objects as go
+from statsmodels.tsa.holtwinters import SimpleExpSmoothing
 
 
 class ForcastModel:
@@ -109,7 +110,9 @@ class ForcastModel:
 		return y_pred
 	
 
-	def plot_forecast(self, model_type: str, feature_dict: dict, show_historical=True):
+	
+
+	def plot_forecast(self, model_type: str, feature_dict: dict, show_historical=True, smoothing_alpha=0.3):
 		# Chuyển về dạng label
 		encoded_dict = self._get_encoded_feature(feature_dict)
 		
@@ -121,39 +124,48 @@ class ForcastModel:
 		item_df["Ngày"] = pd.to_datetime(item_df["Ngày"])
 
 		# Dự báo
-		y_pred = self.forecast(model_type, feature_dict)
-		y_pred = np.array(y_pred)
+		y_pred = np.array(self.forecast(model_type, feature_dict))
 		actual_pred_length = len(y_pred)
 
 		# Tạo các ngày tương lai
 		last_date = item_df["Ngày"].max()
 		future_dates = [last_date + timedelta(days=i) for i in range(1, actual_pred_length + 1)]
 
+		# Kết hợp dữ liệu lịch sử + dự báo để smoothing
+		full_values = np.concatenate([item_df["Giá"].values, y_pred])
+		full_dates = pd.concat([item_df["Ngày"], pd.Series(future_dates)], ignore_index=True)
+
+		# Áp dụng SimpleExpSmoothing
+		ses_model = SimpleExpSmoothing(full_values)
+		ses_fit = ses_model.fit(smoothing_level=smoothing_alpha, optimized=False)
+		smoothed_values = ses_fit.fittedvalues
+
+		# Lấy phần lịch sử và dự báo sau khi smoothing
+		smoothed_history = smoothed_values[:len(item_df)]
+		smoothed_forecast = smoothed_values[len(item_df):]
+
 		# Create Plotly figure
 		fig = go.Figure()
 
-		# Historical data
 		if show_historical:
 			fig.add_trace(go.Scatter(
 				x=item_df["Ngày"],
-				y=item_df["Giá"],
+				y=smoothed_history,
 				mode="lines",
-				name="Historical",
+				name="Historical (smoothed)",
 				line=dict(color="blue")
 			))
 
-		# Forecast data
 		fig.add_trace(go.Scatter(
 			x=future_dates,
-			y=y_pred,
+			y=smoothed_forecast,
 			mode="lines",
-			name="Forecast",
+			name="Forecast (smoothed)",
 			line=dict(color="red", dash="dash")
 		))
 
-		# Layout
 		fig.update_layout(
-			title=f"Dự báo giá - {item_name} ({model_type.upper()})",
+			title=f"Dự báo giá - {item_name} ({model_type.upper()} - Smoothed)",
 			xaxis_title="Ngày",
 			yaxis_title="Giá",
 			hovermode="x unified",

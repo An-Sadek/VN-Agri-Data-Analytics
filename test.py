@@ -1,24 +1,22 @@
 import pandas as pd
-from pmdarima import auto_arima
+import numpy as np
 
-df = pd.read_csv("../../data/pre_data.csv")
-df = df.sort_values("Ngày")
+# Example: last historical data point
+last_actual = 100  
 
-for item in df["Tên_mặt_hàng"].unique():
-    item_df = df[df["Tên_mặt_hàng"] == item]
+# Forecast from model
+forecast = np.array([105, 108, 110, 113, 115])
 
-    y = item_df["Giá"]
-    X = item_df[["Thị_trường", "Loại_giá", "Nguồn"]]
+# Smoothing factor (0.0 → all forecast, 1.0 → all actual)
+alpha = 0.5  
 
-    model = auto_arima(df["Giá"],
-                    exogenous=X,  # Include exog variables
-                    start_p=0, start_q=0,
-                    max_p=10, max_q=10,
-                    start_P=0, start_Q=0,
-                    max_P=10, max_Q=10,
-                    stepwise=True,
-                    suppress_warnings=True,
-                    D=None,
-                    trace=True,
-                    error_action='ignore')
+# Blend first forecast point with actual last point
+smoothed_forecast = forecast.copy()
+smoothed_forecast[0] = alpha * last_actual + (1 - alpha) * forecast[0]
 
+# Optional: gradually blend more points
+for i in range(1, len(smoothed_forecast)):
+    smoothed_forecast[i] = alpha * smoothed_forecast[i-1] + (1 - alpha) * forecast[i]
+
+print("Original forecast:", forecast)
+print("Smoothed forecast:", smoothed_forecast)
