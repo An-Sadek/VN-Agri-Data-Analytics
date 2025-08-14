@@ -1,22 +1,32 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 
-# Example: last historical data point
-last_actual = 100  
+# Example data (e.g., some time series)
+y = np.array([4.0, 4.5, 5.0, 5.3, 5.7, 6.1, 6.4, 6.8])
 
-# Forecast from model
-forecast = np.array([105, 108, 110, 113, 115])
+p = 2  # AR(2) model
 
-# Smoothing factor (0.0 → all forecast, 1.0 → all actual)
-alpha = 0.5  
+# Create lagged dataset
+df = pd.DataFrame({'y': y})
+for i in range(1, p+1):
+    df[f'y_lag{i}'] = df['y'].shift(i)
 
-# Blend first forecast point with actual last point
-smoothed_forecast = forecast.copy()
-smoothed_forecast[0] = alpha * last_actual + (1 - alpha) * forecast[0]
+df = df.dropna()
 
-# Optional: gradually blend more points
-for i in range(1, len(smoothed_forecast)):
-    smoothed_forecast[i] = alpha * smoothed_forecast[i-1] + (1 - alpha) * forecast[i]
+# Prepare X (lags) and y (current values)
+X = df[['y_lag1', 'y_lag2']].values
+Y = df['y'].values
 
-print("Original forecast:", forecast)
-print("Smoothed forecast:", smoothed_forecast)
+# Add intercept term for c
+X = np.column_stack((np.ones(len(X)), X))
+
+# Solve for coefficients using OLS: beta = (X'X)^(-1) X'Y
+beta = np.linalg.inv(X.T @ X) @ (X.T @ Y)
+
+c = beta[0]        # intercept
+phi_1 = beta[1]    # phi_1
+phi_2 = beta[2]    # phi_2
+
+print(f"Intercept (c): {c}")
+print(f"phi_1: {phi_1}")
+print(f"phi_2: {phi_2}")
