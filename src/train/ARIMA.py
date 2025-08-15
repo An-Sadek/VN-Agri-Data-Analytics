@@ -1,6 +1,9 @@
 import numpy as np
 import pandas as pd
 
+from statsmodels.tsa.stattools import adfuller
+from sklearn.metrics import mean_squared_error
+
 import matplotlib.pyplot as plt
 
 class ARIMAX:
@@ -75,16 +78,16 @@ class ARIMAX:
     # ------------------------
     def MA(self, data, residuals):
         if self.q == 0:
-            return np.array([0]), np.zeros(len(data))
+            return np.array([]), residuals
 
-        df = pd.DataFrame({'y': data})
+        df = pd.DataFrame({'e': residuals})
         for i in range(1, self.q + 1):
-            df[f'e_lag{i}'] = pd.Series(residuals).shift(i)
+            df[f'e_lag{i}'] = df['e'].shift(i)
 
         df = df.dropna()
-        X = df.iloc[:, 1:].values
-        y = df.iloc[:, 0].values
-        X = np.column_stack((np.ones(len(X)), X))
+        y = df['e'].values
+        X = df.iloc[:, 1:].values  # no intercept
+
         theta = np.linalg.inv(X.T @ X) @ (X.T @ y)
         y_hat = X @ theta
         new_residuals = y - y_hat
@@ -94,7 +97,8 @@ class ARIMAX:
     # Forecast method
     # ------------------------
     def forecast(self, steps=1, exog_future=None):
-        assert steps == len(exog_future)
+        if exog_future is not None:
+            assert steps == len(exog_future)
 
         # 1. Difference
         if self.d > 0:
@@ -133,7 +137,7 @@ class ARIMAX:
             ma_part = 0
             if self.q > 0:
                 for j in range(1, self.q + 1):
-                    ma_part += theta[j] * e_hist[-j]
+                    ma_part += theta[j-1] * e_hist[-j]
 
             y_next = ar_part + ma_part
             forecasts_diff.append(y_next)
@@ -215,6 +219,118 @@ def plot_acf_pacf(y, nlags=20):
     plt.show()
 
 
+class Tools:
+
+    def __init__(self, max_d=10, max_p=10, max_q=10):
+        self.max_d = max_d
+        self.max_p = max_p
+        self.max_q = max_q
+
+    def find_d(self, data, significance=0.1):
+        diffed = np.array(data, dtype=float)
+        
+        for d in range(self.max_d + 1):
+            result = adfuller(diffed)
+            p_value = result[1]
+            print(f"d = {d}, ADF p-value = {p_value:.5f}")
+            
+            if p_value < significance:
+                print(f"Series is stationary at d = {d}")
+                return d
+            # difference for next iteration
+            diffed = diffed[1:] - diffed[:-1]
+        
+        return self.max_d
+    
+    def find_p(self, data, d=1):
+        best_p = 0
+        min_aic = np.inf
+
+        # Difference first
+        if d > 0:
+            diffed_data = ARIMAX(data, d=d).difference(data, d=d)
+        else:
+            diffed_data = np.array(data)
+
+        n = len(diffed_data)
+
+        for p in range(self.max_p + 1):
+            if p >= n:
+                break
+            model = ARIMAX(diffed_data, p=p, d=0, q=1) 
+            try:
+                _, ar_res = model.AR(diffed_data)
+            except np.linalg.LinAlgError:
+                break  # Higher p will also fail
+            rss = np.sum(ar_res ** 2)
+            n_obs = len(ar_res)
+            if rss < 1e-10:  # Perfect fit
+                aic = 2 * (p + 1)
+            else:
+                aic = n_obs * np.log(rss / n_obs + 1e-10) + 2 * (p + 1)
+            mse = rss / n_obs  # For debugging
+            print(f"p={p}, mse={mse}, aic={aic}")
+
+            if aic < min_aic:
+                min_aic = aic
+                best_p = p
+
+        return best_p
+    
+
+    def find_q(self, data, p=1, d=1):
+        best_q = 0
+        min_aic = np.inf
+
+        # 1. difference the data if d > 0
+        if d > 0:
+            diffed_data = ARIMAX(data, d=d).difference(data, d=d)
+        else:
+            diffed_data = np.array(data)
+
+        n = len(diffed_data)
+
+        # 2. loop over q values
+        for q in range(self.max_q + 1):
+            if p + q >= n:
+                break
+            model = ARIMAX(diffed_data, p=p, d=0, q=q)  # d=0 because data already differenced
+
+            try:
+                _, ar_res = model.AR(diffed_data)
+
+                # Fit MA for current q
+                _, ma_res = model.MA(diffed_data, ar_res)
+            except np.linalg.LinAlgError:
+                break
+            rss = np.sum(ma_res ** 2)
+            n_obs = len(ma_res)
+            if rss < 1e-10:
+                aic = 2 * (p + q + 1)  # Adjust params: AR (p+1), MA (q)
+            else:
+                aic = n_obs * np.log(rss / n_obs + 1e-10) + 2 * (p + q + 1)
+            mse = rss / n_obs  # For debugging
+            print(f"q={q}, mse={mse}, aic={aic}")
+
+            if aic < min_aic:
+                min_aic = aic
+                best_q = q
+
+        return best_q
+
+
+    def find_best(self, data) -> dict:
+        best_d = self.find_d(data, significance=0.1)
+        best_p = self.find_p(data, best_d)
+        best_q = self.find_q(data, best_p, best_d)
+
+        return {
+            "p": best_p,
+            "d": best_d,
+            "q": best_q
+        }
+
+
 # ------------------------
 # Example usage
 # ------------------------
@@ -231,3 +347,7 @@ if __name__ == "__main__":
 
     full_series = model.get_full(steps=3, exog_future=exog_future)
     plot_acf_pacf(full_series, nlags=None)
+
+    tools = Tools()
+    best_hyperpara = tools.find_best(y)
+    print(best_hyperpara)
