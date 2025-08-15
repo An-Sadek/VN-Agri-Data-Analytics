@@ -1,32 +1,94 @@
 import numpy as np
-import pandas as pd
+from scipy.optimize import minimize
 
-# Example data (e.g., some time series)
-y = np.array([4.0, 4.5, 5.0, 5.3, 5.7, 6.1, 6.4, 6.8])
+class ARIMA:
+    def __init__(self, data, p=1, d=0, q=0):
+        self.data = np.array(data, dtype=float)  # original time series
+        self.p = p  # AR order
+        self.d = d  # differencing order
+        self.q = q  # MA order
 
-p = 2  # AR(2) model
+    def _difference(self, series, d):
+        """Subtract previous value d times (to make series stationary)."""
+        for _ in range(d):
+            series = series[1:] - series[:-1]
+        return series
 
-# Create lagged dataset
-df = pd.DataFrame({'y': y})
-for i in range(1, p+1):
-    df[f'y_lag{i}'] = df['y'].shift(i)
+    def _log_likelihood(self, params, series):
+        """Compute the negative log-likelihood for given AR/MA params."""
+        p, q = self.p, self.q
+        ar = params[:p]           # AR coefficients
+        ma = params[p:p+q]        # MA coefficients
+        mu = params[p+q]          # constant term
+        sigma = params[-1]        # std deviation of residuals
 
-df = df.dropna()
+        n = len(series)
+        e = np.zeros(n)           # store errors
+        y_hat = np.zeros(n)       # store predictions
 
-# Prepare X (lags) and y (current values)
-X = df[['y_lag1', 'y_lag2']].values
-Y = df['y'].values
+        for t in range(n):
+            # AR term: sum of AR coeffs * past y's
+            ar_part = sum(ar[i] * series[t-i-1] for i in range(p) if t-i-1 >= 0)
+            # MA term: sum of MA coeffs * past errors
+            ma_part = sum(ma[j] * e[t-j-1] for j in range(q) if t-j-1 >= 0)
+            # Predicted value
+            y_hat[t] = mu + ar_part + ma_part
+            # Error = actual - predicted
+            e[t] = series[t] - y_hat[t]
 
-# Add intercept term for c
-X = np.column_stack((np.ones(len(X)), X))
+        # Gaussian log-likelihood
+        ll = -0.5 * n * np.log(2*np.pi*sigma**2) - (e @ e) / (2*sigma**2)
+        return -ll  # We minimize, so return negative
 
-# Solve for coefficients using OLS: beta = (X'X)^(-1) X'Y
-beta = np.linalg.inv(X.T @ X) @ (X.T @ Y)
+    def fit(self):
+        """Fit ARIMA model to data."""
+        # Step 1: difference the series if needed
+        series = self._difference(self.data, self.d) if self.d > 0 else self.data.copy()
 
-c = beta[0]        # intercept
-phi_1 = beta[1]    # phi_1
-phi_2 = beta[2]    # phi_2
+        # Step 2: initial guess for parameters (all zeros, mean, std)
+        init_params = np.r_[np.zeros(self.p), np.zeros(self.q), np.mean(series), np.std(series)]
 
-print(f"Intercept (c): {c}")
-print(f"phi_1: {phi_1}")
-print(f"phi_2: {phi_2}")
+        # Step 3: optimize parameters to maximize likelihood
+        result = minimize(self._log_likelihood, init_params, args=(series,), method="BFGS")
+        self.params_ = result.x
+        return self
+
+    def forecast(self, steps=1):
+        """Forecast future values."""
+        # Work on differenced series
+        series = self.difference(self.data, self.d) if self.d > 0 else self.data.copy()
+        p, q = self.p, self.q
+        ar = self.params_[:p]
+        ma = self.params_[p:p+q]
+        mu = self.params_[p+q]
+
+        # Store past values and residuals
+        y_hist = list(series)
+        e_hist = [0] * len(series)
+
+        forecasts_diff = []
+
+        for _ in range(steps):
+            ar_part = sum(ar[i] * y_hist[-i-1] for i in range(p) if len(y_hist)-i-1 >= 0)
+            ma_part = sum(ma[j] * e_hist[-j-1] for j in range(q) if len(e_hist)-j-1 >= 0)
+            y_next = mu + ar_part + ma_part
+            forecasts_diff.append(y_next)
+
+            # Update history
+            y_hist.append(y_next)
+            e_hist.append(0)  # assume no future errors
+
+        # Convert differenced forecast back to original scale
+        if self.d > 0:
+            return self.inverse_difference(self.data[-self.d:], forecasts_diff)
+        else:
+            return forecasts_diff
+
+
+# Example usage
+if __name__ == "__main__":
+    y = [4.0, 4.5, 5.0, 5.3, 5.7, 6.1, 6.4, 6.8]
+    model = ARIMA(y, p=1, d=0, q=1)
+    model.fit()
+    print("Fitted parameters:", model.params_)
+    print("Forecast next 3 steps:", model.forecast(3))
