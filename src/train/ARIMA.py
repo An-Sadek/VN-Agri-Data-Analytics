@@ -55,9 +55,11 @@ class ARIMAX:
     # AR + exog
     # ------------------------
     def AR(self, data, exog=None):
-        df = pd.DataFrame({'y': data})
+        y_series = pd.Series(data)
+        columns = {'y': y_series}
         for i in range(1, self.p + 1):
-            df[f'y_lag{i}'] = df['y'].shift(i)
+            columns[f'y_lag{i}'] = y_series.shift(i)
+        df = pd.DataFrame(columns)
 
         if exog is not None:
             exog_df = pd.DataFrame(exog, columns=[f'exog{i}' for i in range(exog.shape[1])])
@@ -66,7 +68,7 @@ class ARIMAX:
         df = df.dropna()
         y = df['y'].values
         X = df.drop(columns=['y']).values
-        X = np.column_stack((np.ones(len(X)), X))  # intercept
+        X = np.column_stack((np.ones(len(X)), X))
 
         beta = np.linalg.inv(X.T @ X) @ (X.T @ y)
         y_hat = X @ beta
@@ -80,9 +82,11 @@ class ARIMAX:
         if self.q == 0:
             return np.array([]), data
 
-        df = pd.DataFrame({'e': data})
+        e_series = pd.Series(data)
+        columns = {'e': e_series}
         for i in range(1, self.q + 1):
-            df[f'e_lag{i}'] = df['e'].shift(i)
+            columns[f'e_lag{i}'] = e_series.shift(i)
+        df = pd.DataFrame(columns)
 
         df = df.dropna()
         y = df['e'].values
@@ -220,15 +224,13 @@ def plot_acf_pacf(y, nlags=20):
 
 
 class Tools:
-    def __init__(self, max_d=10, max_p=10, max_q=10):
-        self.max_d = max_d
-        self.max_p = max_p
-        self.max_q = max_q
+    def __init__(self):
+        pass
 
-    def find_d(self, data, significance=0.1):
+    def find_d(self, data, max_d=20, significance=0.1):
         diffed = np.array(data, dtype=float)
         
-        for d in range(self.max_d + 1):
+        for d in range(max_d + 1):
             result = adfuller(diffed)
             p_value = result[1]
             
@@ -237,9 +239,9 @@ class Tools:
             # difference for next iteration
             diffed = diffed[1:] - diffed[:-1]
         
-        return self.max_d
+        return max_d
     
-    def find_p(self, data, d=1, exog=None):
+    def find_p(self, data, d=1, max_p=20, exog=None):
         best_p = 0
         min_aic = np.inf
 
@@ -251,8 +253,9 @@ class Tools:
             diffed_data = np.array(data)
 
         n = len(diffed_data)
+        max_p = min(n // 2, max_p)
 
-        for p in range(self.max_p + 1):
+        for p in range(max_p + 1):
             if p >= n:
                 break
             model = ARIMAX(diffed_data, p=p, d=0, q=1, exog=exog) 
@@ -274,7 +277,7 @@ class Tools:
         return best_p
     
 
-    def find_q(self, data, p=1, d=1, exog=None):
+    def find_q(self, data, p=1, d=1, max_q=20, exog=None):
         best_q = 0
         min_aic = np.inf
 
@@ -287,9 +290,10 @@ class Tools:
             diffed_data = np.array(data)
 
         n = len(diffed_data)
+        max_q = min((len(data) - d - p) // 2, max_q)
 
         # 2. loop over q values
-        for q in range(self.max_q + 1):
+        for q in range(max_q + 1):
             if p + q >= n:
                 break
             model = ARIMAX(diffed_data, p=p, d=0, q=q, exog=exog)  # d=0 because data already differenced
@@ -315,10 +319,10 @@ class Tools:
         return best_q
 
 
-    def find_best(self, data, exog=None) -> dict:
-        best_d = self.find_d(data, significance=0.1)
-        best_p = self.find_p(data, best_d, exog=exog)
-        best_q = self.find_q(data, best_p, best_d, exog=exog)
+    def find_best(self, data, max_order=(20, 20, 20), exog=None) -> dict:
+        best_d = self.find_d(data, max_order[0], significance=0.1)
+        best_p = self.find_p(data, best_d, max_order[1], exog=exog)
+        best_q = self.find_q(data, best_p, best_d, max_order[2], exog=exog)
 
         return {
             "p": best_p,
