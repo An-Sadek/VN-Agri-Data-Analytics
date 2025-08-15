@@ -1,22 +1,18 @@
 import numpy as np
 import pandas as pd
 
+import matplotlib.pyplot as plt
+
 class ARIMAX:
-    def __init__(self, data, p=1, d=0, q=0, exog=None, smoothing=True, alpha=0.3):
+    def __init__(self, data, exog=None, p=1, d=0, q=0, smoothing=True, alpha=0.3):
         assert p < len(data), "p must be smaller than data length"
         self.data = np.array(data, dtype=float)
+        self.exog = np.array(exog, dtype=float) if exog is not None else None
+        if self.exog is not None:
+            assert len(self.exog) == len(self.data), "Exogenous variables must match data length"
         self.p = p
         self.d = d
         self.q = q
-
-        if exog is not None:
-            exog = np.array(exog, dtype=float)
-            if exog.ndim == 1:
-                exog = exog.reshape(-1, 1)
-            assert exog.shape[0] == len(data), "exog must have same length as data"
-            self.exog = exog
-        else:
-            self.exog = None
 
         if smoothing:
             self.data = self.exponential_smoothing(alpha)
@@ -25,7 +21,8 @@ class ARIMAX:
         return self.data
     
     def get_full(self, steps=1, exog_future=None):
-        return np.concatenate([self.data, self.forecast(steps, exog_future)]).tolist()
+        forecasted = self.forecast(steps, exog_future)
+        return np.concatenate([self.data, forecasted]).tolist()
     
     # ------------------------
     # I part - differencing
@@ -52,23 +49,22 @@ class ARIMAX:
         return np.array(smoothed)
 
     # ------------------------
-    # AR part
+    # AR + exog
     # ------------------------
     def AR(self, data, exog=None):
         df = pd.DataFrame({'y': data})
         for i in range(1, self.p + 1):
             df[f'y_lag{i}'] = df['y'].shift(i)
 
-        # Add exog if given
         if exog is not None:
-            for k in range(exog.shape[1]):
-                df[f'exog{k}'] = exog[:, k]
+            exog_df = pd.DataFrame(exog, columns=[f'exog{i}' for i in range(exog.shape[1])])
+            df = pd.concat([df, exog_df], axis=1)
 
         df = df.dropna()
-        X = df.iloc[:, 1:].values
-        y = df.iloc[:, 0].values
-
+        y = df['y'].values
+        X = df.drop(columns=['y']).values
         X = np.column_stack((np.ones(len(X)), X))  # intercept
+
         beta = np.linalg.inv(X.T @ X) @ (X.T @ y)
         y_hat = X @ beta
         residuals = y - y_hat
@@ -88,7 +84,6 @@ class ARIMAX:
         df = df.dropna()
         X = df.iloc[:, 1:].values
         y = df.iloc[:, 0].values
-
         X = np.column_stack((np.ones(len(X)), X))
         theta = np.linalg.inv(X.T @ X) @ (X.T @ y)
         y_hat = X @ theta
@@ -99,26 +94,19 @@ class ARIMAX:
     # Forecast method
     # ------------------------
     def forecast(self, steps=1, exog_future=None):
-        # 1. Difference data if needed
+        assert steps == len(exog_future)
+
+        # 1. Difference
         if self.d > 0:
             y_train = self.difference(self.data, self.d)
         else:
             y_train = self.data
 
-        # Prepare exog for training
+        # 2. Fit AR + exog
+        exog_train = None
         if self.exog is not None:
-            exog_train = self.exog
-            if self.d > 0:
-                exog_train = exog_train[self.d:]
-        else:
-            exog_train = None
-
-        # 2. Fit AR
-        if self.p > 0:
-            beta, ar_res = self.AR(y_train, exog_train)
-        else:
-            beta = np.array([np.mean(y_train)])
-            ar_res = np.zeros(len(y_train))
+            exog_train = self.exog[self.d:] if self.d > 0 else self.exog
+        beta, ar_res = self.AR(y_train, exog_train)
 
         # 3. Fit MA
         theta, ma_res = self.MA(y_train, ar_res)
@@ -126,33 +114,22 @@ class ARIMAX:
         # 4. Prepare history
         y_hist = list(y_train)
         e_hist = list(ma_res)
-
-        # Prepare exog future
-        if self.exog is not None:
-            assert exog_future is not None, "exog_future must be provided when using exogenous variables"
-            exog_future = np.array(exog_future, dtype=float)
-            if exog_future.ndim == 1:
-                exog_future = exog_future.reshape(-1, 1)
-            assert exog_future.shape[0] == steps, "exog_future must have shape (steps, n_features)"
-        else:
-            exog_future = None
-
         forecasts_diff = []
 
-        # 5. Step-by-step forecast
-        for step in range(steps):
+        # 5. Forecast step by step
+        for t in range(steps):
             ar_part = beta[0]  # intercept
-
-            # AR lags
             for i in range(1, self.p + 1):
                 ar_part += beta[i] * y_hist[-i]
 
-            # exog part
+            # Exogenous contribution
             if self.exog is not None:
-                for k in range(exog_future.shape[1]):
-                    ar_part += beta[self.p + 1 + k] * exog_future[step, k]
+                if exog_future is None:
+                    raise ValueError("Future exogenous data required for forecasting")
+                exog_t = exog_future[t]
+                for j, val in enumerate(exog_t):
+                    ar_part += beta[self.p + 1 + j] * val
 
-            # MA part
             ma_part = 0
             if self.q > 0:
                 for j in range(1, self.q + 1):
@@ -160,11 +137,9 @@ class ARIMAX:
 
             y_next = ar_part + ma_part
             forecasts_diff.append(y_next)
-
             y_hist.append(y_next)
-            e_hist.append(0)  # future residuals assumed zero
+            e_hist.append(0)
 
-        # 6. Convert back to original scale
         if self.d > 0:
             last_vals = self.data[-self.d:]
             forecasts = self.inverse_difference(last_vals, forecasts_diff)
@@ -172,6 +147,72 @@ class ARIMAX:
             forecasts = forecasts_diff
 
         return forecasts
+    
+def acf(y, nlags=20):
+    y = np.array(y)
+    n = len(y)
+    mean_y = np.mean(y)
+    var_y = np.var(y)
+    acf_vals = []
+
+    for lag in range(nlags + 1):
+        cov = np.sum((y[lag:] - mean_y) * (y[:n-lag] - mean_y)) / n
+        acf_vals.append(cov / var_y)
+    return np.array(acf_vals)
+
+# ------------------------
+# Partial Autocorrelation function
+# ------------------------
+def pacf(y, nlags=20):
+    from numpy.linalg import lstsq
+    pacf_vals = [1.0]  # lag 0 PACF is 1
+    y = np.array(y)
+
+    for k in range(1, nlags + 1):
+        # Build the lagged matrix
+        X = np.column_stack([y[i:-(k-i)] for i in range(k)]) if k > 1 else y[:-1].reshape(-1,1)
+        y_k = y[k:]
+        beta, _, _, _ = lstsq(X, y_k, rcond=None)
+        pacf_vals.append(beta[-1])  # last coefficient = PACF at lag k
+
+    return np.array(pacf_vals)
+
+# ------------------------
+# Plotting function
+# ------------------------
+def plot_acf_pacf(y, nlags=20):
+
+    if nlags is None:
+        nlags = len(y) // 2
+
+    assert len(y) >= nlags
+
+    acf_vals = acf(y, nlags)
+    pacf_vals = pacf(y, nlags)
+    
+    lags = np.arange(nlags+1)
+    plt.figure(figsize=(12, 5))
+
+    plt.subplot(1,2,1)
+    plt.stem(lags, acf_vals, basefmt=" ")
+    plt.title("ACF")
+    plt.xlabel("Lag")
+    plt.ylabel("Autocorrelation")
+    plt.axhline(y=0, color='black', linewidth=1)
+    plt.axhline(y=1.96/np.sqrt(len(y)), color='red', linestyle='--')
+    plt.axhline(y=-1.96/np.sqrt(len(y)), color='red', linestyle='--')
+
+    plt.subplot(1,2,2)
+    plt.stem(lags, pacf_vals, basefmt=" ")
+    plt.title("PACF")
+    plt.xlabel("Lag")
+    plt.ylabel("Partial Autocorrelation")
+    plt.axhline(y=0, color='black', linewidth=1)
+    plt.axhline(y=1.96/np.sqrt(len(y)), color='red', linestyle='--')
+    plt.axhline(y=-1.96/np.sqrt(len(y)), color='red', linestyle='--')
+
+    plt.tight_layout()
+    plt.show()
 
 
 # ------------------------
@@ -179,12 +220,14 @@ class ARIMAX:
 # ------------------------
 if __name__ == "__main__":
     y = np.array([4.0, 4.5, 5.0, 5.3, 5.7, 6.1, 6.4, 6.8])
-    exog = np.array([1, 2, 3, 4, 5, 6, 7, 8])  # one exogenous variable
-    model = ARIMAX(y, p=1, d=1, q=1, exog=exog)
+    exog = np.array([[1], [2], [3], [4], [5], [6], [7], [8]])  # simple exogenous variable
 
-    exog_future = np.array([9, 10, 11, 12, 13])
-    preds = model.forecast(5, exog_future=exog_future)
+    model = ARIMAX(y, exog=exog, p=0, d=1, q=1)
+    
+    # Forecasting next 3 steps with exogenous values
+    exog_future = np.array([[9], [10], [11]])
+    preds = model.forecast(3, exog_future)
     print("Forecasts:", preds)
 
-    full_hist = model.get_full(5, exog_future=exog_future)
-    print(full_hist)
+    full_series = model.get_full(steps=3, exog_future=exog_future)
+    plot_acf_pacf(full_series, nlags=None)
