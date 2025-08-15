@@ -76,11 +76,11 @@ class ARIMAX:
     # ------------------------
     # MA part
     # ------------------------
-    def MA(self, data, residuals):
+    def MA(self, data):
         if self.q == 0:
-            return np.array([]), residuals
+            return np.array([]), data
 
-        df = pd.DataFrame({'e': residuals})
+        df = pd.DataFrame({'e': data})
         for i in range(1, self.q + 1):
             df[f'e_lag{i}'] = df['e'].shift(i)
 
@@ -113,7 +113,7 @@ class ARIMAX:
         beta, ar_res = self.AR(y_train, exog_train)
 
         # 3. Fit MA
-        theta, ma_res = self.MA(y_train, ar_res)
+        theta, ma_res = self.MA(ar_res)
 
         # 4. Prepare history
         y_hist = list(y_train)
@@ -231,10 +231,8 @@ class Tools:
         for d in range(self.max_d + 1):
             result = adfuller(diffed)
             p_value = result[1]
-            print(f"d = {d}, ADF p-value = {p_value:.5f}")
             
             if p_value < significance:
-                print(f"Series is stationary at d = {d}")
                 return d
             # difference for next iteration
             diffed = diffed[1:] - diffed[:-1]
@@ -300,7 +298,7 @@ class Tools:
                 _, ar_res = model.AR(diffed_data)
 
                 # Fit MA for current q
-                _, ma_res = model.MA(diffed_data, ar_res)
+                _, ma_res = model.MA(ar_res)
             except np.linalg.LinAlgError:
                 break
             rss = np.sum(ma_res ** 2)
