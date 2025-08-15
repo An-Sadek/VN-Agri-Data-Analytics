@@ -220,7 +220,6 @@ def plot_acf_pacf(y, nlags=20):
 
 
 class Tools:
-
     def __init__(self, max_d=10, max_p=10, max_q=10):
         self.max_d = max_d
         self.max_p = max_p
@@ -242,13 +241,14 @@ class Tools:
         
         return self.max_d
     
-    def find_p(self, data, d=1):
+    def find_p(self, data, d=1, exog=None):
         best_p = 0
         min_aic = np.inf
 
-        # Difference first
         if d > 0:
             diffed_data = ARIMAX(data, d=d).difference(data, d=d)
+            if exog is not None:
+                exog = exog[d:]  
         else:
             diffed_data = np.array(data)
 
@@ -257,7 +257,7 @@ class Tools:
         for p in range(self.max_p + 1):
             if p >= n:
                 break
-            model = ARIMAX(diffed_data, p=p, d=0, q=1) 
+            model = ARIMAX(diffed_data, p=p, d=0, q=1, exog=exog) 
             try:
                 _, ar_res = model.AR(diffed_data)
             except np.linalg.LinAlgError:
@@ -268,8 +268,6 @@ class Tools:
                 aic = 2 * (p + 1)
             else:
                 aic = n_obs * np.log(rss / n_obs + 1e-10) + 2 * (p + 1)
-            mse = rss / n_obs  # For debugging
-            print(f"p={p}, mse={mse}, aic={aic}")
 
             if aic < min_aic:
                 min_aic = aic
@@ -278,13 +276,15 @@ class Tools:
         return best_p
     
 
-    def find_q(self, data, p=1, d=1):
+    def find_q(self, data, p=1, d=1, exog=None):
         best_q = 0
         min_aic = np.inf
 
         # 1. difference the data if d > 0
         if d > 0:
-            diffed_data = ARIMAX(data, d=d).difference(data, d=d)
+            diffed_data = ARIMAX(data, d=d, exog=exog).difference(data, d=d)
+            if exog is not None:
+                exog = exog[d:]  # Slice exog to match diffed_data length
         else:
             diffed_data = np.array(data)
 
@@ -294,7 +294,7 @@ class Tools:
         for q in range(self.max_q + 1):
             if p + q >= n:
                 break
-            model = ARIMAX(diffed_data, p=p, d=0, q=q)  # d=0 because data already differenced
+            model = ARIMAX(diffed_data, p=p, d=0, q=q, exog=exog)  # d=0 because data already differenced
 
             try:
                 _, ar_res = model.AR(diffed_data)
@@ -309,8 +309,6 @@ class Tools:
                 aic = 2 * (p + q + 1)  # Adjust params: AR (p+1), MA (q)
             else:
                 aic = n_obs * np.log(rss / n_obs + 1e-10) + 2 * (p + q + 1)
-            mse = rss / n_obs  # For debugging
-            print(f"q={q}, mse={mse}, aic={aic}")
 
             if aic < min_aic:
                 min_aic = aic
@@ -319,18 +317,17 @@ class Tools:
         return best_q
 
 
-    def find_best(self, data) -> dict:
+    def find_best(self, data, exog=None) -> dict:
         best_d = self.find_d(data, significance=0.1)
-        best_p = self.find_p(data, best_d)
-        best_q = self.find_q(data, best_p, best_d)
+        best_p = self.find_p(data, best_d, exog=exog)
+        best_q = self.find_q(data, best_p, best_d, exog=exog)
 
         return {
             "p": best_p,
             "d": best_d,
             "q": best_q
         }
-
-
+    
 # ------------------------
 # Example usage
 # ------------------------
