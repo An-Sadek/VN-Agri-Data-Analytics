@@ -36,15 +36,6 @@ class ARIMAX:
             diffed = diffed[1:] - diffed[:-1]
         return diffed
 
-    def inverse_difference(self, last_values, forecasts):
-        result = []
-        prev = list(last_values)
-        for f in forecasts:
-            value = f + prev[-1]
-            result.append(value)
-            prev.append(value)
-        return result
-    
     def exponential_smoothing(self, alpha):
         smoothed = [self.data[0]]
         for t in range(1, len(self.data)):
@@ -70,7 +61,7 @@ class ARIMAX:
         X = df.drop(columns=['y']).values
         X = np.column_stack((np.ones(len(X)), X))
 
-        beta = np.linalg.inv(X.T @ X) @ (X.T @ y)
+        beta = np.linalg.lstsq(X, y, rcond=None)[0]
         y_hat = X @ beta
         residuals = y - y_hat
         return beta, residuals
@@ -92,7 +83,7 @@ class ARIMAX:
         y = df['e'].values
         X = df.iloc[:, 1:].values  # no intercept
 
-        theta = np.linalg.inv(X.T @ X) @ (X.T @ y)
+        theta = np.linalg.lstsq(X, y, rcond=None)[0]
         y_hat = X @ theta
         new_residuals = y - y_hat
         return theta, new_residuals
@@ -148,11 +139,28 @@ class ARIMAX:
             y_hist.append(y_next)
             e_hist.append(0)
 
-        if self.d > 0:
-            last_vals = self.data[-self.d:]
-            forecasts = self.inverse_difference(last_vals, forecasts_diff)
-        else:
-            forecasts = forecasts_diff
+        # 6. Inverse difference if d > 0
+        if self.d == 0:
+            return np.array(forecasts_diff)
+
+        # Compute last differences at each level
+        diff_histories = []
+        temp = self.data
+        for _ in range(self.d):
+            diff = np.diff(temp)
+            if len(diff) == 0:
+                raise ValueError("Data too short for differencing")
+            diff_histories.append(diff[-1])
+            temp = diff
+
+        # Prepare add_list
+        add_list = list(reversed(diff_histories[:-1])) if self.d > 1 else []
+        add_list += [self.data[-1]]
+
+        # Cumulatively undifference
+        forecasts = np.array(forecasts_diff)
+        for i in range(self.d):
+            forecasts = np.cumsum(forecasts) + add_list[i]
 
         return forecasts
     
@@ -227,7 +235,7 @@ class Tools:
     def __init__(self):
         pass
 
-    def find_d(self, data, max_d=20, significance=0.1):
+    def find_d(self, data, max_d=5, significance=0.1):
         diffed = np.array(data, dtype=float)
         
         for d in range(max_d + 1):
@@ -241,7 +249,7 @@ class Tools:
         
         return max_d
     
-    def find_p(self, data, d=1, max_p=20, exog=None):
+    def find_p(self, data, d=1, max_p=5, exog=None):
         best_p = 0
         min_aic = np.inf
 
@@ -259,10 +267,7 @@ class Tools:
             if p >= n:
                 break
             model = ARIMAX(diffed_data, p=p, d=0, q=1, exog=exog) 
-            try:
-                _, ar_res = model.AR(diffed_data)
-            except np.linalg.LinAlgError:
-                break  # Higher p will also fail
+            _, ar_res = model.AR(diffed_data)
             rss = np.sum(ar_res ** 2)
             n_obs = len(ar_res)
             if rss < 1e-10:  # Perfect fit
@@ -277,7 +282,7 @@ class Tools:
         return best_p
     
 
-    def find_q(self, data, p=1, d=1, max_q=20, exog=None):
+    def find_q(self, data, p=1, d=1, max_q=5, exog=None):
         best_q = 0
         min_aic = np.inf
 
@@ -298,13 +303,10 @@ class Tools:
                 break
             model = ARIMAX(diffed_data, p=p, d=0, q=q, exog=exog)  # d=0 because data already differenced
 
-            try:
-                _, ar_res = model.AR(diffed_data)
+            _, ar_res = model.AR(diffed_data)
 
-                # Fit MA for current q
-                _, ma_res = model.MA(ar_res)
-            except np.linalg.LinAlgError:
-                break
+            # Fit MA for current q
+            _, ma_res = model.MA(ar_res)
             rss = np.sum(ma_res ** 2)
             n_obs = len(ma_res)
             if rss < 1e-10:
@@ -319,7 +321,7 @@ class Tools:
         return best_q
 
 
-    def find_best(self, data, max_order=(20, 20, 20), exog=None) -> dict:
+    def find_best(self, data, max_order=(5, 5, 5), exog=None) -> dict:
         best_d = self.find_d(data, max_order[0], significance=0.1)
         best_p = self.find_p(data, best_d, max_order[1], exog=exog)
         best_q = self.find_q(data, best_p, best_d, max_order[2], exog=exog)
@@ -350,3 +352,25 @@ if __name__ == "__main__":
     tools = Tools()
     best_hyperpara = tools.find_best(y)
     print(best_hyperpara)
+    
+    # Real data
+    df = pd.read_csv("data/pre_data.csv")
+    item_df = df[df["Tên_mặt_hàng"] == 23]
+
+    exog = item_df[["Thị_trường", "Nguồn"]].values
+    y = item_df["Giá"].values
+
+    best_hyperpara = tools.find_best(y, exog=exog)
+    new_model = ARIMAX(
+        data = y,
+        exog = exog,
+        p = best_hyperpara["p"],
+        d = best_hyperpara["d"],
+        q = best_hyperpara["q"]
+    )
+
+    exog_future = [[19, 7]]
+    exog_future = np.tile(exog_future, (20, 1))
+    print(exog_future.shape)
+    y_forecast = new_model.forecast(20, exog_future)
+    print("Real data", y_forecast)

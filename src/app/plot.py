@@ -3,274 +3,228 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 import numpy as np
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import timedelta
 import os
 import pickle
 import warnings
 import yaml
 warnings.filterwarnings('ignore')
+import plotly.graph_objects as go
+from statsmodels.tsa.holtwinters import SimpleExpSmoothing
 
-def forecast_with_model(df_filtered, forecast_method, encoding_type, forecast_days, df_all):
-    """Dự báo với model đã train"""
-    try:
-        if len(df_filtered) == 0:
-            return None, None
-            
-        product_name = df_filtered['Tên_mặt_hàng'].iloc[0]
-        
-        # Load metadata
-        base_path = "."
-        
-        with open(f"{base_path}/data/metadata/item.yaml", "r", encoding="utf-8") as file:
-            item_meta = yaml.safe_load(file)
-        
-        with open(f"{base_path}/data/metadata/scaler.yaml", "r", encoding="utf-8") as file:
-            scaler_meta = yaml.safe_load(file)
-        
-        if product_name not in item_meta:
-            return None, None
-        
-        # Load model
-        #@model_folder = f"{forecast_method.lower()}_{encoding_type}"
-        #model_path = f"{base_path}/models/{model_folder}"
-        
-        model_files = [f for f in os.listdir(model_path) if f.endswith('.pkl')]
-        if not model_files:
-            return None, None
-            
-        with open(f"{model_path}/{model_files[0]}", "rb") as file:
-            model = pickle.load(file)
-        
-        # Dữ liệu gần nhất
-        daily_prices = df_filtered.groupby('Ngày')['Giá'].mean().reset_index()
-        last_date = daily_prices['Ngày'].max()
-        last_price = daily_prices['Giá'].iloc[-1]
-        
-        # Tạo ngày dự báo
-        forecast_dates = pd.date_range(
-            start=last_date + timedelta(days=1),
-            periods=forecast_days,
-            freq='D'
-        )
-        
-        # Dự báo
-        if forecast_method.upper() == "SARIMAX":
-            try:
-                sample_row = df_filtered.iloc[-1]
-                thi_truong = sample_row['Thị_trường']
-                loai_gia = sample_row['Loại_giá'] 
-                nguon = sample_row['Nguồn']
-                
-                if encoding_type == "LBL":
-                    thi_truong_enc = scaler_meta["Thị_trường"][thi_truong] / scaler_meta["Thị_trường"]["max"]
-                    loai_gia_enc = scaler_meta["Loại_giá"][loai_gia] / scaler_meta["Loại_giá"]["max"]
-                    nguon_enc = scaler_meta["Nguồn"][nguon] / scaler_meta["Nguồn"]["max"]
-                    exog_matrix = np.array([[thi_truong_enc, loai_gia_enc, nguon_enc]] * forecast_days)
-                else:
-                    thi_truong_oh = np.zeros(scaler_meta["Thị_trường"]["max"] + 1)
-                    thi_truong_oh[scaler_meta["Thị_trường"][thi_truong]] = 1
-                    
-                    loai_gia_oh = np.zeros(scaler_meta["Loại_giá"]["max"] + 1)
-                    loai_gia_oh[scaler_meta["Loại_giá"][loai_gia]] = 1
-                    
-                    nguon_oh = np.zeros(scaler_meta["Nguồn"]["max"] + 1)
-                    nguon_oh[scaler_meta["Nguồn"][nguon]] = 1
-                    
-                    exog_vector = np.concatenate([thi_truong_oh, loai_gia_oh, nguon_oh])
-                    exog_matrix = np.tile(exog_vector, (forecast_days, 1))
-                
-                forecast_values = model.forecast(steps=forecast_days, exog=exog_matrix)
-                forecast_prices = forecast_values.values if hasattr(forecast_values, 'values') else forecast_values
-                
-            except Exception as e:
-                trend = np.random.normal(0, last_price * 0.01, forecast_days)
-                forecast_prices = [last_price + sum(trend[:i+1]) for i in range(forecast_days)]
-                forecast_prices = np.array(forecast_prices)
-                
-        else:  # DLM
-            forecast_prices = []
-            current_price = last_price
-            for i in range(forecast_days):
-                trend = np.random.normal(0, last_price * 0.01)
-                current_price += trend
-                forecast_prices.append(current_price)
-            forecast_prices = np.array(forecast_prices)
-            
-        return forecast_dates, forecast_prices
-        
-    except Exception as e:
-        return None, None
+import sys
+sys.path.append("src/train")
 
-def create_historical_chart(df_filtered, selected_product):
-    """Biểu đồ dữ liệu lịch sử"""
-    
-    if len(df_filtered) == 0:
-        return None
-    
-    daily_prices = df_filtered.groupby('Ngày')['Giá'].mean().reset_index()
-    
-    fig, ax = plt.subplots(figsize=(12, 6))
-    
-    ax.plot(daily_prices['Ngày'], daily_prices['Giá'], 
-            color='blue', linewidth=2, marker='o', markersize=3, 
-            label='Giá lịch sử')
-    
-    # Format trục x
-    total_days = len(daily_prices)
-    
-    if total_days <= 90:
-        ax.xaxis.set_major_locator(mdates.WeekdayLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m'))
-    else:
-        ax.xaxis.set_major_locator(mdates.MonthLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%Y'))
-    
-    plt.xticks(rotation=45, ha='right')
-    
-    ax.set_xlabel('Ngày', fontsize=12, fontweight='bold')
-    ax.set_ylabel('Giá (VNĐ)', fontsize=12, fontweight='bold')
-    ax.set_title(f"Dữ liệu lịch sử - {selected_product}", fontsize=14, fontweight='bold')
-    
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x:,.0f}'))
-    ax.grid(True, alpha=0.3)
-    ax.legend()
-    
-    plt.tight_layout()
-    return fig
 
-def create_forecast_chart(df_filtered, selected_product, forecast_methods, encoding_type, forecast_days, df_all):
-    """Biểu đồ dự báo"""
-    
-    if len(df_filtered) == 0:
-        return None
-    
-    fig, ax = plt.subplots(figsize=(12, 6))
-    
-    # Lấy điểm cuối
-    daily_prices = df_filtered.groupby('Ngày')['Giá'].mean().reset_index()
-    last_date = daily_prices['Ngày'].max()
-    last_price = daily_prices['Giá'].iloc[-1]
-    
-    ax.scatter([last_date], [last_price], color='black', s=100, zorder=5, 
-               label=f'Điểm cuối ({last_date.strftime("%d/%m/%Y")})')
-    
-    # Plot dự báo
-    colors = ['red', 'orange', 'green', 'purple']
-    
-    for idx, method in enumerate(forecast_methods):
-        forecast_dates, forecast_prices = forecast_with_model(
-            df_filtered, method, encoding_type, forecast_days, df_all
-        )
-        
-        if forecast_dates is not None and forecast_prices is not None:
-            color = colors[idx % len(colors)]
-            
-            full_dates = [last_date] + list(forecast_dates)
-            full_prices = [last_price] + list(forecast_prices)
-            
-            ax.plot(full_dates, full_prices, 
-                    color=color, linewidth=2, linestyle='--', marker='s', markersize=3,
-                    label=f'{method}_{encoding_type}')
-    
-    # Format trục x
-    if forecast_days <= 90:
-        ax.xaxis.set_major_locator(mdates.WeekdayLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%d/%m'))
-    else:
-        ax.xaxis.set_major_locator(mdates.MonthLocator())
-        ax.xaxis.set_major_formatter(mdates.DateFormatter('%m/%Y'))
-    
-    plt.xticks(rotation=45, ha='right')
-    
-    ax.set_xlabel('Ngày', fontsize=12, fontweight='bold')
-    ax.set_ylabel('Giá (VNĐ)', fontsize=12, fontweight='bold')
-    ax.set_title(f"Dự báo {forecast_days} ngày - {selected_product}", fontsize=14, fontweight='bold')
-    
-    ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda x, p: f'{x:,.0f}'))
-    ax.grid(True, alpha=0.3)
-    ax.legend()
-    
-    plt.tight_layout()
-    return fig
+class ForcastModel:
 
-def create_forecast_summary(forecast_prices, model_name):
-    """Tóm tắt dự báo"""
-    if forecast_prices is None or len(forecast_prices) == 0:
-        return None
-    
-    avg_forecast = np.mean(forecast_prices)
-    trend = "📈 Tăng" if forecast_prices[-1] > forecast_prices[0] else "📉 Giảm"
-    change_pct = ((forecast_prices[-1] - forecast_prices[0]) / forecast_prices[0]) * 100
-    
-    return {
-        'model': model_name,
-        'avg_forecast': avg_forecast,
-        'trend': trend,
-        'change_pct': change_pct,
-        'max_price': np.max(forecast_prices),
-        'min_price': np.min(forecast_prices),
-        'volatility': np.std(forecast_prices)
-    }
+	def __init__(self, model_dir, csv_path, item_path, scaler_path):
+		assert os.path.exists(model_dir)
+		assert os.path.exists(csv_path)
+		assert os.path.exists(item_path)
+		assert os.path.exists(scaler_path)
 
-def create_forecast_dataset(df_filtered, forecast_methods, encoding_type, forecast_days, 
-                          selected_product, selected_market, selected_source, selected_price_type, df_all):
-    """Tạo dataset dự báo"""
-    
-    forecast_data = []
-    
-    for method in forecast_methods:
-        forecast_dates, forecast_prices = forecast_with_model(
-            df_filtered, method, encoding_type, forecast_days, df_all
-        )
-        
-        if forecast_dates is None or forecast_prices is None:
-            continue
-        
-        for i, (date, price) in enumerate(zip(forecast_dates, forecast_prices)):
-            confidence = max(80, 95 - (i * 0.3))
-            
-            forecast_data.append({
-                'Ngày': date.strftime('%d/%m/%Y'),
-                'Sản phẩm': selected_product,
-                'Thị trường': selected_market,
-                'Loại giá': selected_price_type,
-                'Nguồn': selected_source,
-                'Mô hình': f"{method}_{encoding_type}",
-                'Giá dự báo': f"{price:,.0f}",
-                'Độ tin cậy': f"{confidence:.1f}%"
-            })
-    
-    return pd.DataFrame(forecast_data) if forecast_data else None
+		self.model_dir = model_dir
 
-def check_model_availability():
-    """Kiểm tra model có sẵn"""
-    base_path = "models"
-    available_models = []
-    
-    model_types = ["sarimax_LBL", "sarimax_OH", "dlm_LBL", "dlm_OH"]
-    
-    for model_type in model_types:
-        model_path = os.path.join(base_path, model_type)
-        if os.path.exists(model_path) and os.listdir(model_path):
-            available_models.append(model_type.upper())
-    
-    return available_models
+		self.df = pd.read_csv(csv_path)
 
-def check_model_status(selected_product, forecast_method, encoding_type, df_all):
-    """Kiểm tra trạng thái model"""
-    try:
-        base_path = "."
-        
-        with open(f"{base_path}/data/metadata/item.yaml", "r", encoding="utf-8") as file:
-            item_meta = yaml.safe_load(file)
-        
-        if selected_product not in item_meta:
-            return False
-        
-        model_folder = f"{forecast_method.lower()}_{encoding_type}"
-        model_path = f"{base_path}/models/{model_folder}"
-        
-        return os.path.exists(model_path) and len(os.listdir(model_path)) > 0
-        
-    except:
-        return False
+		with open("data/item.yaml", "r", encoding="utf-8") as file:
+			self.item_meta = yaml.safe_load(file)
+
+		with open("data/scaler.yaml", "r", encoding="utf-8") as file:
+			self.scaler_meta = yaml.safe_load(file)
+
+		self.input_list = ["Ngày", "Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
+		self.cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
+		self.exog_cols = ["Thị_trường", "Loại_giá", "Nguồn"]
+
+
+	def _get_encoded_feature(self, feature_dict: dict):
+		"""
+		Chuyển từ điển đặc trưng về dạng đã được encode
+		"""
+		encoded_dict = feature_dict.copy()
+
+		# Chuyển các đặc trưng bằng label encoding
+		for k in self.cat_cols:
+			value = encoded_dict[k]
+			encoded_value = self.scaler_meta[k][value]
+			encoded_dict[k] = encoded_value
+
+		item = encoded_dict["Tên_mặt_hàng"]
+
+		last_update = self.item_meta[item]["last_update"]
+		last_update = pd.to_datetime(last_update)
+
+		# Chuyển ngày về số bước và ngược lại
+		if encoded_dict["Ngày"] != "":
+			ngay_dudoan = pd.to_datetime(encoded_dict["Ngày"])
+			steps = (ngay_dudoan - last_update).days
+			assert steps > 0, "Số ngày dự đoán phải lớn hơn 0"
+			encoded_dict["Steps"] = steps
+
+		if encoded_dict["Steps"] != 0:
+			predict_date = last_update + pd.Timedelta(days=encoded_dict["Steps"])
+			encoded_dict["Ngày"] = predict_date
+
+		return encoded_dict
+
+	# Dự đoán
+	def forecast(self, model_type: str, feature_dict: dict):
+		"""
+		Dự báo giá tương lai bằng mô hình dlm hoặc sarimax bằng từ điển đặc trưng
+		"""
+		assert model_type in ["sarimax", "dlm", "arimax"]
+		assert (feature_dict["Ngày"] != "") ^ (feature_dict["Steps"] != 0), "Bắt buộc chỉ có duy nhất Ngày hoặc số bước dự đoán"
+		assert  all(k in feature_dict for k in self.input_list), f"Feature dict là từ điển đặc trưng gồm các từ khóa sau: {self.input_list}"
+
+		# Tạo encoded dict tránh việc bị thay đổi trực tiếp
+		encoded_dict = self._get_encoded_feature(feature_dict)
+
+		# Lấy idx từ item
+		item_idx = encoded_dict["Tên_mặt_hàng"]
+
+		# Chuẩn bị các đặc trưng
+		#|-- Lấy số bước
+		steps = encoded_dict["Steps"]
+		#|-- Chuyển về list
+		exog1 = [
+			encoded_dict["Thị_trường"],
+			encoded_dict["Loại_giá"],
+			encoded_dict["Nguồn"]
+		]
+		exog = []
+		for _ in range(steps):
+			exog.append(exog1)
+
+		# Đọc model
+		with open(f"models/{model_type}/{item_idx}.pkl", "rb") as file:
+			model = pickle.load(file)
+
+		# Dự đoán
+		y_pred = None
+		if model_type == "sarimax":
+			y_pred = model.forecast(steps=steps, exog=exog)
+
+		if model_type == "dlm":
+			exog = np.array(exog)
+			y_pred = model.forecast(steps=steps, exog_future=exog)
+
+		if model_type == "arimax":
+			y_pred = model.forecast(steps=steps, exog_future=exog)
+
+		return y_pred
+	
+
+	def plot_forecast(self, model_type: str, feature_dict: dict, show_historical=True, smoothing_alpha=0.3):
+		# Chuyển về dạng label
+		encoded_dict = self._get_encoded_feature(feature_dict)
+		
+		item_name = feature_dict["Tên_mặt_hàng"]
+		item_idx = encoded_dict["Tên_mặt_hàng"]
+		item_df = self.df[self.df["Tên_mặt_hàng"] == item_idx].sort_values("Ngày")
+		
+		# Chuyển ngày sang pd date_time
+		item_df["Ngày"] = pd.to_datetime(item_df["Ngày"])
+
+		# Dự báo
+		y_pred = np.array(self.forecast(model_type, feature_dict))
+		actual_pred_length = len(y_pred)
+
+		# Tạo các ngày tương lai
+		last_date = item_df["Ngày"].max()
+		future_dates = [last_date + timedelta(days=i) for i in range(1, actual_pred_length + 1)]
+
+		# Kết hợp dữ liệu lịch sử + dự báo để smoothing
+		full_values = np.concatenate([item_df["Giá"].values, y_pred])
+		full_dates = pd.concat([item_df["Ngày"], pd.Series(future_dates)], ignore_index=True)
+
+		# Áp dụng SimpleExpSmoothing
+		ses_model = SimpleExpSmoothing(full_values)
+		ses_fit = ses_model.fit(smoothing_level=smoothing_alpha, optimized=False)
+		smoothed_values = ses_fit.fittedvalues
+
+		# Lấy phần lịch sử và dự báo sau khi smoothing
+		smoothed_history = smoothed_values[:len(item_df)]
+		smoothed_forecast = smoothed_values[len(item_df):]
+
+		# Create Plotly figure
+		fig = go.Figure()
+
+		if show_historical:
+			fig.add_trace(go.Scatter(
+				x=item_df["Ngày"],
+				y=smoothed_history,
+				mode="lines",
+				name="Historical (smoothed)",
+				line=dict(color="blue")
+			))
+
+		fig.add_trace(go.Scatter(
+			x=future_dates,
+			y=smoothed_forecast,
+			mode="lines",
+			name="Forecast (smoothed)",
+			line=dict(color="red", dash="dash")
+		))
+
+		fig.update_layout(
+			title=f"Dự báo giá - {item_name} ({model_type.upper()} - Smoothed)",
+			xaxis_title="Ngày",
+			yaxis_title="Giá",
+			hovermode="x unified",
+			template="plotly_white"
+		)
+
+		return fig
+
+
+if __name__ == "__main__":
+	model = ForcastModel(
+		"models",
+		"data/pre_data.csv",
+		"data/item.yaml",
+		"data/scaler.yaml"
+	)
+
+	features = {
+		"Ngày": "",
+		"Tên_mặt_hàng": "Cà phê Robusta nhân xô",
+		"Thị_trường": "Đắk Lắk",
+		"Loại_giá": "Thương lái thu mua",
+		"Nguồn": "CTV địa phương",
+		"Steps": 10
+	}
+
+	# Sarimax test
+	print("Sarima")
+	y_pred1 = model.forecast(
+		"sarimax",
+		feature_dict=features
+	)
+	print(y_pred1)
+	print(np.mean(y_pred1))
+	print("\n\n")
+	
+	# DLM test
+	print("DLM")
+	y_pred2 = model.forecast(
+		"dlm",
+		feature_dict=features
+	)
+	print(y_pred2)
+
+	fig = model.plot_forecast("dlm", features)
+
+	# ARIMA test
+	print("ARIMAX")
+	y_pred3 = model.forecast(
+		"arimax",
+		feature_dict=features
+	)
+	print(y_pred3)
+
+	model.plot_forecast("dlm", features)
+	model.plot_forecast("arimax", features)
+
+	

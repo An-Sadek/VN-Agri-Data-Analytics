@@ -1,262 +1,354 @@
-# app.py
 import streamlit as st
-import pandas as pd
 import numpy as np
-from datetime import datetime, timedelta
+import pandas as pd
+from datetime import timedelta, datetime
+from plot import ForcastModel
 import warnings
 warnings.filterwarnings('ignore')
 
-from plot import (
-    create_historical_chart,
-    create_forecast_chart,
-    create_forecast_dataset, 
-    create_forecast_summary,
-    check_model_availability,
-    check_model_status,
-    forecast_with_model
-)
-
-# Cấu hình trang
-st.set_page_config(
-    page_title="Dự báo giá nông sản",
-    page_icon="🌾",
-    layout="wide"
-)
-
-# CSS đơn giản
-st.markdown("""
-<style>
-.metric-box {
-    background: #f0f2f6;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 0.5rem 0;
-    text-align: center;
-    color: black;
-}
-.metric-box h4, .metric-box p {
-    color: black !important;
-}
-.warning-box {
-    background: #fff3cd;
-    border: 1px solid #ffeaa7;
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-}
-</style>
-""", unsafe_allow_html=True)
-
-# Tiêu đề
-st.title("🌾 Dự báo giá nông sản")
-st.markdown("---")
-
-# Load dữ liệu
 @st.cache_data
-def load_data():
-    df_path = "data/pre_data.csv"
-    df = pd.read_csv(df_path)
-    df['Ngày'] = pd.to_datetime(df['Ngày'])
-    return df
+def load_model():
+	"""Load the forecast model with caching"""
+	try:
+		model = ForcastModel(
+			"models",
+			"data/pre_data.csv", 
+			"data/item.yaml",
+			"data/scaler.yaml"
+		)
+		return model
+	except Exception as e:
+		st.error(f"Error loading model: {str(e)}")
+		return None
 
-df = load_data()
+def display_forecast_chart(model, model_type, features, show_historical, chart_height=500):
+	"""Display chart using the model's plot_forecast method"""
+	try:
+		# Use the model's built-in plot_forecast method that returns Plotly figure
+		fig = model.plot_forecast(
+			model_type=model_type, 
+			feature_dict=features, 
+			show_historical=show_historical
+		)
+		
+		# Update chart height
+		fig.update_layout(height=chart_height)
+		
+		# Display the Plotly figure in Streamlit
+		st.plotly_chart(fig, use_container_width=True)
+		
+		return True, fig
+	except Exception as e:
+		st.error(f"Lỗi khi tạo biểu đồ: {str(e)}")
+		return False, None
 
-# Sidebar
-st.sidebar.header("🔧 Cấu hình")
+def get_historical_data(model, feature_dict):
+	"""Get historical data for the selected item"""
+	try:
+		encoded_dict = model._get_encoded_feature(feature_dict)
+		item_idx = encoded_dict["Tên_mặt_hàng"]
+		item_df = model.df[model.df["Tên_mặt_hàng"] == item_idx].sort_values("Ngày")
+		item_df["Ngày"] = pd.to_datetime(item_df["Ngày"])
+		return item_df
+	except Exception:
+		return None
 
-# Chọn sản phẩm
-products = sorted(df['Tên_mặt_hàng'].unique())
-selected_product = st.sidebar.selectbox("Sản phẩm:", products)
+def get_available_options(model):
+	"""Get available options from scaler metadata"""
+	options = {}
+	for col in model.cat_cols:
+		# Filter out 'max' key and get the actual category values
+		col_options = [k for k in model.scaler_meta[col].keys() if k != "max"]
+		options[col] = col_options
+	return options
 
-df_filtered = df[df['Tên_mặt_hàng'] == selected_product]
+def display_forecast_stats(predictions):
+	"""Display forecast statistics in a nice format"""
+	col1, col2, col3, col4 = st.columns(4)
+	
+	avg_price = np.mean(predictions)
+	min_price = np.min(predictions)
+	max_price = np.max(predictions)
+	
+	with col1:
+		st.metric("Giá trung bình", f"{avg_price:,.0f} VNĐ")
+	
+	with col2:
+		st.metric("Giá thấp nhất", f"{min_price:,.0f} VNĐ")
+	
+	with col3:
+		st.metric("Giá cao nhất", f"{max_price:,.0f} VNĐ")
+	
+	with col4:
+		if len(predictions) > 1:
+			change = ((predictions[-1] - predictions[0]) / predictions[0]) * 100
+			trend_icon = "📈" if change > 0 else "📉" if change < 0 else "➡️"
+			st.metric(
+				"Xu hướng", 
+				f"{trend_icon} {abs(change):.1f}%",
+				delta=f"{change:+.1f}%"
+			)
 
-# Chọn thị trường
-markets = sorted(df_filtered['Thị_trường'].unique())
-selected_market = st.sidebar.selectbox("Thị trường:", markets)
+def main():
+	# Page configuration
+	st.set_page_config(
+		page_title="Dự báo Giá Nông sản",
+		page_icon="📈",
+		layout="wide",
+		initial_sidebar_state="expanded"
+	)
+	
+	# Header
+	st.title("📈 Hệ thống Dự báo Giá Nông sản")
+	st.markdown("*Ứng dụng dự báo giá sử dụng mô hình SARIMAX và DLM*")
+	st.markdown("---")
+	
+	# Load model
+	model = load_model()
+	if model is None:
+		st.error("Không thể tải mô hình. Vui lòng kiểm tra các file dữ liệu.")
+		st.stop()
+	
+	# Get available options
+	options = get_available_options(model)
+	
+	# Sidebar for inputs
+	with st.sidebar:
+		st.header("🔧 Cấu hình Dự báo")
+		
+		# Model selection
+		model_type = st.selectbox(
+			"Chọn mô hình dự báo:",
+			["sarimax", "dlm"],
+			format_func=lambda x: f"{x.upper()} Model",
+			help="SARIMAX: Seasonal ARIMA with eXogenous variables\nDLM: Dynamic Linear Model"
+		)
+		
+		st.markdown("### 🛒 Thông tin Sản phẩm")
+		
+		# Item selection
+		item_name = st.selectbox(
+			"Tên mặt hàng:",
+			options["Tên_mặt_hàng"],
+			help="Chọn mặt hàng cần dự báo giá"
+		)
+		
+		# Market selection
+		market = st.selectbox(
+			"Thị trường:",
+			options["Thị_trường"],
+			help="Chọn thị trường giao dịch"
+		)
+		
+		# Price type
+		price_type = st.selectbox(
+			"Loại giá:",
+			options["Loại_giá"],
+			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
+		)
+		
+		# Source
+		source = st.selectbox(
+			"Nguồn dữ liệu:",
+			options["Nguồn"],
+			help="Chọn nguồn thu thập dữ liệu"
+		)
+		
+		st.markdown("---")
+		st.markdown("### 📅 Cấu hình Thời gian")
+		
+		# Forecast period selection
+		forecast_method = st.radio(
+			"Phương pháp dự báo:",
+			["Số ngày từ hôm nay", "Chọn ngày cụ thể"],
+			help="Chọn cách xác định khoảng thời gian dự báo"
+		)
+		
+		steps = 0
+		target_date = ""
+		
+		if forecast_method == "Số ngày từ hôm nay":
+			steps = st.slider(
+				"Số ngày dự báo:",
+				min_value=1,
+				max_value=365,
+				value=30,
+				help="Số ngày dự báo tính từ ngày cuối cùng có dữ liệu"
+			)
+		else:
+			min_date = datetime.now().date()
+			target_date = st.date_input(
+				"Ngày dự báo đến:",
+				min_value=min_date,
+				value=min_date + timedelta(days=30),
+				help="Chọn ngày cuối cùng muốn dự báo"
+			)
+			target_date = target_date.strftime("%Y-%m-%d")
+		
+		st.markdown("---")
+		st.markdown("### 📊 Tùy chọn Hiển thị")
+		
+		show_historical = st.checkbox(
+			"Hiển thị dữ liệu lịch sử", 
+			value=True,
+			help="Bật/tắt hiển thị dữ liệu giá lịch sử trên biểu đồ"
+		)
+		
+		# Forecast button
+		st.markdown("---")
+		forecast_button = st.button(
+			"🚀 Thực hiện Dự báo", 
+			type="primary",
+			use_container_width=True
+		)
+	
+	# Main content area
+	if forecast_button:
+		try:
+			# Prepare feature dictionary
+			features = {
+				"Ngày": target_date,
+				"Tên_mặt_hàng": item_name,
+				"Thị_trường": market,
+				"Loại_giá": price_type,
+				"Nguồn": source,
+				"Steps": steps
+			}
+			
+			# Progress indicator
+			progress_bar = st.progress(0)
+			status_text = st.empty()
+			
+			# Step 1: Load data
+			status_text.text("📊 Đang tải dữ liệu...")
+			progress_bar.progress(25)
+			
+			# Get historical data if needed
+			historical_data = None
+			if show_historical:
+				historical_data = get_historical_data(model, features)
+			
+			# Step 2: Run forecast
+			status_text.text("🔮 Đang thực hiện dự báo...")
+			progress_bar.progress(50)
+			
+			predictions = model.forecast(model_type, features)
+			predictions = np.array(predictions)
+			
+			# Step 3: Prepare visualization and data
+			status_text.text("📈 Đang chuẩn bị biểu đồ...")
+			progress_bar.progress(75)
+			
+			# Generate future dates for the table
+			if historical_data is not None and len(historical_data) > 0:
+				last_date = historical_data["Ngày"].max()
+			else:
+				# Use the model's metadata to get the last update date
+				encoded_dict = model._get_encoded_feature(features)
+				item_idx = encoded_dict["Tên_mặt_hàng"]
+				last_date = pd.to_datetime(model.item_meta[item_idx]["last_update"])
+			
+			future_dates = [last_date + timedelta(days=i) for i in range(1, len(predictions) + 1)]
+			
+			# Step 4: Complete
+			status_text.text("✅ Hoàn thành!")
+			progress_bar.progress(100)
+			
+			# Clear progress indicators
+			progress_bar.empty()
+			status_text.empty()
+			
+			# Success message
+			st.success(f"✅ Dự báo hoàn thành cho {item_name} sử dụng mô hình {model_type.upper()}!")
+			
+			# Display forecast statistics
+			st.subheader("📊 Thống kê Dự báo")
+			display_forecast_stats(predictions)
+			
+			st.markdown("---")
+			
+			# Create and display chart using model's plot_forecast method
+			st.subheader("📈 Biểu đồ Dự báo")
+			
+			# Display the chart (this is the ONLY plot now)
+			chart_success, plotly_fig = display_forecast_chart(
+				model, 
+				model_type, 
+				features, 
+				show_historical
+			)
+			
+			st.markdown("---")
+			
+			# Create columns for data table and summary
+			col1, col2 = st.columns([2, 1])
+			
+			with col1:
+				# Forecast table
+				st.subheader("📋 Chi tiết Dự báo")
+				forecast_df = pd.DataFrame({
+					'Ngày': future_dates,
+					'Giá dự báo (VNĐ)': [f"{p:,.0f}" for p in predictions],
+					'Giá số': predictions
+				})
+				
+				# Display with pagination
+				st.dataframe(
+					forecast_df[['Ngày', 'Giá dự báo (VNĐ)']],
+					use_container_width=True,
+					hide_index=True
+				)
+				
+				# Download section
+				csv_data = forecast_df[['Ngày', 'Giá số']].copy()
+				csv_data.columns = ['Ngay', 'Gia_Du_Bao']
+				csv = csv_data.to_csv(index=False, encoding='utf-8')
+				
+				st.download_button(
+					label="📥 Tải xuống dữ liệu dự báo (CSV)",
+					data=csv,
+					file_name=f"du_bao_{item_name.replace(' ', '_')}_{model_type}_{datetime.now().strftime('%Y%m%d')}.csv",
+					mime="text/csv",
+					help="Tải xuống kết quả dự báo dưới dạng file CSV"
+				)
+			
+			with col2:
+				# Summary information
+				st.subheader("ℹ️ Thông tin Tóm tắt")
+				
+				st.info(f"""
+				**Mô hình:** {model_type.upper()}
+				
+				**Sản phẩm:** {item_name}
+				
+				**Thị trường:** {market}
+				
+				**Loại giá:** {price_type}
+				
+				**Nguồn:** {source}
+				
+				**Số điểm dự báo:** {len(predictions)} ngày
+				
+				**Khoảng dự báo:** 
+				{future_dates[0].strftime('%d/%m/%Y')} - {future_dates[-1].strftime('%d/%m/%Y')}
+				""")
+				
+				# Price analysis
+				if len(predictions) > 1:
+					volatility = np.std(predictions)
+					st.metric("Độ biến động", f"{volatility:,.0f} VNĐ")
+		
+		except Exception as e:
+			st.error(f"❌ Đã xảy ra lỗi khi thực hiện dự báo:")
+			st.exception(e)
+			
+			with st.expander("🔍 Chi tiết lỗi (dành cho developer)"):
+				st.code(str(e))
+				st.write("**Gợi ý khắc phục:**")
+				st.write("- Kiểm tra các file dữ liệu (CSV, YAML) có tồn tại không")
+				st.write("- Đảm bảo mô hình đã được train cho sản phẩm này")
+				st.write("- Kiểm tra định dạng ngày tháng")
 
-df_filtered = df_filtered[df_filtered['Thị_trường'] == selected_market]
 
-# Chọn loại giá
-price_types = sorted(df_filtered['Loại_giá'].unique())
-selected_price_type = st.sidebar.selectbox("Loại giá:", price_types)
-
-df_filtered = df_filtered[df_filtered['Loại_giá'] == selected_price_type]
-
-# Chọn nguồn
-sources = sorted(df_filtered['Nguồn'].unique())
-selected_source = st.sidebar.selectbox("Nguồn:", sources)
-
-df_filtered = df_filtered[df_filtered['Nguồn'] == selected_source]
-
-# Cấu hình mô hình
-st.sidebar.markdown("---")
-selected_models = st.sidebar.multiselect(
-    "Mô hình:",
-    ["SARIMAX", "DLM"],
-    default=["SARIMAX"]
-)
-
-encoding_type = st.sidebar.radio(
-    "Encoding:",
-    ["LBL", "OH"]
-)
-
-# Cấu hình thời gian dự báo
-st.sidebar.markdown("---")
-st.sidebar.subheader("Dự báo")
-
-last_date = df_filtered['Ngày'].max().date()
-st.sidebar.write(f"📅 Dữ liệu cuối: {last_date.strftime('%d/%m/%Y')}")
-
-# Chỉ cho phép chọn số ngày dự báo (đơn giản hơn)
-forecast_days = st.sidebar.slider(
-    "Số ngày dự báo:",
-    min_value=7,
-    max_value=365,
-    value=30,
-    step=1
-)
-
-# Hiển thị ngày dự báo
-forecast_start = last_date + timedelta(days=1)
-forecast_end = forecast_start + timedelta(days=forecast_days-1)
-
-st.sidebar.write(f"🔮 Dự báo từ: {forecast_start.strftime('%d/%m/%Y')}")
-st.sidebar.write(f"🔮 Đến: {forecast_end.strftime('%d/%m/%Y')}")
-
-# Cảnh báo nếu dự báo quá xa
-if forecast_days > 90:
-    st.sidebar.warning("⚠️ Dự báo > 3 tháng có độ chính xác thấp")
-
-# Main content - 2 biểu đồ riêng biệt
-if len(df_filtered) > 0:
-    
-    # Biểu đồ 1: Dữ liệu lịch sử
-    st.subheader("📊 Dữ liệu lịch sử")
-    
-    fig_historical = create_historical_chart(df_filtered, selected_product)
-    if fig_historical is not None:
-        st.pyplot(fig_historical)
-    else:
-        st.warning("Không thể tạo biểu đồ lịch sử!")
-    
-    # Biểu đồ 2: Dự báo
-    st.subheader("🔮 Dự báo")
-    
-    if selected_models:
-        # Thêm disclaimer
-        st.markdown("""
-        <div class="warning-box">
-        ⚠️ <strong>Lưu ý:</strong> Dự báo được tính từ ngày cuối dữ liệu. 
-        Độ chính xác giảm theo thời gian dự báo.
-        </div>
-        """, unsafe_allow_html=True)
-        
-        fig_forecast = create_forecast_chart(
-            df_filtered, selected_product, selected_models, 
-            encoding_type, forecast_days, df
-        )
-        
-        if fig_forecast is not None:
-            st.pyplot(fig_forecast)
-        else:
-            st.warning("Không thể tạo biểu đồ dự báo!")
-    else:
-        st.info("Chọn ít nhất 1 mô hình để xem dự báo")
-
-else:
-    st.warning("⚠️ Không có dữ liệu!")
-
-# Sidebar - Thống kê
-with st.sidebar:
-    st.markdown("---")
-    st.subheader("📊 Thống kê")
-    
-    if len(df_filtered) > 0:
-        avg_price = df_filtered['Giá'].mean()
-        max_price = df_filtered['Giá'].max()
-        min_price = df_filtered['Giá'].min()
-        
-        st.markdown(f"""
-        <div class="metric-box">
-            <h4>Giá TB: {avg_price:,.0f} VNĐ</h4>
-            <h4>Cao nhất: {max_price:,.0f} VNĐ</h4>
-            <h4>Thấp nhất: {min_price:,.0f} VNĐ</h4>
-        </div>
-        """, unsafe_allow_html=True)
-        
-        # Thống kê dự báo
-        for model in selected_models:
-            model_status = check_model_status(selected_product, model, encoding_type, df)
-            
-            if model_status:
-                forecast_dates, forecast_prices = forecast_with_model(
-                    df_filtered, model, encoding_type, forecast_days, df
-                )
-                if forecast_prices is not None:
-                    summary = create_forecast_summary(forecast_prices, f"{model}_{encoding_type}")
-                    if summary:
-                        st.markdown(f"""
-                        <div class="metric-box">
-                            <h4>{model}_{encoding_type}</h4>
-                            <p>Dự báo TB: {summary['avg_forecast']:,.0f} VNĐ</p>
-                            <p>{summary['trend']} ({summary['change_pct']:+.1f}%)</p>
-                        </div>
-                        """, unsafe_allow_html=True)
-
-# Dataset dự báo
-st.markdown("---")
-st.subheader("Kết quả dự báo")
-
-if len(df_filtered) > 0 and selected_models:
-    forecast_df = create_forecast_dataset(
-        df_filtered, selected_models, encoding_type, forecast_days,
-        selected_product, selected_market, selected_source, selected_price_type, df
-    )
-    
-    if forecast_df is not None:
-        # Hiển thị bảng
-        st.dataframe(forecast_df, use_container_width=True, hide_index=True)
-        
-        # Download
-        col1, col2 = st.columns(2)
-        
-        with col1:
-            csv = forecast_df.to_csv(index=False).encode('utf-8')
-            st.download_button(
-                label="📥 Tải CSV",
-                data=csv,
-                file_name=f'du_bao_{selected_product}_{datetime.now().strftime("%Y%m%d")}.csv',
-                mime='text/csv'
-            )
-        
-        with col2:
-            # Thống kê tổng hợp
-            all_forecasts = []
-            for model in selected_models:
-                if check_model_status(selected_product, model, encoding_type, df):
-                    _, forecast_prices = forecast_with_model(
-                        df_filtered, model, encoding_type, forecast_days, df
-                    )
-                    if forecast_prices is not None:
-                        all_forecasts.extend(forecast_prices)
-            
-            if all_forecasts:
-                avg_all = np.mean(all_forecasts)
-                std_all = np.std(all_forecasts)
-                
-                st.info(f"""
-                **Tóm tắt:**
-                - Giá TB: {avg_all:,.0f} VNĐ
-                - Độ lệch: {std_all:,.0f} VNĐ
-                - Số ngày: {forecast_days}
-                - Model: {len(selected_models)}
-                """)
-    else:
-        st.warning("Không thể tạo dự báo!")
-else:
-    st.info("Chọn mô hình để xem dự báo")
-
-# Footer
-st.markdown("---")
-st.markdown("**Hệ thống dự báo giá nông sản** - Tách biệt dữ liệu lịch sử và dự báo")
+if __name__ == "__main__":
+	main()

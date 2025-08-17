@@ -1,4 +1,6 @@
 import numpy as np
+import pandas as pd
+
 
 class DLM:
     def __init__(self):
@@ -11,7 +13,7 @@ class DLM:
         self.B = None                  # Ma trận hệ số cho biến ngoại sinh (Exogenous coefficients)
 
     def fit(self, y, exog):
-        self.x = y[0] # Giá trị khởi tạo trạng thái ban đầu bằng quan sát đầu tiên
+        self.x = np.array([[y[0]]]) # Giá trị khởi tạo trạng thái ban đầu bằng quan sát đầu tiên
         y = np.asarray(y).reshape(-1, 1)  # Đưa dữ liệu thành vector cột
         T = len(y)  # Số bước thời gian
 
@@ -46,7 +48,7 @@ class DLM:
 
         return self
 
-    def forecast(self, exog_future, steps=1):
+    def forecast(self, exog_future: np.ndarray, steps=1):
         """
         Dự báo 'steps' bước tiếp theo dựa trên mô hình đã fit.
         exog_future: ma trận (steps × k) chứa giá trị biến ngoại sinh trong tương lai
@@ -64,3 +66,15 @@ class DLM:
             forecasts.append(float(self.H @ x_fore + exog_term))
 
         return np.array(forecasts)
+    
+    
+if __name__ == "__main__":
+    item_df = pd.read_csv("data/pre_data.csv")
+    item_df = item_df[item_df["Tên_mặt_hàng"] == 23]
+    X = item_df[["Thị_trường", "Loại_giá"]]
+    y = item_df["Giá"]
+
+    model = DLM()
+    model.fit(y, X)
+
+
