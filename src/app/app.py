@@ -100,7 +100,7 @@ def main():
 	
 	# Header
 	st.title("📈 Hệ thống Dự báo Giá Nông sản")
-	st.markdown("*Ứng dụng dự báo giá sử dụng mô hình SARIMAX và DLM*")
+	st.markdown("*Ứng dụng dự báo giá sử dụng mô hình ARIMAX và DLM*")
 	st.markdown("---")
 	
 	# Load model
@@ -119,7 +119,7 @@ def main():
 		# Model selection
 		model_type = st.selectbox(
 			"Chọn mô hình dự báo:",
-			["sarimax", "dlm"],
+			["arimax", "dlm"],
 			format_func=lambda x: f"{x.upper()} Model",
 			help="SARIMAX: Seasonal ARIMA with eXogenous variables\nDLM: Dynamic Linear Model"
 		)

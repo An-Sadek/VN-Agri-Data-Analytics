@@ -1,6 +1,4 @@
 # plot.py
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
 import numpy as np
 import pandas as pd
 from datetime import timedelta
@@ -72,9 +70,9 @@ class ForcastModel:
 	# Dự đoán
 	def forecast(self, model_type: str, feature_dict: dict):
 		"""
-		Dự báo giá tương lai bằng mô hình dlm hoặc sarimax bằng từ điển đặc trưng
+		Dự báo giá tương lai bằng mô hình dlm hoặc ARIMAX bằng từ điển đặc trưng
 		"""
-		assert model_type in ["sarimax", "dlm", "arimax"]
+		assert model_type in ["dlm", "arimax"]
 		assert (feature_dict["Ngày"] != "") ^ (feature_dict["Steps"] != 0), "Bắt buộc chỉ có duy nhất Ngày hoặc số bước dự đoán"
 		assert  all(k in feature_dict for k in self.input_list), f"Feature dict là từ điển đặc trưng gồm các từ khóa sau: {self.input_list}"
 
@@ -102,10 +100,6 @@ class ForcastModel:
 			model = pickle.load(file)
 
 		# Dự đoán
-		y_pred = None
-		if model_type == "sarimax":
-			y_pred = model.forecast(steps=steps, exog=exog)
-
 		if model_type == "dlm":
 			exog = np.array(exog)
 			y_pred = model.forecast(steps=steps, exog_future=exog)
@@ -196,16 +190,6 @@ if __name__ == "__main__":
 		"Steps": 10
 	}
 
-	# Sarimax test
-	print("Sarima")
-	y_pred1 = model.forecast(
-		"sarimax",
-		feature_dict=features
-	)
-	print(y_pred1)
-	print(np.mean(y_pred1))
-	print("\n\n")
-	
 	# DLM test
 	print("DLM")
 	y_pred2 = model.forecast(
