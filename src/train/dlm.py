@@ -13,6 +13,11 @@ class DLM:
         self.B = None                  # Ma trận hệ số cho biến ngoại sinh (Exogenous coefficients)
 
     def fit(self, y, exog):
+        """
+        Phương thức dùng để fit vào các tham số
+            y: Giá trị muốn dự đoán
+            exog: (Các) biến ngoại sinh
+        """
         self.x = np.array([[y[0]]]) # Giá trị khởi tạo trạng thái ban đầu bằng quan sát đầu tiên
         y = np.asarray(y).reshape(-1, 1)  # Đưa dữ liệu thành vector cột
         T = len(y)  # Số bước thời gian
@@ -51,7 +56,8 @@ class DLM:
     def forecast(self, exog_future: np.ndarray, steps=1):
         """
         Dự báo 'steps' bước tiếp theo dựa trên mô hình đã fit.
-        exog_future: ma trận (steps × k) chứa giá trị biến ngoại sinh trong tương lai
+            exog_future: ma trận (steps x k) chứa giá trị biến ngoại sinh trong tương lai
+            steps: Số bước, tương ứng với số dòng của exog_future
         """
         forecasts = []
         x_fore = self.x.copy()  # Trạng thái ban đầu để dự báo

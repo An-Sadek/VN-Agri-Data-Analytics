@@ -2,11 +2,12 @@ import numpy as np
 import pandas as pd
 
 from statsmodels.tsa.stattools import adfuller
-from sklearn.metrics import mean_squared_error
 
 import matplotlib.pyplot as plt
 
+
 class ARIMAX:
+
     def __init__(self, data, exog=None, p=1, d=0, q=0, smoothing=True, alpha=0.3):
         assert p < len(data), "p must be smaller than data length"
         self.data = np.array(data, dtype=float)
@@ -20,32 +21,66 @@ class ARIMAX:
         if smoothing:
             self.data = self.exponential_smoothing(alpha)
 
+    # Lấy dữ liệu
     def get_data(self):
         return self.data
     
+    # Lấy dữ liệu + dự đoán
     def get_full(self, steps=1, exog_future=None):
         forecasted = self.forecast(steps, exog_future)
         return np.concatenate([self.data, forecasted]).tolist()
     
-    # ------------------------
-    # I part - differencing
-    # ------------------------
-    def difference(self, data, d=1):
-        diffed = np.array(data, dtype=float)
-        for _ in range(d):
-            diffed = diffed[1:] - diffed[:-1]
-        return diffed
-
+    # Làm mượt hàm mũ
     def exponential_smoothing(self, alpha):
         smoothed = [self.data[0]]
         for t in range(1, len(self.data)):
             smoothed.append(alpha * self.data[t] + (1 - alpha) * smoothed[t-1])
         return np.array(smoothed)
 
-    # ------------------------
-    # AR + exog
-    # ------------------------
+    # AR
     def AR(self, data, exog=None):
+        """
+        Sử dụng phương pháp OLS để tính hệ số giữa các dữ liệu.
+        Với mỗi p > 0, dữ liệu sẽ được dời lại.
+
+        Ví dụ:
+            data = [1, 2, 3, 4, 5]
+            data_p1 = [2, 3, 4, 5]
+            data_p2 = [3, 4, 5]
+            -> 
+                y       p1      p2
+                ____________________
+                1       NULL    NULL
+                2       1       NULL
+                3       2       1
+                4       3       2
+                5       4       3
+            Bỏ các giá trị NULL, 
+            ta sẽ có y = [3, 4, 5] và X = [
+                [2, 1],
+                [3, 2],
+                [4, 3]
+            ]
+
+        Nếu có thêm các biến ngoại sinh thì các biến ngoại sinh sẽ được thêm vào
+        Ví dụ, với data trên, có    exog1 = [0.1, 0.2, 0.3, 0.4, 0.5] 
+                                    exog2 = [0.6, 0.7, 0.8, 0.9, 1.0]
+        Bỏ các hàng chứa NULL -> X =
+                p1  p2  exog1   exog2
+                _____________________
+                2   1   0.3     0.8
+                3   2   0.4     0.9
+                4   3   0.5     1.0
+
+        y = θX, với θ = [theta_0 theta_1 theta_2 ... theta_n], 
+            với theta_0 là hệ số chặn (intercept), còn lại là hệ số góc
+
+        Giải hệ số θ = (X^T * X)^-1 * X^T * y
+        Đầu vào:
+            data:
+            exog
+        Đầu ra: θ, y - y_hat
+        """ 
         y_series = pd.Series(data)
         columns = {'y': y_series}
         for i in range(1, self.p + 1):
@@ -65,18 +100,43 @@ class ARIMAX:
         y_hat = X @ beta
         residuals = y - y_hat
         return beta, residuals
+    
+    # I part
+    def difference(self, data, d=1):
+        """
+        Là phần I của ARIMAX. 
+        Với mỗi phần tử trong mảng sẽ bằng hiệu của phần tử phía sau với phần tử phía trước.
 
-    # ------------------------
-    # MA part
-    # ------------------------
+        Ví dụ: 
+            Có vector data có 5 phần tử, i ∈ [1, 5], data = {1, 2, 3.5, 5.5, 8}
+            Với d=1, vector data_d1[i] = data[i+1] - data[i], i ∈ [1, 4], data_d1 = {1, 1.5, 2, 2.5}
+            Với d=2, vector data_d2[i] = data_d1[i+1] - data_d1[i], i ∈ [1, 3], data_d2 = {0.5, 0.5, 0.5}
+
+        Đầu vào:
+            data:   Dữ liệu muốn dự đoán, có thể là vector hoặc là ma trận có kích thước n x m
+                    với n là số dòng dữ liệu
+            d:      Số lần dữ liệu bị trừ (đến khi đạt tính dừng)
+        
+        Đầu ra:
+            diffed: Dữ liệu integrated
+        """
+        diffed = np.array(data, dtype=float)
+        for _ in range(d):
+            diffed = diffed[1:] - diffed[:-1]
+        return diffed
+
+    # MA
     def MA(self, data):
+        """
+
+        """
         if self.q == 0:
             return np.array([]), data
 
         e_series = pd.Series(data)
         columns = {'e': e_series}
         for i in range(1, self.q + 1):
-            columns[f'e_lag{i}'] = e_series.shift(i)
+            columns[f'e_lag{i}'] = e_series.shift(i) # Lagged series
         df = pd.DataFrame(columns)
 
         df = df.dropna()
@@ -88,9 +148,7 @@ class ARIMAX:
         new_residuals = y - y_hat
         return theta, new_residuals
 
-    # ------------------------
-    # Forecast method
-    # ------------------------
+    # Dự đoán
     def forecast(self, steps=1, exog_future=None):
         if exog_future is not None:
             assert steps == len(exog_future)
@@ -164,6 +222,7 @@ class ARIMAX:
 
         return forecasts
     
+# Autocorrelation function
 def acf(y, nlags=20):
     y = np.array(y)
     n = len(y)
@@ -176,9 +235,7 @@ def acf(y, nlags=20):
         acf_vals.append(cov / var_y)
     return np.array(acf_vals)
 
-# ------------------------
 # Partial Autocorrelation function
-# ------------------------
 def pacf(y, nlags=20):
     from numpy.linalg import lstsq
     pacf_vals = [1.0]  # lag 0 PACF is 1
@@ -193,9 +250,7 @@ def pacf(y, nlags=20):
 
     return np.array(pacf_vals)
 
-# ------------------------
-# Plotting function
-# ------------------------
+
 def plot_acf_pacf(y, nlags=20):
 
     if nlags is None:
@@ -332,12 +387,10 @@ class Tools:
             "q": best_q
         }
     
-# ------------------------
-# Example usage
-# ------------------------
+
 if __name__ == "__main__":
     y = np.array([4.0, 4.5, 5.0, 5.3, 5.7, 6.1, 6.4, 6.8])
-    exog = np.array([[1], [2], [3], [4], [5], [6], [7], [8]])  # simple exogenous variable
+    exog = np.array([[1], [2], [3], [4], [5], [6], [7], [8]]) 
 
     model = ARIMAX(y, exog=exog, p=0, d=1, q=1)
     
