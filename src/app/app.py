@@ -147,13 +147,6 @@ def main():
 			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
 		)
 		
-		# Source
-		source = st.selectbox(
-			"Nguồn dữ liệu:",
-			options["Nguồn"],
-			help="Chọn nguồn thu thập dữ liệu"
-		)
-		
 		st.markdown("---")
 		st.markdown("### 📅 Cấu hình Thời gian")
 		
@@ -211,7 +204,6 @@ def main():
 				"Tên_mặt_hàng": item_name,
 				"Thị_trường": market,
 				"Loại_giá": price_type,
-				"Nguồn": source,
 				"Steps": steps
 			}
 			
@@ -324,8 +316,6 @@ def main():
 				**Thị trường:** {market}
 				
 				**Loại giá:** {price_type}
-				
-				**Nguồn:** {source}
 				
 				**Số điểm dự báo:** {len(predictions)} ngày
 				

@@ -32,9 +32,9 @@ class ForcastModel:
 		with open("data/scaler.yaml", "r", encoding="utf-8") as file:
 			self.scaler_meta = yaml.safe_load(file)
 
-		self.input_list = ["Ngày", "Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
-		self.cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
-		self.exog_cols = ["Thị_trường", "Loại_giá", "Nguồn"]
+		self.input_list = ["Ngày", "Tên_mặt_hàng", "Thị_trường", "Loại_giá"]
+		self.cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá"]
+		self.exog_cols = ["Thị_trường", "Loại_giá"]
 
 
 	def _get_encoded_feature(self, feature_dict: dict):
@@ -89,7 +89,6 @@ class ForcastModel:
 		exog1 = [
 			encoded_dict["Thị_trường"],
 			encoded_dict["Loại_giá"],
-			encoded_dict["Nguồn"]
 		]
 		exog = []
 		for _ in range(steps):
@@ -186,7 +185,6 @@ if __name__ == "__main__":
 		"Tên_mặt_hàng": "Cà phê Robusta nhân xô",
 		"Thị_trường": "Đắk Lắk",
 		"Loại_giá": "Thương lái thu mua",
-		"Nguồn": "CTV địa phương",
 		"Steps": 10
 	}
 
