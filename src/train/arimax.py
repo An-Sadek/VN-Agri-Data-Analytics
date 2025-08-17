@@ -13,7 +13,7 @@ class ARIMAX:
         self.data = np.array(data, dtype=float)
         self.exog = np.array(exog, dtype=float) if exog is not None else None
         if self.exog is not None:
-            assert len(self.exog) == len(self.data), "Exogenous variables must match data length"
+            assert len(self.exog) == len(self.data), "Số dòng dữ liệu phải bằng số dòng exog"
         self.p = p
         self.d = d
         self.q = q

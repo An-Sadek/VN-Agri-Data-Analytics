@@ -4,6 +4,21 @@ import pandas as pd
 
 class DLM:
     def __init__(self):
+        """
+        Ý nghĩa từng ma trận
+            A:  Ma trận chuyển trạng thái xác định hệ thống tuyến tính giữa 2 trạng thái. 
+                Tùy thuộc vào bài toán cụ thể thì ma trận chuyển trạng thái sẽ khác nhau.
+            H:  Ma trận H liên kết trạng thái ẩn (state) với quan sát thực tế (measurement). 
+                Nó mô tả cách trạng thái x_t  được chuyển đổi thành giá trị quan sát z_t 
+            Q:  Ma trận Q biểu thị mức độ không chắc chắn (uncertainty) trong quá trình tiến hóa của trạng thái,
+                do nhiễu quá trình (process noise). Trong mô hình Kalman Filter, 
+                nhiễu quá trình được giả định là nhiễu trắng Gauss với hiệp phương sai Q w_t ~ N(0, Q)
+            R:  Ma trận R biểu thị mức độ không chắc chắn trong các quan sát thực tế, do nhiễu đo lường (measurement noise). 
+                Trong Kalman Filter, nhiễu đo lường được giả định là nhiễu trắng Gauss với hiệp phương sai R
+            H:  Ma trận P biểu thị mức độ không chắc chắn (uncertainty) trong ước lượng trạng thái x_t . 
+                Nó là hiệp phương sai của trạng thái ước lượng tại thời điểm hiện tại.
+            B: Ma trận B chứa các hệ số liên kết các biến ngoại sinh (exogenous variables) với quan sát
+        """
         self.A = np.array([[1.0]])     # Ma trận chuyển trạng thái (State transition matrix)
         self.H = np.array([[1.0]])     # Ma trận quan sát (Observation matrix)
         self.Q = np.array([[0.001]])   # Ma trận hiệp phương sai nhiễu quá trình (Process noise covariance)
