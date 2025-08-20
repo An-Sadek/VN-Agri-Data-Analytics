@@ -8,12 +8,14 @@ import matplotlib.pyplot as plt
 
 class ARIMAX:
 
-    def __init__(self, data, exog=None, p=1, d=0, q=0, smoothing=True, alpha=0.3):
-        assert p < len(data), "p must be smaller than data length"
+    def __init__(self, data, exog=None, p=1, d=0, q=0, 
+                 smoothing=True, alpha=0.3):
+        assert p < len(data), "p phải nhỏ hơn số dòng dữ liệu"
         self.data = np.array(data, dtype=float)
         self.exog = np.array(exog, dtype=float) if exog is not None else None
         if self.exog is not None:
-            assert len(self.exog) == len(self.data), "Số dòng dữ liệu phải bằng số dòng exog"
+            assert len(self.exog) == len(self.data), \
+            "Số dòng dữ liệu phải bằng số dòng exog"
         self.p = p
         self.d = d
         self.q = q
@@ -88,7 +90,10 @@ class ARIMAX:
         df = pd.DataFrame(columns)
 
         if exog is not None:
-            exog_df = pd.DataFrame(exog, columns=[f'exog{i}' for i in range(exog.shape[1])])
+            exog_df = pd.DataFrame(
+                exog, 
+                columns=[f'exog{i}' for i in range(exog.shape[1])]
+            )
             df = pd.concat([df, exog_df], axis=1)
 
         df = df.dropna()
@@ -100,10 +105,7 @@ class ARIMAX:
         y_hat = X @ beta
         residuals = y - y_hat
         return beta, residuals
-    
-    # I part
-    def difference(self, data, d=1):
-        """
+    """
         Là phần I của ARIMAX. 
         Với mỗi phần tử trong mảng sẽ bằng hiệu của phần tử phía sau với phần tử phía trước.
 
@@ -120,6 +122,8 @@ class ARIMAX:
         Đầu ra:
             diffed: Dữ liệu integrated
         """
+    # I part
+    def difference(self, data, d=1):
         diffed = np.array(data, dtype=float)
         for _ in range(d):
             diffed = diffed[1:] - diffed[:-1]
@@ -127,9 +131,6 @@ class ARIMAX:
 
     # MA
     def MA(self, data):
-        """
-
-        """
         if self.q == 0:
             return np.array([]), data
 
@@ -141,51 +142,50 @@ class ARIMAX:
 
         df = df.dropna()
         y = df['e'].values
-        X = df.iloc[:, 1:].values  # no intercept
+        X = df.values
 
         theta = np.linalg.lstsq(X, y, rcond=None)[0]
         y_hat = X @ theta
         new_residuals = y - y_hat
         return theta, new_residuals
 
-    # Dự đoán
+    # Dự báo
     def forecast(self, steps=1, exog_future=None):
         if exog_future is not None:
             assert steps == len(exog_future)
 
-        # 1. Difference
+        # 1. I part
         if self.d > 0:
             y_train = self.difference(self.data, self.d)
         else:
             y_train = self.data
 
-        # 2. Fit AR + exog
+        # 2. AR + exog
         exog_train = None
         if self.exog is not None:
             exog_train = self.exog[self.d:] if self.d > 0 else self.exog
         beta, ar_res = self.AR(y_train, exog_train)
 
-        # 3. Fit MA
+        # 3. MA
         theta, ma_res = self.MA(ar_res)
 
-        # 4. Prepare history
+        # 4. Chuẩn bị history
         y_hist = list(y_train)
         e_hist = list(ma_res)
         forecasts_diff = []
 
-        # 5. Forecast step by step
+        # 5. Dự báo
         for t in range(steps):
-            ar_part = beta[0]  # intercept
+            ar_part = beta[0]  # Hệ số chặn
             for i in range(1, self.p + 1):
                 ar_part += beta[i] * y_hist[-i]
 
-            # Exogenous contribution
-            if self.exog is not None:
-                if exog_future is None:
-                    raise ValueError("Future exogenous data required for forecasting")
-                exog_t = exog_future[t]
-                for j, val in enumerate(exog_t):
-                    ar_part += beta[self.p + 1 + j] * val
+            # Thêm biến ngoại sinh
+            assert (not self.exog is None) and (not exog_future is None),\
+                    "Cần thêm biến ngoại sinh"
+            exog_t = exog_future[t]
+            for j, val in enumerate(exog_t):
+                ar_part += beta[self.p + 1 + j] * val
 
             ma_part = 0
             if self.q > 0:
@@ -195,27 +195,26 @@ class ARIMAX:
             y_next = ar_part + ma_part
             forecasts_diff.append(y_next)
             y_hist.append(y_next)
-            e_hist.append(0)
 
         # 6. Inverse difference if d > 0
         if self.d == 0:
             return np.array(forecasts_diff)
 
-        # Compute last differences at each level
+        # Lịch sử diff
         diff_histories = []
         temp = self.data
         for _ in range(self.d):
             diff = np.diff(temp)
             if len(diff) == 0:
-                raise ValueError("Data too short for differencing")
+                raise ValueError("Không đủ dữ liệu")
             diff_histories.append(diff[-1])
             temp = diff
 
-        # Prepare add_list
+        # Chuẩn bị add list
         add_list = list(reversed(diff_histories[:-1])) if self.d > 1 else []
         add_list += [self.data[-1]]
 
-        # Cumulatively undifference
+        # Inverse difference
         forecasts = np.array(forecasts_diff)
         for i in range(self.d):
             forecasts = np.cumsum(forecasts) + add_list[i]

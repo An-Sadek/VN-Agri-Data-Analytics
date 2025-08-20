@@ -24,7 +24,6 @@ class DLM:
         self.Q = np.array([[0.001]])   # Ma trận hiệp phương sai nhiễu quá trình (Process noise covariance)
         self.R = np.array([[0.01]])    # Ma trận hiệp phương sai nhiễu đo lường (Measurement noise covariance)
         self.P = np.zeros((1, 1))      # Ma trận hiệp phương sai ước lượng trạng thái
-        self.x = None                  # Trạng thái ước lượng hiện tại (Current state estimate)
         self.B = None                  # Ma trận hệ số cho biến ngoại sinh (Exogenous coefficients)
 
     def fit(self, y, exog):
@@ -32,12 +31,12 @@ class DLM:
         Phương thức dùng để fit vào các tham số
             y: Giá trị muốn dự đoán
             exog: (Các) biến ngoại sinh
-        """
-        self.x = np.array([[y[0]]]) # Giá trị khởi tạo trạng thái ban đầu bằng quan sát đầu tiên
+        """   
+        x = np.array([[y[0]]]) # Trạng thái đầu tiên
         y = np.asarray(y).reshape(-1, 1)  # Đưa dữ liệu thành vector cột
         T = len(y)  # Số bước thời gian
 
-        # Nếu không có biến ngoại sinh → tạo ma trận rỗng (T × 0)
+        # Nếu không có biến ngoại sinh -> tạo ma trận rỗng (T × 0)
         if exog is None:
             exog = np.zeros((T, 0))
         else:
@@ -46,7 +45,7 @@ class DLM:
         k = exog.shape[1]  # Số biến ngoại sinh
         self.B = np.zeros((k, 1))  # Khởi tạo hệ số ngoại sinh
 
-        # Nếu có biến ngoại sinh → ước lượng hệ số B bằng pseudo-inverse
+        # Nếu có biến ngoại sinh -> ước lượng hệ số B bằng pseudo-inverse
         if k > 0:
             self.B = np.linalg.pinv(exog) @ y  # (k × 1)
             y_adj = y - exog @ self.B  # Loại bỏ ảnh hưởng của biến ngoại sinh khỏi quan sát
@@ -56,7 +55,7 @@ class DLM:
         # Vòng lặp cập nhật Kalman Filter
         for t in range(T):
             # Dự báo (Prediction step)
-            x_pred = self.A @ self.x  # Dự báo trạng thái tiếp theo
+            x_pred = self.A @ x  # Dự báo trạng thái tiếp theo
             P_pred = self.A @ self.P @ self.A.T + self.Q  # Dự báo hiệp phương sai
 
             # Cập nhật (Update step)
