@@ -21,6 +21,59 @@ def load_model():
 		st.error(f"Error loading model: {str(e)}")
 		return None
 
+def check_data_availability(model, features):
+	"""Check if data exists for the selected combination"""
+	try:
+		# Get the raw data
+		df = model.df
+		
+		# Encode features to match dataset format
+		encoded_features = model._get_encoded_feature(features)
+		
+		# Check if combination exists in dataset
+		mask = (
+			(df["Tên_mặt_hàng"] == encoded_features["Tên_mặt_hàng"]) &
+			(df["Thị_trường"] == encoded_features["Thị_trường"]) &
+			(df["Loại_giá"] == encoded_features["Loại_giá"])&
+			(df["Nguồn"] == encoded_features["Nguồn"])
+		)
+		
+		matching_data = df[mask]
+		
+		if len(matching_data) == 0:
+			return False, "Không có dữ liệu cho sự kết hợp sản phẩm-vùng-loại giá này"
+		else:
+			return True, f"Có {len(matching_data)} điểm dữ liệu"
+			
+	except Exception as e:
+		return False, f"Lỗi kiểm tra dữ liệu: {str(e)}"
+
+def display_data_unavailable_message(item_name, market, price_type, source, reason):
+	"""Display a user-friendly message when data is not available"""
+	st.error("❌ Không thể thực hiện dự báo")
+	
+	col1, col2 = st.columns([1, 1])
+	
+	with col1:
+		st.warning(f"""
+		### 📋 Thông tin yêu cầu:
+		- **Sản phẩm:** {item_name}
+		- **Thị trường/Vùng:** {market}  
+		- **Loại giá:** {price_type}
+		- **Nguồn:** {source}
+		
+		### ⚠️ Vấn đề: 
+		{reason} trong cơ sở dữ liệu.
+		""")
+	
+	with col2:
+		st.info("""
+		### 💡 Gợi ý:
+		- Thử chọn thị trường/vùng khác cho sản phẩm này
+		- Thử chọn loại giá khác (bán lẻ/bán sỉ/xuất khẩu)
+		- Kiểm tra lại tên sản phẩm
+		""")
+
 def display_forecast_chart(model, model_type, features, show_historical, chart_height=500):
 	"""Display chart using the model's plot_forecast method"""
 	try:
@@ -147,11 +200,11 @@ def main():
 			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
 		)
 
-		# Nguồn
+		# Price type
 		source = st.selectbox(
-			"Nguồn",
+			"Nguồn:",
 			options["Nguồn"],
-			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
+			help="Chọn nguồn thông tin"
 		)
 		
 		st.markdown("---")
@@ -168,12 +221,12 @@ def main():
 		target_date = ""
 		
 		if forecast_method == "Số ngày từ hôm nay":
-			steps = st.slider(
+			steps = st.number_input(
 				"Số ngày dự báo:",
 				min_value=1,
-				max_value=365,
 				value=30,
-				help="Số ngày dự báo tính từ ngày cuối cùng có dữ liệu"
+				step=1,
+				help="Nhập số ngày dự báo tính từ ngày cuối cùng có dữ liệu"
 			)
 		else:
 			min_date = datetime.now().date()
@@ -219,25 +272,37 @@ def main():
 			progress_bar = st.progress(0)
 			status_text = st.empty()
 			
-			# Step 1: Load data
+			# Step 1: Check data availability
+			status_text.text("🔍 Đang kiểm tra dữ liệu...")
+			progress_bar.progress(20)
+			
+			data_available, data_message = check_data_availability(model, features)
+			
+			if not data_available:
+				progress_bar.empty()
+				status_text.empty()
+				display_data_unavailable_message(item_name, market, price_type, source, data_message)
+				return
+			
+			# Step 2: Load data
 			status_text.text("📊 Đang tải dữ liệu...")
-			progress_bar.progress(25)
+			progress_bar.progress(40)
 			
 			# Get historical data if needed
 			historical_data = None
 			if show_historical:
 				historical_data = get_historical_data(model, features)
 			
-			# Step 2: Run forecast
+			# Step 3: Run forecast
 			status_text.text("🔮 Đang thực hiện dự báo...")
-			progress_bar.progress(50)
+			progress_bar.progress(60)
 			
 			predictions = model.forecast(model_type, features)
 			predictions = np.array(predictions)
 			
-			# Step 3: Prepare visualization and data
+			# Step 4: Prepare visualization and data
 			status_text.text("📈 Đang chuẩn bị biểu đồ...")
-			progress_bar.progress(75)
+			progress_bar.progress(80)
 			
 			# Generate future dates for the table
 			if historical_data is not None and len(historical_data) > 0:
@@ -250,7 +315,7 @@ def main():
 			
 			future_dates = [last_date + timedelta(days=i) for i in range(1, len(predictions) + 1)]
 			
-			# Step 4: Complete
+			# Step 5: Complete
 			status_text.text("✅ Hoàn thành!")
 			progress_bar.progress(100)
 			
@@ -260,6 +325,7 @@ def main():
 			
 			# Success message
 			st.success(f"✅ Dự báo hoàn thành cho {item_name} sử dụng mô hình {model_type.upper()}!")
+			st.info(f"📊 {data_message}")
 			
 			# Display forecast statistics
 			st.subheader("📊 Thống kê Dự báo")
@@ -324,8 +390,6 @@ def main():
 				**Thị trường:** {market}
 				
 				**Loại giá:** {price_type}
-
-				**Nguồn:** {source}
 				
 				**Số điểm dự báo:** {len(predictions)} ngày
 				
