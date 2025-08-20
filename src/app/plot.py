@@ -32,9 +32,9 @@ class ForcastModel:
 		with open("data/scaler.yaml", "r", encoding="utf-8") as file:
 			self.scaler_meta = yaml.safe_load(file)
 
-		self.input_list = ["Ngày", "Tên_mặt_hàng", "Thị_trường", "Loại_giá"]
-		self.cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá"]
-		self.exog_cols = ["Thị_trường", "Loại_giá"]
+		self.input_list = ["Ngày", "Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
+		self.cat_cols = ["Tên_mặt_hàng", "Thị_trường", "Loại_giá", "Nguồn"]
+		self.exog_cols = ["Thị_trường", "Loại_giá", "Nguồn"]
 
 
 	def _get_encoded_feature(self, feature_dict: dict):
@@ -72,7 +72,7 @@ class ForcastModel:
 		"""
 		Dự báo giá tương lai bằng mô hình dlm hoặc ARIMAX bằng từ điển đặc trưng
 		"""
-		assert model_type in ["dlm", "arimax"]
+		assert model_type in ["dlm", "sarimax"]
 		assert (feature_dict["Ngày"] != "") ^ (feature_dict["Steps"] != 0), "Bắt buộc chỉ có duy nhất Ngày hoặc số bước dự đoán"
 		assert  all(k in feature_dict for k in self.input_list), f"Feature dict là từ điển đặc trưng gồm các từ khóa sau: {self.input_list}"
 
@@ -89,6 +89,7 @@ class ForcastModel:
 		exog1 = [
 			encoded_dict["Thị_trường"],
 			encoded_dict["Loại_giá"],
+			encoded_dict["Nguồn"]
 		]
 		exog = []
 		for _ in range(steps):
@@ -100,11 +101,10 @@ class ForcastModel:
 
 		# Dự đoán
 		if model_type == "dlm":
-			exog = np.array(exog)
-			y_pred = model.forecast(steps=steps, exog_future=exog)
+			y_pred, _ = model.predictN(N=steps, featureDict={"exog": exog})
 
-		if model_type == "arimax":
-			y_pred = model.forecast(steps=steps, exog_future=exog)
+		if model_type == "sarimax":
+			y_pred = model.forecast(steps=steps, exog=exog)
 
 		return y_pred
 	
@@ -185,6 +185,7 @@ if __name__ == "__main__":
 		"Tên_mặt_hàng": "Cà phê Robusta nhân xô",
 		"Thị_trường": "Đắk Lắk",
 		"Loại_giá": "Thương lái thu mua",
+		"Nguồn": "CTV địa phương",
 		"Steps": 10
 	}
 
@@ -198,15 +199,15 @@ if __name__ == "__main__":
 
 	fig = model.plot_forecast("dlm", features)
 
-	# ARIMA test
-	print("ARIMAX")
+	# SARIMA test
+	print("SRIMAX")
 	y_pred3 = model.forecast(
-		"arimax",
+		"sarimax",
 		feature_dict=features
 	)
 	print(y_pred3)
 
 	model.plot_forecast("dlm", features)
-	model.plot_forecast("arimax", features)
+	model.plot_forecast("sarimax", features)
 
 	

@@ -100,7 +100,7 @@ def main():
 	
 	# Header
 	st.title("📈 Hệ thống Dự báo Giá Nông sản")
-	st.markdown("*Ứng dụng dự báo giá sử dụng mô hình ARIMAX và DLM*")
+	st.markdown("*Ứng dụng dự báo giá sử dụng mô hình SARIMAX và DLM*")
 	st.markdown("---")
 	
 	# Load model
@@ -119,7 +119,7 @@ def main():
 		# Model selection
 		model_type = st.selectbox(
 			"Chọn mô hình dự báo:",
-			["arimax", "dlm"],
+			["sarimax", "dlm"],
 			format_func=lambda x: f"{x.upper()} Model",
 			help="SARIMAX: Seasonal ARIMA with eXogenous variables\nDLM: Dynamic Linear Model"
 		)
@@ -144,6 +144,13 @@ def main():
 		price_type = st.selectbox(
 			"Loại giá:",
 			options["Loại_giá"],
+			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
+		)
+
+		# Nguồn
+		source = st.selectbox(
+			"Nguồn",
+			options["Nguồn"],
 			help="Chọn loại giá (bán lẻ, bán sỉ, etc.)"
 		)
 		
@@ -204,6 +211,7 @@ def main():
 				"Tên_mặt_hàng": item_name,
 				"Thị_trường": market,
 				"Loại_giá": price_type,
+				"Nguồn": source,
 				"Steps": steps
 			}
 			
@@ -316,6 +324,8 @@ def main():
 				**Thị trường:** {market}
 				
 				**Loại giá:** {price_type}
+
+				**Nguồn:** {source}
 				
 				**Số điểm dự báo:** {len(predictions)} ngày
 				
