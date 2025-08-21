@@ -70,7 +70,7 @@ class ForcastModel:
 	# Dự đoán
 	def forecast(self, model_type: str, feature_dict: dict):
 		"""
-		Dự báo giá tương lai bằng mô hình dlm hoặc ARIMAX bằng từ điển đặc trưng
+		Dự báo giá tương lai bằng mô hình dlm hoặc SARIMAX bằng từ điển đặc trưng
 		"""
 		assert model_type in ["dlm", "sarimax"]
 		assert (feature_dict["Ngày"] != "") ^ (feature_dict["Steps"] != 0), "Bắt buộc chỉ có duy nhất Ngày hoặc số bước dự đoán"
